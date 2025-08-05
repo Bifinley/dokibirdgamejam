@@ -195,7 +195,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7befde712044bf34d8d765aba01a52c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -310,7 +310,7 @@ Transform:
   m_GameObject: {fileID: 102389240}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.02, y: -4.01, z: 0.054106593}
+  m_LocalPosition: {x: 11.02, y: -0.02, z: 0.054106593}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -820,7 +820,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 6b63a97d6a0f37f42afcaff6dce63eb9, type: 3}
   m_Resource: {fileID: 8300000, guid: 6b63a97d6a0f37f42afcaff6dce63eb9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.231
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -929,9 +929,9 @@ Transform:
   m_GameObject: {fileID: 960720443}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.01, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -0.01, z: 0}
+  m_LocalScale: {x: 6.5, y: 6.5, z: 6.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 22190522}
   m_Father: {fileID: 0}
@@ -983,7 +983,7 @@ MonoBehaviour:
   blockPrefab: {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
   spawnPoint: {fileID: 102389241}
   pointToHit: {fileID: 960720444}
-  bpm: 60
+  bpm: 9
   hitRange: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -994,6 +994,6 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 583309156}
   - {fileID: 79831082}
-  - {fileID: 960720444}
   - {fileID: 792069446}
+  - {fileID: 960720444}
   - {fileID: 102389241}
