@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class Rhythm : MonoBehaviour
 {
@@ -7,6 +8,12 @@ public class Rhythm : MonoBehaviour
     [SerializeField] private GameObject blockPrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform pointToHit;
+
+    [Header("Hit&Miss Text/Num")]
+    [SerializeField] private TMP_Text hitText;
+    [SerializeField] private int hitNumber;
+    [SerializeField] private TMP_Text missText;
+    [SerializeField] private int missNumber;
 
     [Header("Settings")]
     [SerializeField] private float bpm = 120f;
@@ -68,6 +75,8 @@ public class Rhythm : MonoBehaviour
                 if (distance <= hitRange)
                 {
                     Debug.Log("Key hit");
+                    hitNumber++;
+                    hitText.text = $"hits: {hitNumber}";
                     Destroy(blocks[i].gameObject);
                     blocks.RemoveAt(i);
                     hitRegistered = true;
