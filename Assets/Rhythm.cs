@@ -3,30 +3,59 @@ using System.Collections.Generic;
 
 public class Rhythm : MonoBehaviour
 {
-    [SerializeField] private List<Transform> blocks;
+    [Header("References")]
+    [SerializeField] private GameObject blockPrefab;
+    [SerializeField] private Transform spawnPoint;
     [SerializeField] private Transform pointToHit;
-    [SerializeField] private float hitRange;
-    [SerializeField] private float moveSpeed;
+
+    [Header("Settings")]
+    [SerializeField] private float bpm = 120f;
+    [SerializeField] private float hitRange = 0.5f;
+
+    private List<Transform> blocks = new List<Transform>();
+    private float beatInterval;
+    private float nextBeatTime;
+    private float moveSpeed;
+
+    private void Start()
+    {
+        beatInterval = 60f / bpm;
+
+        float distance = spawnPoint.position.x - pointToHit.position.x;
+        moveSpeed = distance / beatInterval;
+
+        nextBeatTime = Time.time + beatInterval;
+    }
 
     private void Update()
     {
-        //Debug.Log(blocks[0].transform.position.x);    
+        SpawnOnBeat();
         MoveBlocks();
         HitOrMiss();
     }
 
+    private void SpawnOnBeat()
+    {
+        if (Time.time >= nextBeatTime)
+        {
+            GameObject newBlock = Instantiate(blockPrefab, spawnPoint.position, Quaternion.identity);
+            blocks.Add(newBlock.transform);
+            nextBeatTime += beatInterval;
+        }
+    }
+
     private void MoveBlocks()
     {
-        for (int i = 0; i < blocks.Count; i++)
+        foreach (Transform block in blocks)
         {
-            if (blocks[i] != null)
+            if (block != null)
             {
-                blocks[i].Translate(Vector3.left * moveSpeed * Time.deltaTime);
+                block.Translate(Vector3.left * moveSpeed * Time.deltaTime);
             }
         }
     }
 
-    public void HitOrMiss()
+    private void HitOrMiss()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -39,10 +68,8 @@ public class Rhythm : MonoBehaviour
                 if (distance <= hitRange)
                 {
                     Debug.Log("Key hit");
-
                     Destroy(blocks[i].gameObject);
                     blocks.RemoveAt(i);
-
                     hitRegistered = true;
                     break;
                 }
@@ -54,31 +81,4 @@ public class Rhythm : MonoBehaviour
             }
         }
     }
-
-    private void OnDrawGizmos()
-    {
-        if (pointToHit == null)
-            return;
-
-        Gizmos.color = Color.green;
-
-        float lineY = pointToHit.position.y;
-        float lineZ = pointToHit.position.z;
-
-        // Draw a line across the hit range
-        Vector3 leftEdge = new Vector3(pointToHit.position.x - hitRange, lineY, lineZ);
-        Vector3 rightEdge = new Vector3(pointToHit.position.x + hitRange, lineY, lineZ);
-
-        Gizmos.DrawLine(leftEdge, rightEdge);
-
-        // Optional: draw vertical lines at edges
-        Vector3 top = leftEdge + Vector3.up * 1f;
-        Vector3 bottom = leftEdge + Vector3.down * 1f;
-        Gizmos.DrawLine(top, bottom);
-
-        top = rightEdge + Vector3.up * 1f;
-        bottom = rightEdge + Vector3.down * 1f;
-        Gizmos.DrawLine(top, bottom);
-    }
-
 }
