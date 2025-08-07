@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8555828590745863290}
-  - component: {fileID: 7115364975013562370}
+  - component: {fileID: 8539534760028095171}
   m_Layer: 0
-  m_Name: movingBlock
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 2833064839892679666}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7115364975013562370
+--- !u!114 &8539534760028095171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,9 +42,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1514904223399486236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7453ac4088b64f4eb6a1032ca57c0eb, type: 3}
+  m_Script: {fileID: 11500000, guid: b5ee45dcdecef2c408df03b0680c744e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyMoveSpeed: 2
+  enemyTransform: {fileID: 8555828590745863290}
 --- !u!1 &7169762609418120628
 GameObject:
   m_ObjectHideFlags: 0
