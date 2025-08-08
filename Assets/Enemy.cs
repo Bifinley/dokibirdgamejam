@@ -4,7 +4,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float enemyMoveSpeed = 2f;
 
-    //[SerializeField] private Transform enemyTransform; might use this for something later
+    [SerializeField] public Transform enemyTransform; 
 
 
     private void Update()
