@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float distanceFromPlayer;
 
+    [SerializeField] private float enemyMaxDistanceOutSideOfBorder = -12f;
+
     private bool hasSpawned = false;
 
     private void Awake()
@@ -51,6 +53,13 @@ public class GameManager : MonoBehaviour
             if (distanceFromPlayer <= hitRange)
             {
                 Debug.Log(enemy.name + "Hit player!");
+                activeEnemyList.Remove(enemy);
+                Destroy(enemy);
+            }
+
+            if(enemy.transform.position.x <= enemyMaxDistanceOutSideOfBorder)
+            {
+                Debug.Log(enemy.name + "Went outside the border.");
                 activeEnemyList.Remove(enemy);
                 Destroy(enemy);
             }
