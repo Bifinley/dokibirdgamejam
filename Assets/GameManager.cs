@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [Header("Game Transforms Info")]
+    [Header("Game Transforms Info")] // I was messing around with headers, this is all unorganized. It will probably stay that way.
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform spawnEnemyPosition;
 
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int enemyMisses;
 
     [Header("Countdown Timer Info")]
-    private float defaultResetTime = 3f;
+    [SerializeField] private float defaultResetTime = 3f;
     [SerializeField] private float startCountDownTime = 0f;
 
     private bool hasSpawned = false;
@@ -97,12 +97,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmos() 
     {
         if (playerTransform != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(playerTransform.position, hitRange);
+            Gizmos.DrawWireSphere(playerTransform.position, hitRange); // draws a gizmo over the player transform and showing the hit range
         }
     }
 
