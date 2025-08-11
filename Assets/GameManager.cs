@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void NewAttackPlayerLogic()
+    private void NewAttackPlayerLogic() // this removes the error InvalidOperationException: Collection was modified; Using a forloop instead.
     {
         for (int i = activeEnemyList.Count - 1; i >= 0; i--)
         {
