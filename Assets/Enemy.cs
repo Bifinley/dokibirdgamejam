@@ -11,14 +11,22 @@ public class Enemy : MonoBehaviour
     private float enemyMinSpeed = 2.5f;
     private float enemyMaxSpeed = 5f;
 
+    float[] specificYaxisSpawningRange = { 3.32f, 0.21f, -2.94f }; // this is very specific so enemies dont collide with each other
 
     private void Start()
     {
         enemyMoveSpeed = Random.Range(enemyMinSpeed, enemyMaxSpeed);
+
+
+        float enemyY = specificYaxisSpawningRange[Random.Range(0, specificYaxisSpawningRange.Length)];
+
+
+
+        enemyTransform.position = new Vector3(12, enemyY, 0);
     }
 
     private void Update()
     {
-        transform.position += Vector3.left * enemyMoveSpeed * Time.deltaTime;
+        transform.position += Vector3.left * enemyMoveSpeed * Time.deltaTime; // moving towards the player which is left
     }
 }
