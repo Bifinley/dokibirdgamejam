@@ -1252,8 +1252,10 @@ MonoBehaviour:
   enemyMaxDistanceOutSideOfBorder: -12
   hitsText: {fileID: 1756410351}
   missText: {fileID: 1177093650}
+  castleHealthAmountText: {fileID: 2072030361}
   enemyHits: 0
   enemyMisses: 0
+  castleHealthAmount: 100
   defaultResetTime: 3
   startCountDownTime: 0
   gameDifficulty: 2
@@ -1300,7 +1302,7 @@ GameObject:
   - component: {fileID: 2072030362}
   - component: {fileID: 2072030361}
   m_Layer: 5
-  m_Name: healthText
+  m_Name: castleHealthAmountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1345,7 +1347,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'health: 100'
+  m_text: 'DokiCastle Health: 100'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -24,17 +24,18 @@ public class GameManager : MonoBehaviour
     [Header("Text Info")]
     [SerializeField] private TMP_Text hitsText;
     [SerializeField] private TMP_Text missText;
+    [SerializeField] private TMP_Text castleHealthAmountText;
 
     [Header("Scores Info")]
     [SerializeField] private int enemyHits;
     [SerializeField] private int enemyMisses;
+    [SerializeField] private int castleHealthAmount = 100;
 
     [Header("Countdown Timer Info")]
     [SerializeField] private float defaultResetTime = 3f;
     [SerializeField] private float startCountDownTime = 0f;
 
     [SerializeField] private enum GameDifficulty { Easy, Medium, Normal, Hard };
-
     [SerializeField] private GameDifficulty gameDifficulty;
 
     private void Start()
@@ -53,7 +54,12 @@ public class GameManager : MonoBehaviour
             case GameDifficulty.Hard:
                 defaultResetTime = 0.8f;
                 break;
+            default:
+                gameDifficulty = GameDifficulty.Normal;
+                break;
         }
+
+        castleHealthAmountText.text = $"DokiCastle Health: {castleHealthAmount}";
     }
 
     private void Awake()
@@ -72,10 +78,46 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         SpawnEnemyCountDown();
-        AttackPlayerLogic();
+        //OldAttackPlayerLogic();
+        NewAttackPlayerLogic();
+
     }
 
-    private void AttackPlayerLogic()
+    private void NewAttackPlayerLogic()
+    {
+        for (int i = activeEnemyList.Count - 1; i >= 0; i--)
+        {
+            GameObject enemy = activeEnemyList[i];
+            float distanceFromPlayer = Vector3.Distance(playerTransform.position, enemy.transform.position);
+            enemyDistances[enemy] = distanceFromPlayer;
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (distanceFromPlayer <= hitRange)
+                {
+                    Debug.Log(enemy.name + " Hit player!");
+                    activeEnemyList.RemoveAt(i);
+                    Destroy(enemy);
+                    enemyHits += 1;
+                    hitsText.text = $"Hits: {enemyHits}";
+                    continue;
+                }
+            }
+
+            if (enemy.transform.position.x <= enemyMaxDistanceOutSideOfBorder)
+            {
+                Debug.Log(enemy.name + " Went outside the border.");
+                activeEnemyList.RemoveAt(i);
+                Destroy(enemy);
+                enemyMisses += 1;
+                castleHealthAmount--;
+                UpdateCastleStatus();
+                missText.text = $"Misses: {enemyMisses}";
+            }
+        }
+    }
+
+    private void OldAttackPlayerLogic() // I have this here just in case my new logic breaks
     {
         enemyDistances.Clear();
         foreach (GameObject enemy in activeEnemyList) // checking every enemy in the List of ActiveEnemyList
@@ -102,12 +144,32 @@ public class GameManager : MonoBehaviour
                 activeEnemyList.Remove(enemy);
                 Destroy(enemy);
                 enemyMisses += 1;
+                castleHealthAmount--;
+
+                UpdateCastleStatus();
 
                 missText.text = $"Misses: {enemyMisses}";
             }
         }
     }
 
+    private void UpdateCastleStatus()
+    {
+        if (castleHealthAmount >= 70)
+        {
+            Debug.Log("Castle Status: OK!");
+        }
+        else if (castleHealthAmount >= 50)
+        {
+            Debug.Log("Castle Status: Low!");
+        }
+        else if (castleHealthAmount >= 20)
+        {
+            Debug.Log("Castle Status: Damaged!");
+        }
+
+        castleHealthAmountText.text = $"DokiCastle Health: {castleHealthAmount}";
+    }
     private void SpawnEnemyCountDown()
     {
         startCountDownTime -= Time.deltaTime;
