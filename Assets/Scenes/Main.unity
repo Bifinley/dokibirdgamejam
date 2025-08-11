@@ -1241,11 +1241,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragoonTransform: {fileID: 960720444}
   spawnEnemyPosition: {fileID: 1833277352}
-  enemyGameObject:
+  activeEnemyList:
   - {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
   - {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
   - {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
   - {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
+  - {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
+  - {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
+  hitRange: 3
 --- !u!1 &1833277351
 GameObject:
   m_ObjectHideFlags: 0
