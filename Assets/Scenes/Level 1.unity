@@ -319,8 +319,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -10, y: -28.236511}
-  m_SizeDelta: {x: 1289.8401, y: 56.4723}
+  m_AnchoredPosition: {x: 27.55, y: -27.0522}
+  m_SizeDelta: {x: 1214.7, y: 54.1038}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127915451
 MonoBehaviour:
@@ -902,7 +902,7 @@ Transform:
   m_GameObject: {fileID: 960720443}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: 0, z: 0}
+  m_LocalPosition: {x: -7.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -961,7 +961,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -926.0031, y: -482.13}
+  m_AnchoredPosition: {x: -850.0031, y: -499.13}
   m_SizeDelta: {x: 190.36, y: 39.0401}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1177093650
@@ -1097,7 +1097,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -926, y: -421}
+  m_AnchoredPosition: {x: -850, y: -438}
   m_SizeDelta: {x: 190.3645, y: 40.5334}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1756410351
@@ -1258,7 +1258,6 @@ MonoBehaviour:
   castleHealthAmount: 100
   defaultResetTime: 3
   startCountDownTime: 0
-  gameDifficulty: 2
 --- !u!1 &1833277351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1323,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -840.1, y: 477.38}
+  m_AnchoredPosition: {x: -765, y: 496}
   m_SizeDelta: {x: 370.36, y: 56.47}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2072030361

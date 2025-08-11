@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     {
         if (playerTransform.position.y >= 3) // This stops the player from going above the Y axis 3
         {
-            playerTransform.position = new Vector3(-9, 3, 0);
+            playerTransform.position = new Vector3(-7.5f, 3, 0);
             isAllowedToMove = false;
             if (Input.GetKeyDown(KeyCode.S))
             {
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         }
         if (playerTransform.position.y <= -3) // This stops the player from going above the Y axis -3
         {
-            playerTransform.position = new Vector3(-9, -3, 0);
+            playerTransform.position = new Vector3(-7.5f, -3, 0);
             isAllowedToMove = false;
             if (Input.GetKeyDown(KeyCode.W))
             {

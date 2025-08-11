@@ -35,27 +35,29 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float defaultResetTime = 3f;
     [SerializeField] private float startCountDownTime = 0f;
 
-    [SerializeField] private enum GameDifficulty { Easy, Medium, Normal, Hard };
-    [SerializeField] private GameDifficulty gameDifficulty;
+    /*[SerializeField] private enum GameDifficulty { Easy, Medium, Normal, Hard };
+    [SerializeField] private GameDifficulty gameDifficulty;*/
+
+    MainMenu.GameDifficulty gameDifficulty;
 
     private void Start()
     {
         switch (gameDifficulty)
         {
-            case GameDifficulty.Easy:
+            case MainMenu.GameDifficulty.Easy:
                 defaultResetTime = 5f;
                 break;
-            case GameDifficulty.Normal:
+            case MainMenu.GameDifficulty.Normal:
                 defaultResetTime = 3f;
                 break;
-            case GameDifficulty.Medium:
+            case MainMenu.GameDifficulty.Medium:
                 defaultResetTime = 1f;
                 break;
-            case GameDifficulty.Hard:
+            case MainMenu.GameDifficulty.Hard:
                 defaultResetTime = 0.8f;
                 break;
             default:
-                gameDifficulty = GameDifficulty.Normal;
+                gameDifficulty = MainMenu.GameDifficulty.Normal;
                 break;
         }
 
@@ -73,6 +75,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("There can only be ONE GameManager!");
             Destroy(gameObject);
         }
+
+        gameDifficulty = MainMenu.SelectedDifficulty;
     }
 
     private void Update()
