@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
                     Debug.Log("Hit player!");
                 }
 
-                Debug.Log(distanceFromPlayer);
+                //Debug.Log(distanceFromPlayer);
             }
         }
 
