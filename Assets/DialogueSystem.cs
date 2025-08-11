@@ -3,12 +3,18 @@ using UnityEngine;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [SerializeField] private string[] dialogue;
+    [SerializeField] private string[] dialogueMessage;
 
-    TMP_Text dialogueText;
+    [SerializeField] private int currentDialogueIndex;
+
+    [SerializeField] private TMP_Text dialogueText;
 
     private void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            currentDialogueIndex++;
+            dialogueText.text = $"{dialogueMessage[currentDialogueIndex]}";
+        }
     }
 }
