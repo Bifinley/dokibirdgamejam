@@ -6,26 +6,28 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [Header("Game Transforms Info")]
     [SerializeField] private Transform playerTransform;
-
     [SerializeField] private Transform spawnEnemyPosition;
 
+    [Header("Enemy Spawn List Info")]
     [SerializeField] private List<GameObject> activeEnemyList = new List<GameObject>();
     [SerializeField] private Dictionary<GameObject, float> enemyDistances = new Dictionary<GameObject, float>();
 
+    [Header("Enemy Info")]
     [SerializeField] private GameObject enemyPrefab;
-
     [SerializeField] private float hitRange = 3f;
-
     [SerializeField] private float distanceFromPlayer;
-
     [SerializeField] private float enemyMaxDistanceOutSideOfBorder = -12f;
 
+    [Header("Text Info")]
     [SerializeField] private TMP_Text hitsText;
     [SerializeField] private TMP_Text missText;
+    [Header("Scores Info")]
     [SerializeField] private int enemyHits;
     [SerializeField] private int enemyMisses;
 
+    [Header("Countdown Timer Info")]
     private float defaultResetTime = 3f;
     [SerializeField] private float startCountDownTime = 0f;
 
