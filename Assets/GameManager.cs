@@ -41,9 +41,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text gameTimerText;
     private bool isGameOver = false;
 
-    /*[SerializeField] private enum GameDifficulty { Easy, Medium, Normal, Hard };
-    [SerializeField] private GameDifficulty gameDifficulty;*/
-
     MainMenu.GameDifficulty gameDifficulty;
 
     private void Start()
@@ -120,7 +117,7 @@ public class GameManager : MonoBehaviour
         for (int i = activeEnemyList.Count - 1; i >= 0; i--)
         {
             GameObject enemy = activeEnemyList[i];
-            float distanceFromPlayer = Vector3.Distance(playerTransform.position, enemy.transform.position);
+            float distanceFromPlayer = Vector3.Distance(playerTransform.position, enemy.transform.position); // checks distance between player and enemy
             enemyDistances[enemy] = distanceFromPlayer;
 
             if (Input.GetKeyDown(KeyCode.Space))

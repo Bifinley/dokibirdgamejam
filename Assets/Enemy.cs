@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     private float enemyMaxSpeed = 5f;
     private float enemyStartingPosition = 12f;
 
-    float[] specificYaxisSpawningRange = { 3.32f, 0.21f, -2.94f }; // this is very specific so enemies dont collide with each other
+    float[] specificYaxisSpawningRange = { 3.32f, 0.21f, -2.94f }; // this is very specific so enemies stay on a very specific 3 layer path
 
     MainMenu.GameDifficulty gameDifficulty;
 
