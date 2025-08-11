@@ -31,9 +31,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int enemyMisses;
     [SerializeField] private int castleHealthAmount = 100;
 
-    [Header("Countdown Timer Info")]
+    [Header("Countdown Timer: Spawning Enemies Info")]
     [SerializeField] private float defaultResetTime = 3f;
     [SerializeField] private float startCountDownTime = 0f;
+
+    [Header("Countdown GameTimer Info")]
+    [SerializeField] private float defaultGameResetTime = 60f;
+    [SerializeField] private float startGameCountDownTime = 0f;
+    [SerializeField] private TMP_Text gameTimerText;
+    private bool isGameOver = false;
 
     /*[SerializeField] private enum GameDifficulty { Easy, Medium, Normal, Hard };
     [SerializeField] private GameDifficulty gameDifficulty;*/
@@ -46,21 +52,24 @@ public class GameManager : MonoBehaviour
         {
             case MainMenu.GameDifficulty.Easy:
                 defaultResetTime = 5f;
+                startGameCountDownTime = 120f;
                 break;
             case MainMenu.GameDifficulty.Normal:
                 defaultResetTime = 3f;
+                startGameCountDownTime = 60f;
                 break;
             case MainMenu.GameDifficulty.Medium:
                 defaultResetTime = 1f;
+                startGameCountDownTime = 20f;
                 break;
             case MainMenu.GameDifficulty.Hard:
                 defaultResetTime = 0.8f;
+                startGameCountDownTime = 30f;
                 break;
             default:
                 gameDifficulty = MainMenu.GameDifficulty.Normal;
                 break;
         }
-
         castleHealthAmountText.text = $"DokiCastle Health: {castleHealthAmount}";
     }
 
@@ -81,10 +90,29 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        GameTimer();
         SpawnEnemyCountDown();
         //OldAttackPlayerLogic();
         NewAttackPlayerLogic();
+    }
 
+    private void GameTimer() // Ends game when timer is done
+    {
+        if (!isGameOver)
+        {
+            startGameCountDownTime -= Time.deltaTime;
+            gameTimerText.text = $"Time Left: {startGameCountDownTime:N0} Seconds!";
+            if (startGameCountDownTime <= 0f)
+            {
+                isGameOver = true;
+                gameTimerText.text = "TIMES UP!";
+            }
+        }
+
+        if(isGameOver && startGameCountDownTime <= 0)
+        {
+            Time.timeScale = 0f; // freezes the game
+        }
     }
 
     private void NewAttackPlayerLogic() // this removes the error InvalidOperationException: Collection was modified; Using a forloop instead.

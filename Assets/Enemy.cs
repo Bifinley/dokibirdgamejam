@@ -12,8 +12,31 @@ public class Enemy : MonoBehaviour
 
     float[] specificYaxisSpawningRange = { 3.32f, 0.21f, -2.94f }; // this is very specific so enemies dont collide with each other
 
+    MainMenu.GameDifficulty gameDifficulty;
+
     private void Start()
     {
+        gameDifficulty = MainMenu.SelectedDifficulty;
+
+        switch (gameDifficulty)
+        {
+            case MainMenu.GameDifficulty.Easy:
+                enemyMinSpeed = 1.2f;
+                enemyMaxSpeed = 3f;
+                break;
+            case MainMenu.GameDifficulty.Normal:
+                enemyMinSpeed = 1.5f;
+                enemyMaxSpeed = 3.5f;
+                break;
+            case MainMenu.GameDifficulty.Medium:
+                enemyMinSpeed = 3.2f;
+                enemyMaxSpeed = 5f;
+                break;
+            case MainMenu.GameDifficulty.Hard:
+                enemyMinSpeed = 5f;
+                enemyMaxSpeed = 6f;
+                break;
+        }
         SetEnemyPositionAndSpeed();
     }
 
