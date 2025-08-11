@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DialogueSystem : MonoBehaviour
 {
+    [SerializeField] private string dialogueNPCName; // not being used yet
     [SerializeField] private string[] dialogueMessage;
 
     [SerializeField] private int currentDialogueIndex;
@@ -14,7 +15,7 @@ public class DialogueSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             currentDialogueIndex++;
-            dialogueText.text = $"{dialogueMessage[currentDialogueIndex]}";
+            dialogueText.text = $"{dialogueMessage[currentDialogueIndex]}"; // goes through all the messages by the NPC in the array
         }
     }
 }
