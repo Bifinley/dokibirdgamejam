@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Transform PlayerTransform;
+    [SerializeField] private Transform playerTransform;
 
     [SerializeField] private Vector2 playerInput = new Vector2(0, 0);
     [SerializeField] private Vector2 moveOnY = new Vector2(0, 0);
@@ -24,9 +24,9 @@ public class Player : MonoBehaviour
 
     private void PlayerMovement()
     {
-        if (PlayerTransform.position.y >= 3) // This stops the player from going above the Y axis 3
+        if (playerTransform.position.y >= 3) // This stops the player from going above the Y axis 3
         {
-            PlayerTransform.position = new Vector3(0, 3, 0);
+            playerTransform.position = new Vector3(-9, 3, 0);
             isAllowedToMove = false;
             if (Input.GetKeyDown(KeyCode.S))
             {
@@ -34,9 +34,9 @@ public class Player : MonoBehaviour
             }
             Debug.Log("You are less than 3 or at 3.");
         }
-        if (PlayerTransform.position.y <= -3) // This stops the player from going above the Y axis -3
+        if (playerTransform.position.y <= -3) // This stops the player from going above the Y axis -3
         {
-            PlayerTransform.position = new Vector3(0, -3, 0);
+            playerTransform.position = new Vector3(-9, -3, 0);
             isAllowedToMove = false;
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         {
             moveOnY = new Vector2(0, playerInput.y) * playerMoveSpeed * Time.deltaTime; // sets the movement up on the Y vector and player speed
 
-            PlayerTransform.position += new Vector3(0, moveOnY.y, 0); // moves the player up and down on Y
+            playerTransform.position += new Vector3(0, moveOnY.y, 0); // moves the player up and down on Y
         }
     }
 }

@@ -145,7 +145,7 @@ Transform:
   m_GameObject: {fileID: 22190521}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.42, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.24, y: 1.24, z: 1.24}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -319,7 +319,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -10, y: -28.23648}
+  m_AnchoredPosition: {x: -10, y: -28.236511}
   m_SizeDelta: {x: 1289.8401, y: 56.4723}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127915451
@@ -902,7 +902,7 @@ Transform:
   m_GameObject: {fileID: 960720443}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01, z: 0}
+  m_LocalPosition: {x: -9, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -921,8 +921,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b11cd917ef9498e49b9f7cd3c051ea6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTransform: {fileID: 960720444}
+  playerTransform: {fileID: 960720444}
   playerInput: {x: 0, y: 0}
+  moveOnY: {x: 0, y: 0}
+  playerMoveSpeed: 5
+  lastPlayerLocation: 0
+  isAllowedToMove: 1
 --- !u!1 &1177093648
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,16 +1243,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8b97083764ffd40aee115044ace5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragoonTransform: {fileID: 960720444}
+  playerTransform: {fileID: 960720444}
   spawnEnemyPosition: {fileID: 1833277352}
-  activeEnemyList:
-  - {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
-  - {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
-  - {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
-  - {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
-  - {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
-  - {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
-  hitRange: 3
+  activeEnemyList: []
+  enemyPrefab: {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
+  hitRange: 1.25
+  distanceFromPlayer: 0
 --- !u!1 &1833277351
 GameObject:
   m_ObjectHideFlags: 0

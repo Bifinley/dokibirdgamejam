@@ -6,19 +6,24 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField] private Transform dragoonTransform; // this is the player gameobject btw
+    [SerializeField] private Transform playerTransform;
 
     [SerializeField] private Transform spawnEnemyPosition;
 
     [SerializeField] private List<GameObject> activeEnemyList = new List<GameObject>();
+    [SerializeField] private Dictionary<GameObject, float> enemyDistances = new Dictionary<GameObject, float>();
+
+    [SerializeField] private GameObject enemyPrefab;
 
     [SerializeField] private float hitRange = 3f;
+
+    [SerializeField] private float distanceFromPlayer;
 
     private bool hasSpawned = false;
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -33,23 +38,36 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(activeEnemyList[0], spawnEnemyPosition.position, Quaternion.identity);
+            GameObject newEnemy = Instantiate(enemyPrefab, spawnEnemyPosition.position, Quaternion.identity);
+            activeEnemyList.Add(newEnemy);
         }
 
-        foreach (GameObject enemy in activeEnemyList)
+        enemyDistances.Clear();
+        foreach (GameObject enemy in activeEnemyList) // checking every enemy in the List of ActiveEnemyList
         {
-            if(enemy != null)
+            distanceFromPlayer = Vector3.Distance(playerTransform.position, enemy.transform.position);
+            enemyDistances[enemy] = distanceFromPlayer;
+
+            if (distanceFromPlayer <= hitRange)
             {
-                float distanceFromPlayer = Vector3.Distance(dragoonTransform.position, enemy.transform.position);
-
-                if (distanceFromPlayer <= hitRange)
-                {
-                    Debug.Log("Hit player!");
-                }
-
-                //Debug.Log(distanceFromPlayer);
+                Debug.Log(enemy.name + "Hit player!");
+                activeEnemyList.Remove(enemy);
+                Destroy(enemy);
             }
+
+            //Debug.Log(distanceFromPlayer);
         }
+
 
     }
+
+    private void OnDrawGizmos()
+    {
+        if (playerTransform != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(playerTransform.position, hitRange);
+        }
+    }
+
 }
