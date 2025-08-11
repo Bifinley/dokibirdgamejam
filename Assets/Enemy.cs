@@ -4,8 +4,6 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float enemyMoveSpeed = 2f;
 
-    [SerializeField] public Transform enemyTransform;
-
     [SerializeField] public float distanceFromPlayer;
 
     private float enemyMinSpeed = 2.5f;
@@ -23,7 +21,7 @@ public class Enemy : MonoBehaviour
 
 
 
-        enemyTransform.position = new Vector3(enemyStartingPosition, enemyY, 0);
+        transform.position = new Vector3(enemyStartingPosition, enemyY, 0);
     }
 
     private void Update()

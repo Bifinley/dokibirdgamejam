@@ -74,9 +74,9 @@ public class GameManager : MonoBehaviour
                 Debug.Log(enemy.name + "Went outside the border.");
                 activeEnemyList.Remove(enemy);
                 Destroy(enemy);
-                enemyHits += 1;
+                enemyMisses += 1;
 
-                missText.text = $"Misses: {enemyHits}";
+                missText.text = $"Misses: {enemyMisses}";
             }
 
             //Debug.Log(distanceFromPlayer);
