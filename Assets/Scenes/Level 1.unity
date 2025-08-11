@@ -1254,6 +1254,9 @@ MonoBehaviour:
   missText: {fileID: 1177093650}
   enemyHits: 0
   enemyMisses: 0
+  defaultResetTime: 3
+  startCountDownTime: 0
+  gameDifficulty: 2
 --- !u!1 &1833277351
 GameObject:
   m_ObjectHideFlags: 0

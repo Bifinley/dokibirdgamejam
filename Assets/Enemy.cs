@@ -14,18 +14,25 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        enemyMoveSpeed = Random.Range(enemyMinSpeed, enemyMaxSpeed);
-
-
-        float enemyY = specificYaxisSpawningRange[Random.Range(0, specificYaxisSpawningRange.Length)];
-
-
-
-        transform.position = new Vector3(enemyStartingPosition, enemyY, 0);
+        SetEnemyPositionAndSpeed();
     }
 
     private void Update()
     {
+        EnemyMovement();
+    }
+
+    private void EnemyMovement()
+    {
         transform.position += Vector3.left * enemyMoveSpeed * Time.deltaTime; // moving towards the player which is left
+    }
+
+    private void SetEnemyPositionAndSpeed()
+    {
+        enemyMoveSpeed = Random.Range(enemyMinSpeed, enemyMaxSpeed);
+
+        float enemyY = specificYaxisSpawningRange[Random.Range(0, specificYaxisSpawningRange.Length)];
+
+        transform.position = new Vector3(enemyStartingPosition, enemyY, 0);
     }
 }

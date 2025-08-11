@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     [Header("Text Info")]
     [SerializeField] private TMP_Text hitsText;
     [SerializeField] private TMP_Text missText;
+
     [Header("Scores Info")]
     [SerializeField] private int enemyHits;
     [SerializeField] private int enemyMisses;
@@ -31,7 +33,28 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float defaultResetTime = 3f;
     [SerializeField] private float startCountDownTime = 0f;
 
-    private bool hasSpawned = false;
+    [SerializeField] private enum GameDifficulty { Easy, Medium, Normal, Hard };
+
+    [SerializeField] private GameDifficulty gameDifficulty;
+
+    private void Start()
+    {
+        switch (gameDifficulty)
+        {
+            case GameDifficulty.Easy:
+                defaultResetTime = 5f;
+                break;
+            case GameDifficulty.Normal:
+                defaultResetTime = 3f;
+                break;
+            case GameDifficulty.Medium:
+                defaultResetTime = 1f;
+                break;
+            case GameDifficulty.Hard:
+                defaultResetTime = 0.8f;
+                break;
+        }
+    }
 
     private void Awake()
     {
@@ -49,14 +72,18 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         SpawnEnemyCountDown();
+        AttackPlayerLogic();
+    }
 
+    private void AttackPlayerLogic()
+    {
         enemyDistances.Clear();
         foreach (GameObject enemy in activeEnemyList) // checking every enemy in the List of ActiveEnemyList
         {
             distanceFromPlayer = Vector3.Distance(playerTransform.position, enemy.transform.position);
             enemyDistances[enemy] = distanceFromPlayer;
 
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (distanceFromPlayer <= hitRange)
                 {
@@ -78,11 +105,7 @@ public class GameManager : MonoBehaviour
 
                 missText.text = $"Misses: {enemyMisses}";
             }
-
-            //Debug.Log(distanceFromPlayer);
         }
-
-
     }
 
     private void SpawnEnemyCountDown()
