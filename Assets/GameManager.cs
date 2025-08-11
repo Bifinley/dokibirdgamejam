@@ -21,6 +21,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float enemyMaxDistanceOutSideOfBorder = -12f;
 
+    [SerializeField] private TMP_Text hitsText;
+    [SerializeField] private TMP_Text missText;
+    [SerializeField] private int enemyHits;
+    [SerializeField] private int enemyMisses;
+
+    private float defaultResetTime = 3f;
+    [SerializeField] private float startCountDownTime = 0f;
+
     private bool hasSpawned = false;
 
     private void Awake()
@@ -38,11 +46,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            GameObject newEnemy = Instantiate(enemyPrefab, spawnEnemyPosition.position, Quaternion.identity);
-            activeEnemyList.Add(newEnemy);
-        }
+        SpawnEnemyCountDown();
 
         enemyDistances.Clear();
         foreach (GameObject enemy in activeEnemyList) // checking every enemy in the List of ActiveEnemyList
@@ -50,24 +54,45 @@ public class GameManager : MonoBehaviour
             distanceFromPlayer = Vector3.Distance(playerTransform.position, enemy.transform.position);
             enemyDistances[enemy] = distanceFromPlayer;
 
-            if (distanceFromPlayer <= hitRange)
+            if(Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log(enemy.name + "Hit player!");
-                activeEnemyList.Remove(enemy);
-                Destroy(enemy);
+                if (distanceFromPlayer <= hitRange)
+                {
+                    Debug.Log(enemy.name + "Hit player!");
+                    activeEnemyList.Remove(enemy);
+                    Destroy(enemy);
+                    enemyHits += 1;
+
+                    hitsText.text = $"Hits: {enemyHits}";
+                }
             }
 
-            if(enemy.transform.position.x <= enemyMaxDistanceOutSideOfBorder)
+            if (enemy.transform.position.x <= enemyMaxDistanceOutSideOfBorder) // destroy enemy once it leaves border
             {
                 Debug.Log(enemy.name + "Went outside the border.");
                 activeEnemyList.Remove(enemy);
                 Destroy(enemy);
+                enemyHits += 1;
+
+                missText.text = $"Misses: {enemyHits}";
             }
 
             //Debug.Log(distanceFromPlayer);
         }
 
 
+    }
+
+    private void SpawnEnemyCountDown()
+    {
+        startCountDownTime -= Time.deltaTime;
+        if (startCountDownTime <= 0) // when it hits zero, spawn enemy. Enemy Spawns every startCountDownTime seconds.
+        {
+            startCountDownTime = defaultResetTime;
+
+            GameObject newEnemy = Instantiate(enemyPrefab, spawnEnemyPosition.position, Quaternion.identity);
+            activeEnemyList.Add(newEnemy);
+        }
     }
 
     private void OnDrawGizmos()

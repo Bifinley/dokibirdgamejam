@@ -1250,6 +1250,10 @@ MonoBehaviour:
   hitRange: 1.25
   distanceFromPlayer: 0
   enemyMaxDistanceOutSideOfBorder: -12
+  hitsText: {fileID: 1756410351}
+  missText: {fileID: 1177093650}
+  enemyHits: 0
+  enemyMisses: 0
 --- !u!1 &1833277351
 GameObject:
   m_ObjectHideFlags: 0

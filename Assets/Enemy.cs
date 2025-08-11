@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 
     private float enemyMinSpeed = 2.5f;
     private float enemyMaxSpeed = 5f;
+    private float enemyStartingPosition = 12f;
 
     float[] specificYaxisSpawningRange = { 3.32f, 0.21f, -2.94f }; // this is very specific so enemies dont collide with each other
 
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
 
 
 
-        enemyTransform.position = new Vector3(12, enemyY, 0);
+        enemyTransform.position = new Vector3(enemyStartingPosition, enemyY, 0);
     }
 
     private void Update()

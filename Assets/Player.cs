@@ -13,10 +13,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] private bool isAllowedToMove = true;
 
-    private void Start()
-    {
-    }
-
     void Update()
     {
         PlayerMovement();
