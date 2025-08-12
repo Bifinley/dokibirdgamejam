@@ -14,6 +14,8 @@ public class DifficultySelector : MonoBehaviour
 
     public int currentDifficultyIndex;
 
+    public AudioSource buttonDifficultySelectorSoundEffect;
+
     [SerializeField] private GameObject[] goonImages;
 
     private void SetDifficulty(MainMenu.GameDifficulty difficulty)
@@ -99,7 +101,8 @@ public class DifficultySelector : MonoBehaviour
         {
             currentDifficultyIndex--;
         }
-        SelectDifficulty();                                        // 0 - Easy
+        SelectDifficulty();
+        buttonDifficultySelectorSoundEffect.Play();                // 0 - Easy
     }                                                              // 1 - Normal
     public void RightDifficultyButton()                            // 2 - Medium
     {                                                              // 3 - Hard
@@ -113,5 +116,6 @@ public class DifficultySelector : MonoBehaviour
         }
 
         SelectDifficulty();
+        buttonDifficultySelectorSoundEffect.Play();
     }
 }
