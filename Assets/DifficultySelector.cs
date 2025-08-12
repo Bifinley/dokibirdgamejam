@@ -14,6 +14,8 @@ public class DifficultySelector : MonoBehaviour
 
     public int currentDifficultyIndex;
 
+    [SerializeField] private GameObject[] goonImages;
+
     private void SetDifficulty(MainMenu.GameDifficulty difficulty)
     {
         MainMenu.SelectedDifficulty = difficulty;
@@ -26,8 +28,49 @@ public class DifficultySelector : MonoBehaviour
         SceneManager.LoadScene("Level 1 - CutScene");
     }
 
-    private void Start()
+    private void Awake()
     {
+        MainMenu.SelectedDifficulty = MainMenu.GameDifficulty.Easy;
+    }
+
+    private void Update()
+    {
+        if (currentDifficultyIndex == 0) // easy goon
+        {
+            goonImages[0].SetActive(true);
+        }
+        else if (currentDifficultyIndex != 0)
+        {
+            goonImages[0].SetActive(false);
+        }
+
+        if (currentDifficultyIndex == 1) // normal goon
+        {
+            goonImages[1].SetActive(true);
+        }
+        else if (currentDifficultyIndex != 1)
+        {
+            goonImages[1].SetActive(false);
+        }
+
+        if (currentDifficultyIndex == 2) // long goon
+        {
+            goonImages[2].SetActive(true);
+        }
+        else if (currentDifficultyIndex != 2)
+        {
+            goonImages[2].SetActive(false);
+        }
+
+        if (currentDifficultyIndex == 3) // chonky goon
+        {
+            goonImages[3].SetActive(true);
+        }
+        else if (currentDifficultyIndex != 3)
+        {
+            goonImages[3].SetActive(false);
+        }
+
         currentDifficultyText.text = $"Current Difficulty: {MainMenu.SelectedDifficulty}";
     }
 
@@ -46,7 +89,7 @@ public class DifficultySelector : MonoBehaviour
 
         currentDifficultyText.text = $"Current Difficulty: {MainMenu.SelectedDifficulty}";
     }
-    public void LeftDifficultyButton()
+    public void LeftDifficultyButton()  // I know Im using magic numbers here, please bear with me :(
     {
         if (currentDifficultyIndex < 0)
         {
@@ -56,10 +99,10 @@ public class DifficultySelector : MonoBehaviour
         {
             currentDifficultyIndex--;
         }
-        SelectDifficulty();
-    }
-    public void RightDifficultyButton()
-    {
+        SelectDifficulty();                                        // 0 - Easy
+    }                                                              // 1 - Normal
+    public void RightDifficultyButton()                            // 2 - Medium
+    {                                                              // 3 - Hard
         if (currentDifficultyIndex > 3)
         {
             currentDifficultyIndex = 3;
@@ -68,6 +111,7 @@ public class DifficultySelector : MonoBehaviour
         {
             currentDifficultyIndex++;
         }
+
         SelectDifficulty();
     }
 }
