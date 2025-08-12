@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int enemyHits;
     [SerializeField] private int enemyMisses;
     [SerializeField] private int castleHealthAmount = 100;
+    private int setDamageAmount;
 
     [Header("Countdown Timer: Spawning Enemies Info")]
     [SerializeField] private float defaultResetTime = 3f;
@@ -54,18 +55,22 @@ public class GameManager : MonoBehaviour
             case MainMenu.GameDifficulty.Easy:
                 defaultResetTime = 5f;
                 startGameCountDownTime = 120f;
+                setDamageAmount = 1;
                 break;
             case MainMenu.GameDifficulty.Normal:
                 defaultResetTime = 3f;
                 startGameCountDownTime = 60f;
+                setDamageAmount = 2;
                 break;
             case MainMenu.GameDifficulty.Medium:
                 defaultResetTime = 1f;
                 startGameCountDownTime = 20f;
+                setDamageAmount = 3;
                 break;
             case MainMenu.GameDifficulty.Hard:
                 defaultResetTime = 0.8f;
                 startGameCountDownTime = 30f;
+                setDamageAmount = 4;
                 break;
             default:
                 gameDifficulty = MainMenu.GameDifficulty.Normal;
@@ -157,7 +162,7 @@ public class GameManager : MonoBehaviour
                 activeEnemyList.RemoveAt(i);
                 Destroy(enemy);
                 enemyMisses += 1;
-                castleHealthAmount--;
+                castleHealthAmount -= setDamageAmount;
                 UpdateCastleStatus();
                 missText.text = $"Misses: {enemyMisses}";
             }

@@ -29,12 +29,12 @@ public class Enemy : MonoBehaviour
                 enemyMaxSpeed = 3.5f;
                 break;
             case MainMenu.GameDifficulty.Medium:
-                enemyMinSpeed = 3.2f;
-                enemyMaxSpeed = 5f;
+                enemyMinSpeed = 3.7f;
+                enemyMaxSpeed = 6f;
                 break;
             case MainMenu.GameDifficulty.Hard:
-                enemyMinSpeed = 5f;
-                enemyMaxSpeed = 6f;
+                enemyMinSpeed = 7.5f;
+                enemyMaxSpeed = 14f;
                 break;
         }
         SetEnemyPositionAndSpeed();
