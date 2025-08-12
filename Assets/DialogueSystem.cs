@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DialogueSystem : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] private int currentDialogueIndexMax;
 
     [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private string NextScene;
 
     private void Start()
     {
@@ -32,6 +34,11 @@ public class DialogueSystem : MonoBehaviour
                 currentDialogueIndex++;
             }
             dialogueText.text = $"{dialogueMessage[currentDialogueIndex]}"; // goes through all the messages by the NPC in the array
+
+            if(currentDialogueIndex >= currentDialogueIndexMax)
+            {
+                SceneManager.LoadScene(NextScene);
+            }
         }
     }
 }
