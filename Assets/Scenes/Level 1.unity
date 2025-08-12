@@ -1398,7 +1398,8 @@ MonoBehaviour:
   defaultGameResetTime: 60
   startGameCountDownTime: 0
   gameTimerText: {fileID: 674929168}
-  NextScene: Level 2 - Dialogue
+  WinNextScene: Level 2 - Dialogue (Win)
+  LoseNextScene: Level 2 - Dialogue (Lose)
 --- !u!1 &1833277351
 GameObject:
   m_ObjectHideFlags: 0
