@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using UnityEditorInternal;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,7 +42,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text gameTimerText;
     private bool isGameOver = false;
 
-    [SerializeField] string NextScene = "Level 2 - Dialogue";
+    [SerializeField] string WinNextScene = "Level 2 - Dialogue";
+    [SerializeField] string LoseNextScene = ""; // I dont have a scene for this yet
 
     MainMenu.GameDifficulty gameDifficulty;
 
@@ -121,7 +121,14 @@ public class GameManager : MonoBehaviour
     IEnumerator GoToCutScene()
     {
         yield return new WaitForSeconds(4f);
-        SceneManager.LoadScene(NextScene);
+
+        if (isGameOver && castleHealthAmount >= 70)
+        {
+            SceneManager.LoadScene(WinNextScene);
+        }else if(castleHealthAmount < 70)
+        {
+            SceneManager.LoadScene(LoseNextScene);
+        }
     }
     private void NewAttackPlayerLogic() // this removes the error InvalidOperationException: Collection was modified; Using a forloop instead.
     {
