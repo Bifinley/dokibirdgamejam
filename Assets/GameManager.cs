@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using UnityEditorInternal;
 
 public class GameManager : MonoBehaviour
 {
@@ -40,6 +42,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float startGameCountDownTime = 0f;
     [SerializeField] private TMP_Text gameTimerText;
     private bool isGameOver = false;
+
+    string NextScene = "Level 2 - CutScene";
 
     MainMenu.GameDifficulty gameDifficulty;
 
@@ -88,9 +92,12 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         GameTimer();
-        SpawnEnemyCountDown();
-        //OldAttackPlayerLogic();
-        NewAttackPlayerLogic();
+        if(!isGameOver)
+        {
+            SpawnEnemyCountDown();
+            //OldAttackPlayerLogic();
+            NewAttackPlayerLogic();
+        }
     }
 
     private void GameTimer() // Ends game when timer is done
@@ -106,12 +113,16 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(isGameOver && startGameCountDownTime <= 0)
+        if (isGameOver && startGameCountDownTime <= 0)
         {
-            Time.timeScale = 0f; // freezes the game
+            StartCoroutine(GoToCutScene()); 
         }
     }
-
+    IEnumerator GoToCutScene()
+    {
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene(NextScene);
+    }
     private void NewAttackPlayerLogic() // this removes the error InvalidOperationException: Collection was modified; Using a forloop instead.
     {
         for (int i = activeEnemyList.Count - 1; i >= 0; i--)
@@ -211,7 +222,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos() 
+    private void OnDrawGizmos()
     {
         if (playerTransform != null)
         {

@@ -46,8 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMoveSpeed: 2
-  maxDistanceOutSideOfBorder: -12
-  enemyTransform: {fileID: 8555828590745863290}
   distanceFromPlayer: 0
 --- !u!1 &7169762609418120628
 GameObject:
@@ -125,7 +123,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 757fc024eeffcd8448dc7313225e1082, type: 3}
+  m_Sprite: {fileID: -988765190097145478, guid: d83d6ba3a2bdbfd429d951a84dd45bc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
