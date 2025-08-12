@@ -344,8 +344,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: dokibird game jam :))
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c2be04ccce435214fb41b90f51887cf7, type: 2}
+  m_sharedMaterial: {fileID: 4887025647990115124, guid: c2be04ccce435214fb41b90f51887cf7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -807,8 +807,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game Timer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c2be04ccce435214fb41b90f51887cf7, type: 2}
+  m_sharedMaterial: {fileID: 4887025647990115124, guid: c2be04ccce435214fb41b90f51887cf7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1123,8 +1123,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'miss: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c2be04ccce435214fb41b90f51887cf7, type: 2}
+  m_sharedMaterial: {fileID: 4887025647990115124, guid: c2be04ccce435214fb41b90f51887cf7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1259,8 +1259,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'hit: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c2be04ccce435214fb41b90f51887cf7, type: 2}
+  m_sharedMaterial: {fileID: 4887025647990115124, guid: c2be04ccce435214fb41b90f51887cf7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1398,6 +1398,7 @@ MonoBehaviour:
   defaultGameResetTime: 60
   startGameCountDownTime: 0
   gameTimerText: {fileID: 674929168}
+  NextScene: Level 2 - Dialogue
 --- !u!1 &1833277351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,8 +1489,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'DokiCastle Health: 100'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c2be04ccce435214fb41b90f51887cf7, type: 2}
+  m_sharedMaterial: {fileID: 4887025647990115124, guid: c2be04ccce435214fb41b90f51887cf7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

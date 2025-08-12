@@ -13,6 +13,9 @@ EditorBuildSettings:
     guid: f54d7f0bfd637194187b05f01716336d
   - enabled: 1
     path: Assets/Scenes/Level 2 - CutScene.unity
+    guid: ac4a3323b7fc7664d94915896ec8db45
+  - enabled: 1
+    path: Assets/Scenes/Level 2 - Dialogue.unity
     guid: b1c359ce85ad7f64cbecce0358ec7274
   - enabled: 1
     path: Assets/Scenes/Level 1.unity

@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text gameTimerText;
     private bool isGameOver = false;
 
-    string NextScene = "Level 2 - CutScene";
+    [SerializeField] string NextScene = "Level 2 - Dialogue";
 
     MainMenu.GameDifficulty gameDifficulty;
 
