@@ -100,7 +100,6 @@ public class GameManager : MonoBehaviour
         if(!isGameOver)
         {
             SpawnEnemyCountDown();
-            //OldAttackPlayerLogic();
             NewAttackPlayerLogic();
         }
     }
@@ -164,42 +163,6 @@ public class GameManager : MonoBehaviour
                 enemyMisses += 1;
                 castleHealthAmount -= setDamageAmount;
                 UpdateCastleStatus();
-                missText.text = $"Misses: {enemyMisses}";
-            }
-        }
-    }
-
-    private void OldAttackPlayerLogic() // I have this here just in case my new logic breaks
-    {
-        enemyDistances.Clear();
-        foreach (GameObject enemy in activeEnemyList) // checking every enemy in the List of ActiveEnemyList
-        {
-            distanceFromPlayer = Vector3.Distance(playerTransform.position, enemy.transform.position);
-            enemyDistances[enemy] = distanceFromPlayer;
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (distanceFromPlayer <= hitRange)
-                {
-                    Debug.Log(enemy.name + "Hit player!");
-                    activeEnemyList.Remove(enemy);
-                    Destroy(enemy);
-                    enemyHits += 1;
-
-                    hitsText.text = $"Hits: {enemyHits}";
-                }
-            }
-
-            if (enemy.transform.position.x <= enemyMaxDistanceOutSideOfBorder) // destroy enemy once it leaves border
-            {
-                Debug.Log(enemy.name + "Went outside the border.");
-                activeEnemyList.Remove(enemy);
-                Destroy(enemy);
-                enemyMisses += 1;
-                castleHealthAmount--;
-
-                UpdateCastleStatus();
-
                 missText.text = $"Misses: {enemyMisses}";
             }
         }
