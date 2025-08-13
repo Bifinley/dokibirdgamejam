@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Enemy Info")]
     [SerializeField] private GameObject enemyPrefab;
+
     [SerializeField] private float hitRange = 3f;
     [SerializeField] private float distanceFromPlayer;
     [SerializeField] private float enemyMaxDistanceOutSideOfBorder = -12f;
