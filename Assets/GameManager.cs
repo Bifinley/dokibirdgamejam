@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     private bool isGameOver = false;
 
     [SerializeField] private string DialogueScene = "Dialogue";
+    [SerializeField] private string EndScene = "EndScene";
 
     [SerializeField] private bool isTest = true;
 
@@ -237,7 +238,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(GoToCutScene());
         }
     }
-    IEnumerator GoToCutScene()
+    public IEnumerator GoToCutScene()
     {
         yield return new WaitForSeconds(4f);
 
@@ -245,25 +246,46 @@ public class GameManager : MonoBehaviour
         {
             CastleData.Instance.isLevel1Completed = true;
             SaveLevelCompletion("Level1Completed", true);
-            isLevel1 = false;
-            isLevel2 = true;
+            isLevel1 = true;   // Keep true for dialogue
+            isLevel2 = false;
+            isLevel3 = false;
+            isLevelEnd = false;
         }
         else if (CastleData.Instance.isLevel1Completed && !CastleData.Instance.isLevel2Completed)
         {
             CastleData.Instance.isLevel2Completed = true;
             SaveLevelCompletion("Level2Completed", true);
-            isLevel2 = false;
-            isLevel3 = true;
+            isLevel1 = false;
+            isLevel2 = true;   
+            isLevel3 = false;
+            isLevelEnd = false;
         }
         else if (CastleData.Instance.isLevel2Completed && !CastleData.Instance.isLevel3Completed)
         {
             CastleData.Instance.isLevel3Completed = true;
             SaveLevelCompletion("Level3Completed", true);
+            isLevel1 = false;
+            isLevel2 = false;
+            isLevel3 = true;   
+            isLevelEnd = false;
+        }
+        else if (CastleData.Instance.isLevel3Completed)
+        {
+            isLevel1 = false;
+            isLevel2 = false;
             isLevel3 = false;
-            isLevelEnd = true;
+            isLevelEnd = true; // Final ending dialogue
         }
 
-        SceneManager.LoadScene(DialogueScene);
+        if (CastleData.Instance.isLevel3Completed)
+        {
+            Debug.Log("Ending Scene");
+            SceneManager.LoadScene(EndScene);
+        }
+        else
+        {
+            SceneManager.LoadScene(DialogueScene);
+        }
     }
 
 

@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/CutScene.unity
     guid: f54d7f0bfd637194187b05f01716336d
   - enabled: 1
+    path: Assets/Scenes/EndScene.unity
+    guid: 00e72a3a21f9a1144a506099faba5975
+  - enabled: 0
     path: Assets/Scenes/Level 2 - CutScene.unity
     guid: ac4a3323b7fc7664d94915896ec8db45
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level 2 - Dialogue (Win).unity
     guid: b1c359ce85ad7f64cbecce0358ec7274
   - enabled: 1
@@ -23,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/DefeatedScene.unity
+    guid: e39a2a608512bf746a774491358143a6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

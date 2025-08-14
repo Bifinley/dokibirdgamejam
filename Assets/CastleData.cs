@@ -70,9 +70,9 @@ public class CastleData : MonoBehaviour
         }
         else if (castleHealthAmount <= 70)
         {
-            castleObjects[(int)CastleState.Healthy].SetActive(true);
+            castleObjects[(int)CastleState.Damaged].SetActive(true);
 
-            castleObjects[(int)CastleState.Damaged].SetActive(false);
+            castleObjects[(int)CastleState.Healthy].SetActive(false);
             castleObjects[(int)CastleState.Destroyed].SetActive(false);
         }
     }
