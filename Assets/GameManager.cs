@@ -50,6 +50,11 @@ public class GameManager : MonoBehaviour
     MainMenu.GameDifficulty gameDifficulty;
 
     [SerializeField] private GameObject[] difficultySpriteGoons;
+
+
+    private bool isLevel1 = true; // change enemies via here - setting true just to keep it working
+    private bool isLevel2 = false;
+    private bool isLevel3 = false;
     private enum Dragoons
     {
         EggGoon,
@@ -60,36 +65,107 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        switch (gameDifficulty)
+        if (isLevel1)
         {
-            case MainMenu.GameDifficulty.Easy:
-                defaultResetTime = 5f;
-                startGameCountDownTime = 120f;
-                setDamageAmount = 1;
-                difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
-                break;
-            case MainMenu.GameDifficulty.Normal:
-                defaultResetTime = 3f;
-                startGameCountDownTime = 60f;
-                setDamageAmount = 2;
-                difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
-                break;
-            case MainMenu.GameDifficulty.Medium:
-                defaultResetTime = 1f;
-                startGameCountDownTime = 20f;
-                setDamageAmount = 3;
-                difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
-                break;
-            case MainMenu.GameDifficulty.Hard:
-                defaultResetTime = 0.8f;
-                startGameCountDownTime = 30f;
-                setDamageAmount = 4;
-                difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
-                break;
-            default:
-                gameDifficulty = MainMenu.GameDifficulty.Normal;
-                break;
+            switch (gameDifficulty)
+            {
+                case MainMenu.GameDifficulty.Easy:
+                    defaultResetTime = 5f;
+                    startGameCountDownTime = 120f;
+                    setDamageAmount = 1;
+                    difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Normal:
+                    defaultResetTime = 3f;
+                    startGameCountDownTime = 60f;
+                    setDamageAmount = 2;
+                    difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Medium:
+                    defaultResetTime = 1f;
+                    startGameCountDownTime = 20f;
+                    setDamageAmount = 3;
+                    difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Hard:
+                    defaultResetTime = 0.8f;
+                    startGameCountDownTime = 30f;
+                    setDamageAmount = 4;
+                    difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
+                    break;
+                default:
+                    gameDifficulty = MainMenu.GameDifficulty.Normal;
+                    break;
+            }
         }
+        if (isLevel2) // change enemies via here
+        {
+            switch (gameDifficulty)
+            {
+                case MainMenu.GameDifficulty.Easy:
+                    defaultResetTime = 5f;
+                    startGameCountDownTime = 120f;
+                    setDamageAmount = 1;
+                    difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Normal:
+                    defaultResetTime = 3f;
+                    startGameCountDownTime = 60f;
+                    setDamageAmount = 2;
+                    difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Medium:
+                    defaultResetTime = 1f;
+                    startGameCountDownTime = 20f;
+                    setDamageAmount = 3;
+                    difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Hard:
+                    defaultResetTime = 0.8f;
+                    startGameCountDownTime = 30f;
+                    setDamageAmount = 4;
+                    difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
+                    break;
+                default:
+                    gameDifficulty = MainMenu.GameDifficulty.Normal;
+                    break;
+            }
+        }
+
+        if (isLevel3) // change enemies via here
+        {
+            switch (gameDifficulty)
+            {
+                case MainMenu.GameDifficulty.Easy:
+                    defaultResetTime = 5f;
+                    startGameCountDownTime = 120f;
+                    setDamageAmount = 1;
+                    difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Normal:
+                    defaultResetTime = 3f;
+                    startGameCountDownTime = 60f;
+                    setDamageAmount = 2;
+                    difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Medium:
+                    defaultResetTime = 1f;
+                    startGameCountDownTime = 20f;
+                    setDamageAmount = 3;
+                    difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Hard:
+                    defaultResetTime = 0.8f;
+                    startGameCountDownTime = 30f;
+                    setDamageAmount = 4;
+                    difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
+                    break;
+                default:
+                    gameDifficulty = MainMenu.GameDifficulty.Normal;
+                    break;
+            }
+        }
+
         castleHealthAmountText.text = $"DokiCastle Health: {CastleData.Instance.castleHealthAmount}";
     }
 
