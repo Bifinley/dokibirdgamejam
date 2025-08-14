@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -1844925708796918805}
   - component: {fileID: -3739175283271944519}
   - component: {fileID: 3062879338351347360}
+  - component: {fileID: -2843327180262085901}
   m_Layer: 0
   m_Name: chainenemy
   m_TagString: Untagged
@@ -42,7 +43,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514904223399486236}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5af3862a63619a44a937d0fc1cd6824c, type: 3}
   m_Name: 
@@ -64,7 +65,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514904223399486236}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -170,13 +171,35 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514904223399486236}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7c7a843b83333b429841932f9cd6e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 0}
   points: []
+--- !u!114 &-2843327180262085901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514904223399486236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 619c6ba33818c394a9d05590c1cec8de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMoveSpeed: 2
+  distanceFromPlayer: 0
+  FISH1: {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
+  FISH2: {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
+  fish1positionX: {x: 0, y: 0}
+  fish2positionX: {x: 0, y: 0}
+  lineController: {fileID: 0}
+  lineRenderer: {fileID: 0}
+  lineRendererObject: {fileID: 0}
+  retractSpeed: 2
 --- !u!1 &7169762609418120628
 GameObject:
   m_ObjectHideFlags: 0

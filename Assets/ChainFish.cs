@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class ChainFish : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class ChainFish : MonoBehaviour
     GameObject Fish1;
     GameObject Fish2;
 
+    private LineRenderer lineToFish1;
+    private LineRenderer lineToFish2;
+
 
 
     private float enemyMinSpeed = 2.5f;
@@ -35,8 +39,25 @@ public class ChainFish : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        lineRendererObject = FindAnyObjectByType<LineRenderer>().gameObject;
-        lineController = lineRendererObject.GetComponent<LineController>();
+        //lineRendererObject = FindAnyObjectByType<LineRenderer>().gameObject;
+        //lineController = GetComponent<LineController>();
+
+        //lineRenderer = GetComponent<LineRenderer>();
+        ////lineController = GetComponent<LineController>();
+        //// Create our own LineRenderer
+        ////lineRenderer = gameObject.AddComponent<LineRenderer>();
+        //lineRenderer.positionCount = 2;
+        //lineRenderer.widthMultiplier = 0.05f; // thickness of line
+        //lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        //lineRenderer.startColor = Color.white;
+        //lineRenderer.endColor = Color.white;
+
+
+
+        // Create line to Fish1
+        lineToFish1 = CreateLineRenderer("LineToFish1");
+        // Create line to Fish2
+        lineToFish2 = CreateLineRenderer("LineToFish2");
 
 
 
@@ -70,8 +91,8 @@ public class ChainFish : MonoBehaviour
         Vector3 fish1pos = new Vector3(enemyStartingPosition, enemyY, 0);
 
         enemyMoveSpeed = Random.Range(enemyMinSpeed, enemyMaxSpeed);
-        enemyY = specificYaxisSpawningRange[Random.Range(0, specificYaxisSpawningRange.Length)];
-        Vector3 fish2pos = new Vector3(enemyStartingPosition, enemyY, 0);
+        float enemyY2 = specificYaxisSpawningRange[Random.Range(0, specificYaxisSpawningRange.Length)];
+        Vector3 fish2pos = new Vector3(enemyStartingPosition, enemyY2, 0);
 
         Fish1 = Instantiate(FISH1, fish1pos, Quaternion.identity);
         Fish2 = Instantiate(FISH2, fish2pos, Quaternion.identity);
@@ -80,13 +101,35 @@ public class ChainFish : MonoBehaviour
         gameManager.activeEnemyList.Add(Fish1);
         gameManager.activeEnemyList.Add(Fish2);
 
-        lineRenderer = FindAnyObjectByType<LineRenderer>();
+        //lineRenderer = FindAnyObjectByType<LineRenderer>();
+        //lineRenderer = GetComponent<LineRenderer>();
         //lineController.points = new Transform[] { FISH1.transform, FISH2.transform };
         //lineController.SetUpLine(new Transform[] { this.transform, Fish1.transform });
         //lineController.SetUpLine(new Transform[] { this.transform, Fish2.transform });
         // Update line positions
-        lineRenderer.SetPosition(0, Fish1.transform.position);
-        lineRenderer.SetPosition(1, Fish2.transform.position);
+        //lineRenderer.SetPosition(0, Fish1.transform.position);
+        //lineRenderer.SetPosition(1, Fish2.transform.position);
+
+        //lineRenderer.SetPosition(0, Fish2.transform.position);
+        //lineRenderer.SetPosition(1, this.transform.position);
+        //lineRenderer.SetPosition(2, Fish1.transform.position);
+
+
+        //lineToFish1.SetPosition(0, transform.position);
+        //lineToFish1.SetPosition(1, Fish1.transform.position);
+
+        //lineToFish2.SetPosition(0, transform.position);
+        //lineToFish2.SetPosition(1, Fish2.transform.position);
+
+
+
+        //lineRenderer.SetPosition(0, Fish2.transform.position);
+        //lineRenderer.SetPosition(1, Fish1.transform.position);
+
+        //lineToFish1 = Fish1.AddComponent<LineRenderer>();
+        //// Create line to Fish2
+        //lineToFish2 = Fish2.AddComponent<LineRenderer>();
+
 
     }
 
@@ -95,18 +138,50 @@ public class ChainFish : MonoBehaviour
     {
         //lineRendererObject = FindAnyObjectByType<LineRenderer>().gameObject;
         //lineController = lineRendererObject.GetComponent<LineController>();
-        lineController.SetUpLine(new Transform[] { Fish1.transform, Fish2.transform });
+        //lineController.SetUpLine(new UnityEngine.Transform[] { Fish1.transform, Fish2.transform });
+
+        
+
 
         EnemyMovement();
-        fish1positionX = Fish1.transform.position;
-        fish2positionX = Fish2.transform.position;
+
+
+        //fish1positionX = Fish1.transform.position;
+        //fish2positionX = Fish2.transform.position;
+
+        //lineRenderer.SetPosition(0, Fish2.transform.position);
+        //lineRenderer.SetPosition(1, this.transform.position);
+        //lineRenderer.SetPosition(2, Fish1.transform.position);
+
+
+        lineToFish1.SetPosition(0, transform.position);
+        if (Fish1 != null)
+            lineToFish1.SetPosition(1, Fish1.transform.position);
+        //lineToFish1.SetPosition(1, Fish1.transform.position);
+
+        //lineToFish1.SetPosition(0, Fish2.transform.position);
+        //lineToFish1.SetPosition(1, this.transform.position);
+        //lineToFish1.SetPosition(2, Fish1.transform.position);
+
+
+        lineToFish2.SetPosition(0, transform.position);
+        if (Fish1 != null)
+            lineToFish2.SetPosition(1, Fish2.transform.position);
+
+        //lineToFish2.SetPosition(0, Fish2.transform.position);
+        //lineToFish2.SetPosition(1, this.transform.position);
+        //lineToFish2.SetPosition(2, Fish1.transform.position);
+
+
+        //lineRenderer.SetPosition(0, Fish2.transform.position);
+        //lineRenderer.SetPosition(1, Fish1.transform.position);
 
         //lineController.points = new Transform[] { Fish1.transform, Fish2.transform };
 
-        for (int i = 0; i < lineController.points.Length; i++)
-        {
-            lineRenderer.SetPosition(i, lineController.points[i].position);
-        }
+        //for (int i = 0; i < lineController.points.Length; i++)
+        //{
+        //    lineRenderer.SetPosition(i, lineController.points[i].position);
+        //}
 
     }
 
@@ -122,5 +197,20 @@ public class ChainFish : MonoBehaviour
         float enemyY = specificYaxisSpawningRange[Random.Range(0, specificYaxisSpawningRange.Length)];
 
         transform.position = new Vector3(enemyStartingPosition, enemyY, 0);
+    }
+
+
+
+    private LineRenderer CreateLineRenderer(string name)
+    {
+        GameObject lineObj = new GameObject(name);
+        lineObj.transform.parent = transform;
+        LineRenderer lr = lineObj.AddComponent<LineRenderer>();
+        lr.positionCount = 2; // this needs to be 2, one line per fish
+        lr.widthMultiplier = 0.05f;
+        lr.material = new Material(Shader.Find("Sprites/Default"));
+        lr.startColor = Color.white;
+        lr.endColor = Color.white;
+        return lr;
     }
 }
