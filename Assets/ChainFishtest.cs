@@ -710,6 +710,41 @@ public class ChainFishTEST : MonoBehaviour
             AttachPoint2 = transform.position; // Start retraction from controller's current position
         }
 
+        //// Handle Fish2 retraction
+        //if (fish2Retracting && fish2Target != null)
+        //{
+        //    AttachPoint2 = Vector3.MoveTowards(AttachPoint2, fish2Target.transform.position, retractSpeed * Time.deltaTime);
+        //    lineToFish2.enabled = true;
+        //    lineToFish2.SetPosition(0, fish2Target.transform.position);
+        //    lineToFish2.SetPosition(1, AttachPoint2);
+
+        //    if (Vector3.Distance(AttachPoint2, fish2Target.transform.position) < 0.01f)
+        //    {
+        //        // Line reached target - kill it
+        //        if (fish2Target == gameObject)
+        //            alive = false;
+        //        else if (fish2Target != null)
+        //            fish2Target.GetComponent<Enemy>().alive = false;
+
+        //        lineToFish2.enabled = false;
+        //        fish2Retracting = false;
+        //    }
+        //}
+        //else if (!fish2Alive || (!controllerAlive && !fish2Retracting))
+        //{
+        //    // Hide Fish2's line when it should not be visible
+        //    lineToFish2.enabled = false;
+        //}
+
+        //// Clean up when all fish are dead
+        //bool fish1Dead = Fish1 == null || !Fish1.GetComponent<Enemy>().alive;
+        //bool fish2Dead = Fish2 == null || !Fish2.GetComponent<Enemy>().alive;
+
+        //if (fish1Dead && fish2Dead)
+        //{
+        //    Uninstall = true;
+        //}
+
         // Handle Fish2 retraction
         if (fish2Retracting && fish2Target != null)
         {
@@ -720,7 +755,6 @@ public class ChainFishTEST : MonoBehaviour
 
             if (Vector3.Distance(AttachPoint2, fish2Target.transform.position) < 0.01f)
             {
-                // Line reached target - kill it
                 if (fish2Target == gameObject)
                     alive = false;
                 else if (fish2Target != null)
@@ -728,14 +762,14 @@ public class ChainFishTEST : MonoBehaviour
 
                 lineToFish2.enabled = false;
                 fish2Retracting = false;
+                fish2Target = null; // <- make sure target is cleared
             }
         }
         else if (!fish2Alive || (!controllerAlive && !fish2Retracting))
         {
-            // Hide Fish2's line when it should not be visible
+            // Disable the line in any other case
             lineToFish2.enabled = false;
         }
-
         // Clean up when all fish are dead
         bool fish1Dead = Fish1 == null || !Fish1.GetComponent<Enemy>().alive;
         bool fish2Dead = Fish2 == null || !Fish2.GetComponent<Enemy>().alive;
@@ -744,6 +778,8 @@ public class ChainFishTEST : MonoBehaviour
         {
             Uninstall = true;
         }
+
+
     }
 
 
