@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     [Header("Scores Info")]
     [SerializeField] private int enemyHits;
     [SerializeField] private int enemyMisses;
-    [SerializeField] private int castleHealthAmount = 100;
+    //[SerializeField] private int castleHealthAmount;
     private int setDamageAmount;
 
     [Header("Countdown Timer: Spawning Enemies Info")]
@@ -49,6 +49,15 @@ public class GameManager : MonoBehaviour
 
     MainMenu.GameDifficulty gameDifficulty;
 
+    [SerializeField] private GameObject[] difficultySpriteGoons;
+    private enum Dragoons
+    {
+        EggGoon,
+        Dragoon,
+        LongGoon,
+        ChonkyGoon
+    }
+
     private void Start()
     {
         switch (gameDifficulty)
@@ -57,31 +66,39 @@ public class GameManager : MonoBehaviour
                 defaultResetTime = 5f;
                 startGameCountDownTime = 120f;
                 setDamageAmount = 1;
+                difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
                 break;
             case MainMenu.GameDifficulty.Normal:
                 defaultResetTime = 3f;
                 startGameCountDownTime = 60f;
                 setDamageAmount = 2;
+                difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
                 break;
             case MainMenu.GameDifficulty.Medium:
                 defaultResetTime = 1f;
                 startGameCountDownTime = 20f;
                 setDamageAmount = 3;
+                difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
                 break;
             case MainMenu.GameDifficulty.Hard:
                 defaultResetTime = 0.8f;
                 startGameCountDownTime = 30f;
                 setDamageAmount = 4;
+                difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
                 break;
             default:
                 gameDifficulty = MainMenu.GameDifficulty.Normal;
                 break;
         }
-        castleHealthAmountText.text = $"DokiCastle Health: {castleHealthAmount}";
+        castleHealthAmountText.text = $"DokiCastle Health: {CastleData.Instance.castleHealthAmount}";
     }
 
     private void Awake()
     {
+        difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(false);
+        difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(false);
+        difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(false);
+        difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(false);
         if (Instance == null)
         {
             Instance = this;
@@ -127,10 +144,10 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
 
-        if (isGameOver && castleHealthAmount >= 70)
+        if (isGameOver && CastleData.Instance.castleHealthAmount >= 70)
         {
             SceneManager.LoadScene(WinNextScene);
-        }else if(castleHealthAmount < 70)
+        }else if(CastleData.Instance.castleHealthAmount < 70)
         {
             SceneManager.LoadScene(LoseNextScene);
         }
@@ -162,29 +179,21 @@ public class GameManager : MonoBehaviour
                 activeEnemyList.RemoveAt(i);
                 Destroy(enemy);
                 enemyMisses += 1;
-                castleHealthAmount -= setDamageAmount;
-                UpdateCastleStatus();
+
+                if (CastleData.Instance != null)
+                {
+                    CastleData.Instance.castleHealthAmount -= setDamageAmount;
+                }
+
+                UpdateCastleStatusUI();
                 missText.text = $"Misses: {enemyMisses}";
             }
         }
     }
 
-    private void UpdateCastleStatus()
+    private void UpdateCastleStatusUI()
     {
-        if (castleHealthAmount >= 70)
-        {
-            Debug.Log("Castle Status: OK!");
-        }
-        else if (castleHealthAmount >= 50)
-        {
-            Debug.Log("Castle Status: Low!");
-        }
-        else if (castleHealthAmount >= 20)
-        {
-            Debug.Log("Castle Status: Damaged!");
-        }
-
-        castleHealthAmountText.text = $"DokiCastle Health: {castleHealthAmount}";
+        castleHealthAmountText.text = $"DokiCastle Health: {CastleData.Instance.castleHealthAmount}";
     }
     private void SpawnEnemyCountDown()
     {

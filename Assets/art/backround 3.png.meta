@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fd0e8443e85db4d4e99a82fdcbece107
+guid: caaf44fb8069db6418e5e14a4649306d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8463924666523208084
-    second: egg goon_0
+      213: -6091302566381973569
+    second: backround 3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -92,7 +92,7 @@ TextureImporter:
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 1
+    overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: egg goon_0
+      name: backround 3_0
       rect:
         serializedVersion: 2
-        x: 247
-        y: 235
-        width: 140
-        height: 150
+        x: 0
+        y: 0
+        width: 1152
+        height: 720
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c66b73e0c591a8a80800000000000000
-      internalID: -8463924666523208084
+      spriteID: fbf8067c698577ba0800000000000000
+      internalID: -6091302566381973569
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      egg goon_0: -8463924666523208084
+      backround 3_0: -6091302566381973569
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
