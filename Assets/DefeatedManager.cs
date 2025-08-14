@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DefeatedManager : MonoBehaviour
 {
@@ -36,6 +37,11 @@ public class DefeatedManager : MonoBehaviour
         {
             dokiDragoons[i].SetActive(false);
         }
+    }
+
+    public void TryAgain()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void ShowDragoonForDifficulty()
