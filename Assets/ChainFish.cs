@@ -9,10 +9,18 @@ public class ChainFish : MonoBehaviour
 
     [SerializeField] public GameObject FISH1;
     [SerializeField] public GameObject FISH2;
-    [SerializeField] public float fish1positionX = 0f;
-    [SerializeField] public float fish2positionX = 0f;
+    [SerializeField] public Vector2 fish1positionX = new Vector2(0f, 0f);
+    [SerializeField] public Vector2 fish2positionX = new Vector2(0f, 0f);
+    [SerializeField] public LineController lineController;
+    [SerializeField] public LineRenderer lineRenderer;
+
+    [SerializeField] public GameObject lineRendererObject;
 
 
+
+
+    GameObject Fish1;
+    GameObject Fish2;
 
 
 
@@ -27,7 +35,8 @@ public class ChainFish : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        lineRendererObject = FindAnyObjectByType<LineRenderer>().gameObject;
+        lineController = lineRendererObject.GetComponent<LineController>();
 
 
 
@@ -64,23 +73,40 @@ public class ChainFish : MonoBehaviour
         enemyY = specificYaxisSpawningRange[Random.Range(0, specificYaxisSpawningRange.Length)];
         Vector3 fish2pos = new Vector3(enemyStartingPosition, enemyY, 0);
 
-        GameObject Fish1 = Instantiate(FISH1, fish1pos, Quaternion.identity);
-        GameObject Fish2 = Instantiate(FISH2, fish2pos, Quaternion.identity);
+        Fish1 = Instantiate(FISH1, fish1pos, Quaternion.identity);
+        Fish2 = Instantiate(FISH2, fish2pos, Quaternion.identity);
 
         GameManager gameManager = FindFirstObjectByType<GameManager>();
         gameManager.activeEnemyList.Add(Fish1);
         gameManager.activeEnemyList.Add(Fish2);
 
-
+        lineRenderer = FindAnyObjectByType<LineRenderer>();
+        //lineController.points = new Transform[] { FISH1.transform, FISH2.transform };
+        //lineController.SetUpLine(new Transform[] { this.transform, Fish1.transform });
+        //lineController.SetUpLine(new Transform[] { this.transform, Fish2.transform });
+        // Update line positions
+        lineRenderer.SetPosition(0, Fish1.transform.position);
+        lineRenderer.SetPosition(1, Fish2.transform.position);
 
     }
 
 
     private void Update()
     {
+        //lineRendererObject = FindAnyObjectByType<LineRenderer>().gameObject;
+        //lineController = lineRendererObject.GetComponent<LineController>();
+        lineController.SetUpLine(new Transform[] { Fish1.transform, Fish2.transform });
+
         EnemyMovement();
-        fish1positionX = FISH1.transform.position.x;
-        fish2positionX = FISH2.transform.position.x;
+        fish1positionX = Fish1.transform.position;
+        fish2positionX = Fish2.transform.position;
+
+        //lineController.points = new Transform[] { Fish1.transform, Fish2.transform };
+
+        for (int i = 0; i < lineController.points.Length; i++)
+        {
+            lineRenderer.SetPosition(i, lineController.points[i].position);
+        }
 
     }
 
