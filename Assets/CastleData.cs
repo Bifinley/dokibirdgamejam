@@ -6,14 +6,12 @@ public class CastleData : MonoBehaviour
 
     private enum CastleState
     {
-        None,
         Healthy,
         Damaged,
         Destroyed
     }
     private enum FloorState
     {
-        None,
         Normal,
         Lots,
         Extreme
@@ -22,62 +20,59 @@ public class CastleData : MonoBehaviour
     [Header("Castle Info")]
     public int castleHealthAmount = 100;
 
-    [SerializeField] private GameObject[] castleObjects;
+    [SerializeField] private GameObject[] castleObjects;    
 
-    /*public bool isLevel1Completed = false;
-    public bool isLevel2Completed = false;
-    public bool isLevel3Completed = false;*/
+    /*bool isLevel1Completed = false;
+    bool isLevel2Completed = false;
+    bool isLevel3Completed = false;*/
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(gameObject); 
         }
     }
 
     private void Update()
     {
-        if (castleObjects != null && castleObjects.Length > 0)
-        {
-            CastleHealthGameObjectAndUIUpdater();
-            CastleFloorGameObjectAndUIUpdater();
-        }
+        CastleHealthGameObjectAndUIUpdater();
+
+        CastleFloorGameObjectAndUIUpdater();
     }
 
     private void CastleHealthGameObjectAndUIUpdater()
     {
-        foreach (GameObject obj in castleObjects)
-        {
-            if (obj != null) obj.SetActive(false);
-        }
-
         if (castleHealthAmount <= 20)
-            SetCastleState(CastleState.Destroyed);
+        {
+            castleObjects[(int)CastleState.Destroyed].SetActive(true);
+
+            castleObjects[(int)CastleState.Damaged].SetActive(false);
+            castleObjects[(int)CastleState.Healthy].SetActive(false);
+        }
         else if (castleHealthAmount <= 50)
-            SetCastleState(CastleState.Damaged);
+        {
+            castleObjects[(int)CastleState.Damaged].SetActive(true);
+
+            castleObjects[(int)CastleState.Destroyed].SetActive(false);
+            castleObjects[(int)CastleState.Healthy].SetActive(false);
+        }
         else if (castleHealthAmount <= 70)
-            SetCastleState(CastleState.Healthy);
-        else
-            SetCastleState(CastleState.None);
+        {
+            castleObjects[(int)CastleState.Healthy].SetActive(true);
+
+            castleObjects[(int)CastleState.Damaged].SetActive(false);
+            castleObjects[(int)CastleState.Destroyed].SetActive(false);
+        }
     }
+
 
     private void CastleFloorGameObjectAndUIUpdater()
     {
-
-    }
-
-    private void SetCastleState(CastleState state)
-    {
-        int index = (int)state;
-        if (index >= 0 && index < castleObjects.Length && castleObjects[index] != null)
-        {
-            castleObjects[index].SetActive(true);
-        }
+        
     }
 }

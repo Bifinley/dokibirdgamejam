@@ -1666,7 +1666,6 @@ MonoBehaviour:
   castleHealthAmount: 100
   castleObjects:
   - {fileID: 1380785269}
-  - {fileID: 1380785269}
   - {fileID: 1342625144}
   - {fileID: 716140317}
 --- !u!1 &1342625144
@@ -2122,7 +2121,6 @@ MonoBehaviour:
   castleHealthAmountText: {fileID: 2072030361}
   enemyHits: 0
   enemyMisses: 0
-  castleHealthAmount: 100
   defaultResetTime: 3
   startCountDownTime: 0
   defaultGameResetTime: 60

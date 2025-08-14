@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour
 
             if (enemy.transform.position.x <= enemyMaxDistanceOutSideOfBorder)
             {
-                Debug.Log(enemy.name + " Went outside the border.");
+                Debug.Log(enemy.name + " Attacked the castle!");
                 activeEnemyList.RemoveAt(i);
                 Destroy(enemy);
                 enemyMisses += 1;
