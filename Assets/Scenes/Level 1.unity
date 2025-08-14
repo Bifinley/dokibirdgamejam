@@ -903,8 +903,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -263.01685, y: -52.974884}
-  m_SizeDelta: {x: 494.5485, y: 74.4248}
+  m_AnchoredPosition: {x: -327.48596, y: -52.974884}
+  m_SizeDelta: {x: 623.4868, y: 74.4248}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674929168
 MonoBehaviour:
@@ -926,7 +926,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Timer
+  m_text: 'Time Left: 30000 Seconds!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2be04ccce435214fb41b90f51887cf7, type: 2}
   m_sharedMaterial: {fileID: 4887025647990115124, guid: c2be04ccce435214fb41b90f51887cf7, type: 2}
