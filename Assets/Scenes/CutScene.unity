@@ -931,6 +931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setDifficultyText: {fileID: 344846332}
+  actTitleText: {fileID: 1822260940}
   dokiDragoons:
   - {fileID: 1140104971}
   - {fileID: 1707388375}
@@ -1337,6 +1338,55 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1861158613
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1861158614}
+  - component: {fileID: 1861158615}
+  m_Layer: 0
+  m_Name: CastleData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1861158614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861158613}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1351.407, y: 742.94293, z: -4.057097}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1861158615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861158613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b264499d232556940b1e84b43b73f54d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castleHealthAmount: 100
+  castleObjects: []
+  isLevel1Completed: 0
+  isLevel2Completed: 0
+  isLevel3Completed: 0
 --- !u!1 &1922919815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,3 +1549,4 @@ SceneRoots:
   - {fileID: 1464577014}
   - {fileID: 2120730368}
   - {fileID: 1489593699}
+  - {fileID: 1861158614}

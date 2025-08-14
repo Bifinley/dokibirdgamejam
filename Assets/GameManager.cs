@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem.LowLevel;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,17 +45,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text gameTimerText;
     private bool isGameOver = false;
 
-    [SerializeField] string WinNextScene = "Level 2 - Dialogue (Win)";
-    [SerializeField] string LoseNextScene = "Level 2 - Dialogue (Lose)";
+    [SerializeField] private string DialogueScene = "Dialogue";
+
+    [SerializeField] private bool isTest = true;
 
     MainMenu.GameDifficulty gameDifficulty;
 
     [SerializeField] private GameObject[] difficultySpriteGoons;
 
-
-    private bool isLevel1 = true; // change enemies via here - setting true just to keep it working
-    private bool isLevel2 = false;
-    private bool isLevel3 = false;
+    public static bool isLevel1 = true; // change enemies via here - setting true just to keep it working
+    public static bool isLevel2 = false;
+    public static bool isLevel3 = false;
+    public static bool isLevelEnd = false;
     private enum Dragoons
     {
         EggGoon,
@@ -71,25 +73,29 @@ public class GameManager : MonoBehaviour
             {
                 case MainMenu.GameDifficulty.Easy:
                     defaultResetTime = 5f;
-                    startGameCountDownTime = 120f;
+                    if (!isTest) { startGameCountDownTime = 120f; }
+                    if (isTest) { startGameCountDownTime = 3f; }
                     setDamageAmount = 1;
                     difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
                     break;
                 case MainMenu.GameDifficulty.Normal:
                     defaultResetTime = 3f;
-                    startGameCountDownTime = 60f;
+                    if (!isTest) { startGameCountDownTime = 60f; }
+                    if (isTest) { startGameCountDownTime = 3f; }
                     setDamageAmount = 2;
                     difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
                     break;
                 case MainMenu.GameDifficulty.Medium:
                     defaultResetTime = 1f;
-                    startGameCountDownTime = 20f;
+                    if (!isTest) { startGameCountDownTime = 20f; }
+                    if (isTest) { startGameCountDownTime = 3f; }
                     setDamageAmount = 3;
                     difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
                     break;
                 case MainMenu.GameDifficulty.Hard:
                     defaultResetTime = 0.8f;
-                    startGameCountDownTime = 30f;
+                    if (!isTest) { startGameCountDownTime = 30f; }
+                    if (isTest) { startGameCountDownTime = 3f; }
                     setDamageAmount = 4;
                     difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
                     break;
@@ -104,25 +110,25 @@ public class GameManager : MonoBehaviour
             {
                 case MainMenu.GameDifficulty.Easy:
                     defaultResetTime = 5f;
-                    startGameCountDownTime = 120f;
+                    if (!isTest) { startGameCountDownTime = 120f; }
                     setDamageAmount = 1;
                     difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
                     break;
                 case MainMenu.GameDifficulty.Normal:
                     defaultResetTime = 3f;
-                    startGameCountDownTime = 60f;
+                    if (!isTest) { startGameCountDownTime = 60f; }
                     setDamageAmount = 2;
                     difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
                     break;
                 case MainMenu.GameDifficulty.Medium:
                     defaultResetTime = 1f;
-                    startGameCountDownTime = 20f;
+                    if (!isTest) { startGameCountDownTime = 20f; }
                     setDamageAmount = 3;
                     difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
                     break;
                 case MainMenu.GameDifficulty.Hard:
                     defaultResetTime = 0.8f;
-                    startGameCountDownTime = 30f;
+                    if (!isTest) { startGameCountDownTime = 30f; }
                     setDamageAmount = 4;
                     difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
                     break;
@@ -167,6 +173,8 @@ public class GameManager : MonoBehaviour
         }
 
         castleHealthAmountText.text = $"DokiCastle Health: {CastleData.Instance.castleHealthAmount}";
+
+
     }
 
     private void Awake()
@@ -175,6 +183,7 @@ public class GameManager : MonoBehaviour
         difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(false);
         difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(false);
         difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(false);
+
         if (Instance == null)
         {
             Instance = this;
@@ -186,16 +195,28 @@ public class GameManager : MonoBehaviour
         }
 
         gameDifficulty = MainMenu.SelectedDifficulty;
+
     }
 
     private void Update()
     {
         GameTimer();
-        if(!isGameOver)
+        if (!isGameOver)
         {
             SpawnEnemyCountDown();
             NewAttackPlayerLogic();
         }
+    }
+
+    private void SaveLevelCompletion(string levelKey, bool completed)
+    {
+        PlayerPrefs.SetInt(levelKey, completed ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    private bool LoadLevelCompletion(string levelKey)
+    {
+        return PlayerPrefs.GetInt(levelKey, 0) == 1;
     }
 
     private void GameTimer() // Ends game when timer is done
@@ -213,21 +234,39 @@ public class GameManager : MonoBehaviour
 
         if (isGameOver && startGameCountDownTime <= 0)
         {
-            StartCoroutine(GoToCutScene()); 
+            StartCoroutine(GoToCutScene());
         }
     }
     IEnumerator GoToCutScene()
     {
         yield return new WaitForSeconds(4f);
 
-        if (isGameOver && CastleData.Instance.castleHealthAmount >= 70)
+        if (!CastleData.Instance.isLevel1Completed)
         {
-            SceneManager.LoadScene(WinNextScene);
-        }else if(CastleData.Instance.castleHealthAmount < 70)
-        {
-            SceneManager.LoadScene(LoseNextScene);
+            CastleData.Instance.isLevel1Completed = true;
+            SaveLevelCompletion("Level1Completed", true);
+            isLevel1 = false;
+            isLevel2 = true;
         }
+        else if (CastleData.Instance.isLevel1Completed && !CastleData.Instance.isLevel2Completed)
+        {
+            CastleData.Instance.isLevel2Completed = true;
+            SaveLevelCompletion("Level2Completed", true);
+            isLevel2 = false;
+            isLevel3 = true;
+        }
+        else if (CastleData.Instance.isLevel2Completed && !CastleData.Instance.isLevel3Completed)
+        {
+            CastleData.Instance.isLevel3Completed = true;
+            SaveLevelCompletion("Level3Completed", true);
+            isLevel3 = false;
+            isLevelEnd = true;
+        }
+
+        SceneManager.LoadScene(DialogueScene);
     }
+
+
     private void NewAttackPlayerLogic() // this removes the error InvalidOperationException: Collection was modified; Using a forloop instead.
     {
         for (int i = activeEnemyList.Count - 1; i >= 0; i--)

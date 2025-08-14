@@ -266,18 +266,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueNPCName: Jerry The Stickman
-  dialogueMessage:
-  - Wow.. you did a pretty bad job not gonna lie
-  - I seriously dont know how you did that bad.
-  - Genuinely I dont know how you are going to survive this next wave after witnessing
-    that.
-  - Good Luck to you..
-  - You're going to need it.
-  - You're going to need it.
+  dialogueMessage: []
   currentDialogueIndex: 0
   currentDialogueIndexMax: 0
   dialogueText: {fileID: 1309329101}
-  NextScene: Level 2 - CutScene
+  didPlayerWin: 0
 --- !u!1 &318563172
 GameObject:
   m_ObjectHideFlags: 0

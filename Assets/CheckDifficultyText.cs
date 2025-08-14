@@ -13,35 +13,67 @@ public class CheckDifficultyText : MonoBehaviour
 
     MainMenu.GameDifficulty gameDifficulty;
     [SerializeField] TMP_Text setDifficultyText;
+    [SerializeField] TMP_Text actTitleText;
 
     [SerializeField] GameObject[] dokiDragoons;
-
-    private void Start()
-    {
-        dokiDragoons[(int)Dragoons.EggGoon].SetActive(false);
-        dokiDragoons[(int)Dragoons.Dragoon].SetActive(false);
-        dokiDragoons[(int)Dragoons.LongGoon].SetActive(false);
-        dokiDragoons[(int)Dragoons.ChonkyGoon].SetActive(false);
-    }
 
     private void Awake()
     {
         gameDifficulty = MainMenu.SelectedDifficulty;
     }
+
+    private void Start()
+    {
+        UpdateActTitle();
+        HideAllDragoons();
+    }
+
     private void Update()
     {
         setDifficultyText.text = $"Difficulty: {gameDifficulty}";
+        ShowDragoonForDifficulty();
+    }
 
-        switch(gameDifficulty)
+    private void UpdateActTitle()
+    {
+        if (CastleData.Instance.isLevel1Completed && CastleData.Instance.isLevel2Completed)
+        {
+            actTitleText.text = "Act 3: Lone Wolf";
+        }
+        else if (CastleData.Instance.isLevel1Completed)
+        {
+            actTitleText.text = "Act 2: All for nothing!";
+        }
+        else
+        {
+            actTitleText.text = "Act 1: The Beginning";
+        }
+    }
+
+    private void HideAllDragoons()
+    {
+        for (int i = 0; i < dokiDragoons.Length; i++)
+        {
+            dokiDragoons[i].SetActive(false);
+        }
+    }
+
+    private void ShowDragoonForDifficulty()
+    {
+        switch (gameDifficulty)
         {
             case MainMenu.GameDifficulty.Easy:
-                dokiDragoons[(int)Dragoons.EggGoon].SetActive(true); break;
+                dokiDragoons[(int)Dragoons.EggGoon].SetActive(true);
+                break;
             case MainMenu.GameDifficulty.Normal:
-                dokiDragoons[(int)Dragoons.Dragoon].SetActive(true); break;
+                dokiDragoons[(int)Dragoons.Dragoon].SetActive(true);
+                break;
             case MainMenu.GameDifficulty.Medium:
-                dokiDragoons[(int)Dragoons.LongGoon].SetActive(true); break;
+                dokiDragoons[(int)Dragoons.LongGoon].SetActive(true);
+                break;
             case MainMenu.GameDifficulty.Hard:
-                dokiDragoons[(int)Dragoons.ChonkyGoon].SetActive(true); break;
+                dokiDragoons[(int)Dragoons.ChonkyGoon].SetActive(true);
+                break;
         }
     }
 }

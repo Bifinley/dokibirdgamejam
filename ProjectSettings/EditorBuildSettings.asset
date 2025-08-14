@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 38e4f9c3ad0400646bd491be20d3a977
   - enabled: 1
-    path: Assets/Scenes/Level 1 - CutScene.unity
+    path: Assets/Scenes/CutScene.unity
     guid: f54d7f0bfd637194187b05f01716336d
   - enabled: 1
     path: Assets/Scenes/Level 2 - CutScene.unity
@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 2 - Dialogue (Win).unity
     guid: b1c359ce85ad7f64cbecce0358ec7274
   - enabled: 1
-    path: Assets/Scenes/Level 2 - Dialogue (Lose).unity
+    path: Assets/Scenes/Dialogue.unity
     guid: c9ba447a0a1ac494baed9f11a5ff25f1
   - enabled: 1
     path: Assets/Scenes/Level 1.unity

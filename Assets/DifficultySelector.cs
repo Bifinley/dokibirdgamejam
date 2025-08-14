@@ -27,7 +27,8 @@ public class DifficultySelector : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Level 1 - CutScene");
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene("CutScene");
     }
 
     private void Awake()
