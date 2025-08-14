@@ -199,7 +199,9 @@ MonoBehaviour:
   lineController: {fileID: 0}
   lineRenderer: {fileID: 0}
   lineRendererObject: {fileID: 0}
-  retractSpeed: 2
+  retractSpeed: 8
+  alive: 1
+  Uninstall: 0
 --- !u!1 &7169762609418120628
 GameObject:
   m_ObjectHideFlags: 0

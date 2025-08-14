@@ -140,6 +140,11 @@ public class GameManager : MonoBehaviour
         for (int i = activeEnemyList.Count - 1; i >= 0; i--)
         {
             GameObject enemy = activeEnemyList[i];
+            if (enemy == null)
+            {
+                activeEnemyList.RemoveAt(i);
+                continue; // skip to the next iteration if the enemy is null
+            }
             float distanceFromPlayer = Vector3.Distance(playerTransform.position, enemy.transform.position); // checks distance between player and enemy
             enemyDistances[enemy] = distanceFromPlayer;
 
@@ -149,7 +154,12 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log(enemy.name + " Hit player!");
                     activeEnemyList.RemoveAt(i);
-                    Destroy(enemy);
+                    //Destroy(enemy);
+                    if (enemy.GetComponent<ChainFishTEST>() != null)
+                        enemy.GetComponent<ChainFishTEST>().alive = false; // this is a workaround to not destroy the enemy, but to stop it from moving and rendering.
+                    else
+                        enemy.GetComponent<Enemy>().alive = false; // this is a workaround to not destroy the enemy, but to stop it from moving and rendering.
+
                     enemyHits += 1;
                     hitsText.text = $"Hits: {enemyHits}";
                     continue;

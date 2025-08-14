@@ -19,11 +19,19 @@ public class ChainFishTEST : MonoBehaviour
 
     [SerializeField] private float retractSpeed = 2f; // speed at which line end moves
 
-
+    [SerializeField] public bool alive = true;
+    [SerializeField] public bool Uninstall = false;
 
 
     GameObject Fish1;
     GameObject Fish2;
+    private GameObject fish1Target; // survivor fish target
+    private GameObject fish2Target;
+
+    private bool fish1Retracting = false;
+    private bool fish2Retracting = false;
+
+
 
     private LineRenderer lineToFish1;
     private LineRenderer lineToFish2;
@@ -146,10 +154,22 @@ public class ChainFishTEST : MonoBehaviour
         //lineController = lineRendererObject.GetComponent<LineController>();
         //lineController.SetUpLine(new UnityEngine.Transform[] { Fish1.transform, Fish2.transform });
 
-        
+        if (Uninstall)
+        {
+            Destroy(gameObject);
+            return; // uninstalling life.exe
+        }
 
 
-        EnemyMovement();
+        if (!alive)
+        {
+            var renderer = GetComponentInChildren<SpriteRenderer>();
+            if (renderer != null)
+                renderer.enabled = false;
+        }
+        else
+            EnemyMovement();
+
 
 
         //fish1positionX = Fish1.transform.position;
@@ -193,62 +213,223 @@ public class ChainFishTEST : MonoBehaviour
         //}
 
 
-        bool controllerAlive = this != null; // Or your own "is dead" flag
-        bool fish1Alive = Fish1 != null;
-        bool fish2Alive = Fish2 != null;
+        // Get alive states
+        bool controllerAlive = alive;
+        bool fish1Alive = Fish1 != null && Fish1.GetComponent<Enemy>().alive;
+        bool fish2Alive = Fish2 != null && Fish2.GetComponent<Enemy>().alive;
 
-        // Handle Fish 1 line
-        if (fish1Alive && controllerAlive)
+        //// --- Fish 1 line ---
+        //if (fish1Alive && controllerAlive)
+        //{
+        //    AttachPoint1 = transform.position;
+        //    lineToFish1.enabled = true;
+        //    lineToFish1.SetPosition(0, transform.position);
+        //    lineToFish1.SetPosition(1, Fish1.transform.position);
+        //}
+        //else if (!fish1Alive)
+        //{
+        //    // Determine retraction target: the closest alive fish
+        //    Vector3 target = controllerAlive ? transform.position :
+        //                    (fish2Alive ? Fish2.transform.position : AttachPoint1);
+
+        //    AttachPoint1 = Vector3.MoveTowards(AttachPoint1, target, retractSpeed * Time.deltaTime);
+        //    lineToFish1.SetPosition(0, target);
+        //    lineToFish1.SetPosition(1, AttachPoint1);
+
+        //    //    if (Vector3.Distance(AttachPoint1, target) < 0.01f)
+        //    //        lineToFish1.enabled = false;
+        //    //        Fish1.GetComponent<Enemy>().Uninstall = true; // this is a workaround to not destroy the enemy, but to stop it from moving and rendering.
+        //    //        this.alive= false; // this is a workaround to not destroy the enemy, but to stop it from moving and rendering.
+        //    //        Fish2.GetComponent<Enemy>().alive = false; // this is a workaround to not destroy the enemy, but to stop it from moving and rendering.
+
+        //    if (Vector3.Distance(AttachPoint1, target) < 0.01f)
+        //    {
+        //        lineToFish1.enabled = false;
+        //        if (Fish1 != null) Fish1.GetComponent<Enemy>().Uninstall = true;
+        //        this.alive = false;
+        //        if (Fish2 != null) Fish2.GetComponent<Enemy>().alive = false;
+        //    }
+
+        //}   
+
+
+        //// --- Fish 2 line ---
+        //if (fish2Alive && controllerAlive)
+        //{
+        //    AttachPoint2 = transform.position;
+        //    lineToFish2.enabled = true;
+        //    lineToFish2.SetPosition(0, transform.position);
+        //    lineToFish2.SetPosition(1, Fish2.transform.position);
+        //}
+        //else if (!fish2Alive)
+        //{
+        //    Vector3 target = controllerAlive ? transform.position :
+        //                    (fish1Alive ? Fish1.transform.position : AttachPoint2);
+
+        //    AttachPoint2 = Vector3.MoveTowards(AttachPoint2, target, retractSpeed * Time.deltaTime);
+        //    lineToFish2.SetPosition(0, target);
+        //    lineToFish2.SetPosition(1, AttachPoint2);
+
+        //    //if (Vector3.Distance(AttachPoint2, target) < 0.01f)
+        //    //    lineToFish2.enabled = false;
+        //    //    Fish2.GetComponent<Enemy>().Uninstall = true; // this is a workaround to not destroy the enemy, but to stop it from moving and rendering.
+        //    //    this.alive = false; // this is a workaround to not destroy the enemy, but to stop it from moving and rendering.
+        //    //    Fish2.GetComponent<Enemy>().alive = false; // this is a workaround to not destroy the enemy, but to stop it from moving and rendering.
+
+        //    if (Vector3.Distance(AttachPoint2, target) < 0.01f)
+        //    {
+        //        lineToFish2.enabled = false;
+        //        if (Fish2 != null) Fish2.GetComponent<Enemy>().Uninstall = true;
+        //        this.alive = false;
+        //        if (Fish1 != null) Fish1.GetComponent<Enemy>().alive = false;
+        //    }
+
+
+        //}
+
+        //if (Fish1 != null && Fish2 != null)
+        //{
+        //    if (!this.alive)
+        //    {
+        //        this.Uninstall = true; // this is a workaround to not destroy the enemy, but to stop it from moving and rendering.
+        //    }
+        //}
+
+
+        //// --- Handle Fish 1 Fuse ---
+        //if (!fish1Alive && !fish1Retracting)
+        //{
+        //    fish1Retracting = true;
+        //    fish1Target = controllerAlive ? gameObject : (fish2Alive ? Fish2 : null);
+        //}
+
+        //if (fish1Retracting && fish1Target != null)
+        //{
+        //    AttachPoint1 = Vector3.MoveTowards(AttachPoint1, fish1Target.transform.position, retractSpeed * Time.deltaTime);
+        //    lineToFish1.SetPosition(0, fish1Target.transform.position);
+        //    lineToFish1.SetPosition(1, AttachPoint1);
+
+        //    if (Vector3.Distance(AttachPoint1, fish1Target.transform.position) < 0.01f)
+        //    {
+        //        // Fuse burned to target — kill target
+        //        if (fish1Target == gameObject) alive = false;
+        //        else if (fish1Target != null) fish1Target.GetComponent<Enemy>().alive = false;
+
+        //        lineToFish1.enabled = false;
+        //        fish1Retracting = false;
+        //    }
+        //}
+        //else if (fish1Alive && controllerAlive)
+        //{
+        //    AttachPoint1 = Fish1.transform.position;
+        //    lineToFish1.SetPosition(0, transform.position);
+        //    lineToFish1.SetPosition(1, Fish1.transform.position);
+        //}
+
+        //// --- Handle Fish 2 Fuse ---
+        //if (!fish2Alive && !fish2Retracting)
+        //{
+        //    fish2Retracting = true;
+        //    fish2Target = controllerAlive ? gameObject : (fish1Alive ? Fish1 : null);
+        //}
+
+        //if (fish2Retracting && fish2Target != null)
+        //{
+        //    AttachPoint2 = Vector3.MoveTowards(AttachPoint2, fish2Target.transform.position, retractSpeed * Time.deltaTime);
+        //    lineToFish2.SetPosition(0, fish2Target.transform.position);
+        //    lineToFish2.SetPosition(1, AttachPoint2);
+
+        //    if (Vector3.Distance(AttachPoint2, fish2Target.transform.position) < 0.01f)
+        //    {
+        //        if (fish2Target == gameObject) alive = false;
+        //        else if (fish2Target != null) fish2Target.GetComponent<Enemy>().alive = false;
+
+        //        lineToFish2.enabled = false;
+        //        fish2Retracting = false;
+        //    }
+        //}
+        //else if (fish2Alive && controllerAlive)
+        //{
+        //    AttachPoint2 = Fish2.transform.position;
+        //    lineToFish2.SetPosition(0, transform.position);
+        //    lineToFish2.SetPosition(1, Fish2.transform.position);
+        //}
+
+
+
+        // --- Handle Fish 1 Fuse ---
+        if (!fish1Alive && !fish1Retracting)
         {
-            AttachPoint1 = transform.position;
-            lineToFish1.enabled = true;
+            fish1Retracting = true;
+            // if controller dead, target the surviving fish
+            fish1Target = alive ? gameObject : (fish2Alive ? Fish2 : null);
+        }
+
+        if (fish1Retracting && fish1Target != null)
+        {
+            AttachPoint1 = Vector3.MoveTowards(AttachPoint1, fish1Target.transform.position, retractSpeed * Time.deltaTime);
+            lineToFish1.SetPosition(0, fish1Target.transform.position);
+            lineToFish1.SetPosition(1, AttachPoint1);
+
+            if (Vector3.Distance(AttachPoint1, fish1Target.transform.position) < 0.01f)
+            {
+                if (fish1Target == gameObject) alive = false;
+                else if (fish1Target != null) fish1Target.GetComponent<Enemy>().alive = false;
+
+                lineToFish1.enabled = false;
+                fish1Retracting = false;
+            }
+        }
+        else if (fish1Alive && alive)
+        {
+            AttachPoint1 = Fish1.transform.position;
             lineToFish1.SetPosition(0, transform.position);
             lineToFish1.SetPosition(1, Fish1.transform.position);
         }
-        else if (!fish1Alive && fish2Alive) // retract toward surviving fish2
-        {
-            AttachPoint1 = Vector3.MoveTowards(AttachPoint1, Fish2.transform.position, retractSpeed * Time.deltaTime);
-            lineToFish1.SetPosition(0, Fish2.transform.position);
-            lineToFish1.SetPosition(1, AttachPoint1);
 
-            if (Vector3.Distance(AttachPoint1, Fish2.transform.position) < 0.01f)
-                lineToFish1.enabled = false;
-        }
-        else if (!fish1Alive && controllerAlive) // retract toward controller
+        // --- Handle Fish 2 Fuse ---
+        if (!fish2Alive && !fish2Retracting)
         {
-            AttachPoint1 = Vector3.MoveTowards(AttachPoint1, transform.position, retractSpeed * Time.deltaTime);
-            lineToFish1.SetPosition(0, transform.position);
-            lineToFish1.SetPosition(1, AttachPoint1);
-
-            if (Vector3.Distance(AttachPoint1, transform.position) < 0.01f)
-                lineToFish1.enabled = false;
+            fish2Retracting = true;
+            fish2Target = alive ? gameObject : (fish1Alive ? Fish1 : null);
         }
 
-        // Handle Fish 2 line
-        if (fish2Alive && controllerAlive)
+        if (fish2Retracting && fish2Target != null)
         {
-            AttachPoint2 = transform.position;
-            lineToFish2.enabled = true;
+            AttachPoint2 = Vector3.MoveTowards(AttachPoint2, fish2Target.transform.position, retractSpeed * Time.deltaTime);
+            lineToFish2.SetPosition(0, fish2Target.transform.position);
+            lineToFish2.SetPosition(1, AttachPoint2);
+
+            if (Vector3.Distance(AttachPoint2, fish2Target.transform.position) < 0.01f)
+            {
+                if (fish2Target == gameObject) alive = false;
+                else if (fish2Target != null) fish2Target.GetComponent<Enemy>().alive = false;
+
+                lineToFish2.enabled = false;
+                fish2Retracting = false;
+            }
+        }
+        else if (fish2Alive && alive)
+        {
+            AttachPoint2 = Fish2.transform.position;
             lineToFish2.SetPosition(0, transform.position);
             lineToFish2.SetPosition(1, Fish2.transform.position);
         }
-        else if (!fish2Alive && fish1Alive) // retract toward surviving fish1
-        {
-            AttachPoint2 = Vector3.MoveTowards(AttachPoint2, Fish1.transform.position, retractSpeed * Time.deltaTime);
-            lineToFish2.SetPosition(0, Fish1.transform.position);
-            lineToFish2.SetPosition(1, AttachPoint2);
 
-            if (Vector3.Distance(AttachPoint2, Fish1.transform.position) < 0.01f)
-                lineToFish2.enabled = false;
-        }
-        else if (!fish2Alive && controllerAlive) // retract toward controller
+        // --- Handle controller death ---
+        if (!alive)
         {
-            AttachPoint2 = Vector3.MoveTowards(AttachPoint2, transform.position, retractSpeed * Time.deltaTime);
-            lineToFish2.SetPosition(0, transform.position);
-            lineToFish2.SetPosition(1, AttachPoint2);
-
-            if (Vector3.Distance(AttachPoint2, transform.position) < 0.01f)
-                lineToFish2.enabled = false;
+            // start retracting any surviving fish
+            if (fish1Alive && !fish1Retracting)
+            {
+                fish1Retracting = true;
+                fish1Target = Fish2 != null && Fish2.GetComponent<Enemy>().alive ? Fish2 : null;
+            }
+            if (fish2Alive && !fish2Retracting)
+            {
+                fish2Retracting = true;
+                fish2Target = Fish1 != null && Fish1.GetComponent<Enemy>().alive ? Fish1 : null;
+            }
         }
 
 

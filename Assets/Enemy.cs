@@ -5,6 +5,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float enemyMoveSpeed = 2f;
 
     [SerializeField] public float distanceFromPlayer;
+    [SerializeField] public bool alive = true;
+    [SerializeField] public bool Uninstall = false;
 
     private float enemyMinSpeed = 2.5f;
     private float enemyMaxSpeed = 5f;
@@ -42,7 +44,20 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        EnemyMovement();
+        if (Uninstall)
+        {
+            Destroy(gameObject);
+            return; // uninstalling life.exe
+        }
+
+        if (!alive)
+        {
+            var renderer = GetComponentInChildren<SpriteRenderer>();
+            if (renderer != null)
+                renderer.enabled = false;
+        }
+        else 
+            EnemyMovement();
     }
 
     private void EnemyMovement()
