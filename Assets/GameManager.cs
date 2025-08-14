@@ -44,8 +44,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text gameTimerText;
     private bool isGameOver = false;
 
-    [SerializeField] string WinNextScene = "Level 2 - Dialogue";
-    [SerializeField] string LoseNextScene = ""; // I dont have a scene for this yet
+    [SerializeField] string WinNextScene = "Level 2 - Dialogue (Win)";
+    [SerializeField] string LoseNextScene = "Level 2 - Dialogue (Lose)";
 
     MainMenu.GameDifficulty gameDifficulty;
 
