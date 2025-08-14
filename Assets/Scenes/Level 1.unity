@@ -1668,6 +1668,9 @@ MonoBehaviour:
   - {fileID: 1380785269}
   - {fileID: 1342625144}
   - {fileID: 716140317}
+  isLevel1Completed: 0
+  isLevel2Completed: 0
+  isLevel3Completed: 0
 --- !u!1 &1342625144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,8 +2129,8 @@ MonoBehaviour:
   defaultGameResetTime: 60
   startGameCountDownTime: 0
   gameTimerText: {fileID: 674929168}
-  WinNextScene: Level 2 - Dialogue (Win)
-  LoseNextScene: Level 2 - Dialogue (Lose)
+  DialogueScene: Dialogue
+  isTest: 0
   difficultySpriteGoons:
   - {fileID: 1733974253}
   - {fileID: 22190521}
