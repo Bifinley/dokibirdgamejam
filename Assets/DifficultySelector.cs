@@ -33,6 +33,7 @@ public class DifficultySelector : MonoBehaviour
 
     private void Awake()
     {
+        PlayerPrefs.DeleteAll();
         MainMenu.SelectedDifficulty = MainMenu.GameDifficulty.Easy;
     }
 

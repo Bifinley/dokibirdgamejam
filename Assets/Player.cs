@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
             {
                 isAllowedToMove = true;
             }
-            Debug.Log("You are less than 3 or at 3.");
+            // Debug.Log("You are less than 3 or at 3.");
         }
         if (playerTransform.position.y <= -3) // This stops the player from going above the Y axis -3
         {
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
             {
                 isAllowedToMove = true;
             }
-            Debug.Log("You are less than -3 or at -3.");
+            // Debug.Log("You are less than -3 or at -3.");
         }
 
         if (Input.GetKeyDown(KeyCode.W))
