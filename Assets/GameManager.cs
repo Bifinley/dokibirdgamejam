@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform spawnEnemyPosition;
 
     [Header("Enemy Spawn List Info")]
-    [SerializeField] private List<GameObject> activeEnemyList = new List<GameObject>();
+    [SerializeField] public List<GameObject> activeEnemyList = new List<GameObject>();
     [SerializeField] private Dictionary<GameObject, float> enemyDistances = new Dictionary<GameObject, float>();
 
     [Header("Enemy Info")]
@@ -192,6 +192,8 @@ public class GameManager : MonoBehaviour
         if (startCountDownTime <= 0) // when it hits zero, spawn enemy. Enemy Spawns every startCountDownTime seconds.
         {
             startCountDownTime = defaultResetTime;
+
+            // TODO: instantiate random enemy from a list of availible prefabs. spawning chain fish for now.
 
             GameObject newEnemy = Instantiate(enemyPrefab, spawnEnemyPosition.position, Quaternion.identity);
             activeEnemyList.Add(newEnemy);
