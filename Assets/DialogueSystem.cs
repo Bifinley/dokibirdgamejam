@@ -9,7 +9,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] private string dialogueNPCName; // not being used yet
     //[SerializeField] private string[] dialogueMessage; // do not add in inspector
 
-    [SerializeField] private List<string> dialogueMessage = new List<string>(); 
+    [SerializeField] private List<string> dialogueMessage = new List<string>(); // dont touch this in inspector please :)
 
     [SerializeField] private int currentDialogueIndex;
     [SerializeField] private int currentDialogueIndexMax;
@@ -88,9 +88,40 @@ public class DialogueSystem : MonoBehaviour
             if (currentDialogueIndex == -1)
             {
                 dialogueMessage.Clear();
-                dialogueMessage.Add("YOU HAVE BEATEN ALL THE LEVELS!");
-                dialogueMessage.Add("LESSSS GOOOOOO");
-                dialogueMessage.Add("LESSSS GOOOOOO");
+
+                if (CastleData.Instance.castleHealthAmount <= 0)
+                {
+                    SceneManager.LoadScene(DefeatedScene);
+                }
+                else if (CastleData.Instance.castleHealthAmount <= 20)
+                {
+                    dialogueMessage.Add("Wow.. I have no words. Goodluck I guess?");
+                    dialogueMessage.Add("The castle is on its knees right now, there is no way you can do this.");
+                    dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
+                    dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
+                }
+                else if (CastleData.Instance.castleHealthAmount <= 50)
+                {
+                    dialogueMessage.Add("The castle is in shambles..");
+                    dialogueMessage.Add("How did you even fail this badly?");
+                    dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
+                    dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
+                }
+                else if (CastleData.Instance.castleHealthAmount <= 70)
+                {
+                    dialogueMessage.Add("The castle did get beat up a bit.");
+                    dialogueMessage.Add("But that will not stop us from taking them down, I believen you.");
+                    dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
+                    dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
+                }
+                else if (CastleData.Instance.castleHealthAmount > 70)
+                {
+                    dialogueMessage.Add("You did a great job!");
+                    dialogueMessage.Add("If you keep up this pace, we will win against the fish in no time!");
+                    dialogueMessage.Add("Good Luck to you!");
+                    dialogueMessage.Add("Good Luck to you!");
+                }
+
                 currentDialogueIndexMax = dialogueMessage.Count - 1;
             }
 
@@ -114,9 +145,40 @@ public class DialogueSystem : MonoBehaviour
             if (currentDialogueIndex == -1)
             {
                 dialogueMessage.Clear();
-                dialogueMessage.Add("YOU BEAT LEVEL 1");
-                dialogueMessage.Add("RAWWWWWW");
-                dialogueMessage.Add("RAWWWWWW");
+
+                if (CastleData.Instance.castleHealthAmount <= 0)
+                {
+                    SceneManager.LoadScene(DefeatedScene);
+                }
+                else if (CastleData.Instance.castleHealthAmount <= 20)
+                {
+                    dialogueMessage.Add("Wow.. I have no words. Goodluck I guess?");
+                    dialogueMessage.Add("The castle is on its knees right now, there is no way you can do this.");
+                    dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
+                    dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
+                }
+                else if (CastleData.Instance.castleHealthAmount <= 50)
+                {
+                    dialogueMessage.Add("The castle is in shambles..");
+                    dialogueMessage.Add("How did you even fail this badly?");
+                    dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
+                    dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
+                }
+                else if (CastleData.Instance.castleHealthAmount <= 70)
+                {
+                    dialogueMessage.Add("The castle did get beat up a bit.");
+                    dialogueMessage.Add("But that will not stop us from taking them down, I believen you.");
+                    dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
+                    dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
+                }
+                else if (CastleData.Instance.castleHealthAmount > 70)
+                {
+                    dialogueMessage.Add("You did a great job!");
+                    dialogueMessage.Add("If you keep up this pace, we will win against the fish in no time!");
+                    dialogueMessage.Add("Good Luck to you!");
+                    dialogueMessage.Add("Good Luck to you!");
+                }
+
                 currentDialogueIndexMax = dialogueMessage.Count - 1;
             }
 
@@ -140,9 +202,40 @@ public class DialogueSystem : MonoBehaviour
             if (currentDialogueIndex == -1)
             {
                 dialogueMessage.Clear();
-                dialogueMessage.Add("YOU BEAT LEVEL 2");
-                dialogueMessage.Add("RAWWWWWW 2 22222");
-                dialogueMessage.Add("RAWWWWWW 2 22222");
+
+                if (CastleData.Instance.castleHealthAmount <= 0)
+                {
+                    SceneManager.LoadScene(DefeatedScene);
+                }
+                else if (CastleData.Instance.castleHealthAmount <= 20)
+                {
+                    dialogueMessage.Add("Wow.. I have no words. Goodluck I guess?");
+                    dialogueMessage.Add("The castle is on its knees right now, there is no way you can do this.");
+                    dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
+                    dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
+                }
+                else if (CastleData.Instance.castleHealthAmount <= 50)
+                {
+                    dialogueMessage.Add("The castle is in shambles..");
+                    dialogueMessage.Add("How did you even fail this badly?");
+                    dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
+                    dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
+                }
+                else if (CastleData.Instance.castleHealthAmount <= 70)
+                {
+                    dialogueMessage.Add("The castle did get beat up a bit.");
+                    dialogueMessage.Add("But that will not stop us from taking them down, I believen you.");
+                    dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
+                    dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
+                }
+                else if (CastleData.Instance.castleHealthAmount > 70)
+                {
+                    dialogueMessage.Add("You did a great job!");
+                    dialogueMessage.Add("If you keep up this pace, we will win against the fish in no time!");
+                    dialogueMessage.Add("Good Luck to you!");
+                    dialogueMessage.Add("Good Luck to you!");
+                }
+
                 currentDialogueIndexMax = dialogueMessage.Count - 1;
             }
 
@@ -166,9 +259,40 @@ public class DialogueSystem : MonoBehaviour
             if (currentDialogueIndex == -1)
             {
                 dialogueMessage.Clear();
-                dialogueMessage.Add("YOU BEAT LEVEL 3");
-                dialogueMessage.Add("3333333333333333333333RAWWWWWW");
-                dialogueMessage.Add("3333333333333333333333RAWWWWWW");
+
+                if (CastleData.Instance.castleHealthAmount <= 0)
+                {
+                    SceneManager.LoadScene(DefeatedScene);
+                }
+                else if (CastleData.Instance.castleHealthAmount <= 20)
+                {
+                    dialogueMessage.Add("Wow.. I have no words. Goodluck I guess?");
+                    dialogueMessage.Add("The castle is on its knees right now, there is no way you can do this.");
+                    dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
+                    dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
+                }
+                else if (CastleData.Instance.castleHealthAmount <= 50)
+                {
+                    dialogueMessage.Add("The castle is in shambles..");
+                    dialogueMessage.Add("How did you even fail this badly?");
+                    dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
+                    dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
+                }
+                else if (CastleData.Instance.castleHealthAmount <= 70)
+                {
+                    dialogueMessage.Add("The castle did get beat up a bit.");
+                    dialogueMessage.Add("But that will not stop us from taking them down, I believen you.");
+                    dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
+                    dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
+                }
+                else if (CastleData.Instance.castleHealthAmount > 70)
+                {
+                    dialogueMessage.Add("You did a great job!");
+                    dialogueMessage.Add("If you keep up this pace, we will win against the fish in no time!");
+                    dialogueMessage.Add("Good Luck to you!");
+                    dialogueMessage.Add("Good Luck to you!");
+                }
+
                 currentDialogueIndexMax = dialogueMessage.Count - 1;
             }
 
