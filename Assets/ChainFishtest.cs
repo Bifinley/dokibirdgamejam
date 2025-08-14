@@ -605,6 +605,11 @@ public class ChainFishTEST : MonoBehaviour
 
     private void Update()
     {
+        // Get alive states
+        bool controllerAlive = alive;
+        bool fish1Alive = Fish1 != null && Fish1.GetComponent<Enemy>().alive;
+        bool fish2Alive = Fish2 != null && Fish2.GetComponent<Enemy>().alive;
+
         if (Uninstall)
         {
             Destroy(gameObject);
@@ -614,16 +619,16 @@ public class ChainFishTEST : MonoBehaviour
         if (!alive)
         {
             var renderer = GetComponentInChildren<SpriteRenderer>();
-            if (renderer != null)
+            if (renderer != null) { 
                 renderer.enabled = false;
+                controllerAlive = false;
+            }
+
         }
         else
             EnemyMovement();
 
-        // Get alive states
-        bool controllerAlive = alive;
-        bool fish1Alive = Fish1 != null && Fish1.GetComponent<Enemy>().alive;
-        bool fish2Alive = Fish2 != null && Fish2.GetComponent<Enemy>().alive;
+
 
         // Store previous controller state to detect when it just died
         bool controllerJustDied = !controllerAlive && !fish1Retracting && !fish2Retracting;
