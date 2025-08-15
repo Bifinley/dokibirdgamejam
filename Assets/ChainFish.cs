@@ -5,28 +5,24 @@ public class ChainFish : MonoBehaviour
 {
 
     [SerializeField] private float enemyMoveSpeed = 2f;
-
     [SerializeField] public float distanceFromPlayer;
 
     [SerializeField] public GameObject FISH1;
     [SerializeField] public GameObject FISH2;
+
     [SerializeField] public Vector2 fish1positionX = new Vector2(0f, 0f);
     [SerializeField] public Vector2 fish2positionX = new Vector2(0f, 0f);
+
     [SerializeField] public LineController lineController;
     [SerializeField] public LineRenderer lineRenderer;
 
     [SerializeField] public GameObject lineRendererObject;
-
-
-
 
     GameObject Fish1;
     GameObject Fish2;
 
     private LineRenderer lineToFish1;
     private LineRenderer lineToFish2;
-
-
 
     private float enemyMinSpeed = 2.5f;
     private float enemyMaxSpeed = 5f;

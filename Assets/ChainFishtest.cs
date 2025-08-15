@@ -10,6 +10,7 @@ public class ChainFishTEST : MonoBehaviour
 
     [SerializeField] public GameObject FISH1;
     [SerializeField] public GameObject FISH2;
+    [SerializeField] public GameObject explosionGameObjectPrefab;
     [SerializeField] public Vector2 fish1positionX = new Vector2(0f, 0f);
     [SerializeField] public Vector2 fish2positionX = new Vector2(0f, 0f);
     [SerializeField] public LineController lineController;
@@ -21,6 +22,8 @@ public class ChainFishTEST : MonoBehaviour
 
     [SerializeField] public bool alive = true;
     [SerializeField] public bool Uninstall = false;
+
+    private bool explosionSpawned = false;
 
 
     GameObject Fish1;
@@ -619,15 +622,18 @@ public class ChainFishTEST : MonoBehaviour
         if (!alive)
         {
             var renderer = GetComponentInChildren<SpriteRenderer>();
-            if (renderer != null) { 
+            if (renderer != null && !explosionSpawned) // Only spawn once
+            {
+                Instantiate(explosionGameObjectPrefab, this.transform);
                 renderer.enabled = false;
                 controllerAlive = false;
+                explosionSpawned = true;
             }
-
         }
         else
+        {
             EnemyMovement();
-
+        }
 
 
         // Store previous controller state to detect when it just died
