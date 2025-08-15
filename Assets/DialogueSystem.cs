@@ -96,7 +96,7 @@ public class DialogueSystem : MonoBehaviour
                 else if (CastleData.Instance.castleHealthAmount <= 20)
                 {
                     dialogueMessage.Add("Wow there is nothing left how did you do this horrible Dragoon.");
-                    dialogueMessage.Add("The castle is barely there, there is no way this happened, everyone is almost dead.");
+                    dialogueMessage.Add("The castle is barely there, there is no way this happened.");
                     dialogueMessage.Add("You really suck.");
                     dialogueMessage.Add("You really suck.");
                 }
@@ -104,8 +104,8 @@ public class DialogueSystem : MonoBehaviour
                 {
                     dialogueMessage.Add("The castle is in shambles..");
                     dialogueMessage.Add("How did you even fail this badly Dragoon?");
-                    dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
-                    dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
+                    dialogueMessage.Add("Well it could be worse thank you for your effort Dragoon.");
+                    dialogueMessage.Add("Well it could be worse thank you for your effort Dragoon.");
                 }
                 else if (CastleData.Instance.castleHealthAmount <= 70)
                 {
@@ -167,7 +167,7 @@ public class DialogueSystem : MonoBehaviour
                 else if (CastleData.Instance.castleHealthAmount <= 70)
                 {
                     dialogueMessage.Add("The castle did get beat up a bit.");
-                    dialogueMessage.Add("But that will not stop us from taking them down, I believen you.");
+                    dialogueMessage.Add("But that will not stop us from taking them down, I believe you Dragoon.");
                     dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
                     dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
                 }
@@ -217,7 +217,7 @@ public class DialogueSystem : MonoBehaviour
                 else if (CastleData.Instance.castleHealthAmount <= 50)
                 {
                     dialogueMessage.Add("The castle is in shambles..");
-                    dialogueMessage.Add("How did you even fail this badly?");
+                    dialogueMessage.Add("How did you even fail this badly and that quickly too");
                     dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
                     dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
                 }
@@ -230,8 +230,8 @@ public class DialogueSystem : MonoBehaviour
                 }
                 else if (CastleData.Instance.castleHealthAmount > 70)
                 {
-                    dialogueMessage.Add("You did a great job!");
-                    dialogueMessage.Add("If you keep up this pace, we will win against the fish in no time!");
+                    dialogueMessage.Add("You are doing a amzing job Dragoon!");
+                    dialogueMessage.Add("If you keep up this pace, we will defeat the fish in no time!");
                     dialogueMessage.Add("Good Luck to you!");
                     dialogueMessage.Add("Good Luck to you!");
                 }
@@ -266,28 +266,28 @@ public class DialogueSystem : MonoBehaviour
                 }
                 else if (CastleData.Instance.castleHealthAmount <= 20)
                 {
-                    dialogueMessage.Add("Wow.. I have no words. Goodluck I guess?");
-                    dialogueMessage.Add("The castle is on its knees right now, there is no way you can do this.");
-                    dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
-                    dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
+                    dialogueMessage.Add("Wow..you fell so badly this is the final strech.");
+                    dialogueMessage.Add("The castle is on its knees right now, there is no way you can do this Dragoon.");
+                    dialogueMessage.Add("Good luck, you're gonna need it.");
+                    dialogueMessage.Add("Good luck, you're gonna need it.");
                 }
                 else if (CastleData.Instance.castleHealthAmount <= 50)
                 {
                     dialogueMessage.Add("The castle is in shambles..");
                     dialogueMessage.Add("How did you even fail this badly?");
-                    dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
-                    dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
+                    dialogueMessage.Add("This is the final stech but everything will be alright as long as we push through!");
+                    dialogueMessage.Add("This is the final stech but everything will be alright as long as we push through!");
                 }
                 else if (CastleData.Instance.castleHealthAmount <= 70)
                 {
                     dialogueMessage.Add("The castle did get beat up a bit.");
-                    dialogueMessage.Add("But that will not stop us from taking them down, I believen you.");
+                    dialogueMessage.Add("But that will not stop us from taking them down, we are close to the end.");
                     dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
                     dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
                 }
                 else if (CastleData.Instance.castleHealthAmount > 70)
                 {
-                    dialogueMessage.Add("You did a great job!");
+                    dialogueMessage.Add("Keep up the good work!");
                     dialogueMessage.Add("If you keep up this pace, we will win against the fish in no time!");
                     dialogueMessage.Add("Good Luck to you!");
                     dialogueMessage.Add("Good Luck to you!");
