@@ -2115,7 +2115,7 @@ MonoBehaviour:
   playerTransform: {fileID: 960720444}
   spawnEnemyPosition: {fileID: 1833277352}
   activeEnemyList: []
-  enemyPrefab: {fileID: 1514904223399486236, guid: 84a2c77a04e18c549a062ce746bc9aa8, type: 3}
+  enemyPrefab: {fileID: 1514904223399486236, guid: 32302bf516d2b614682588ddb3e82c5f, type: 3}
   hitRange: 1.25
   distanceFromPlayer: 0
   enemyMaxDistanceOutSideOfBorder: -12
@@ -2130,6 +2130,7 @@ MonoBehaviour:
   startGameCountDownTime: 0
   gameTimerText: {fileID: 674929168}
   DialogueScene: Dialogue
+  EndScene: EndScene
   isTest: 0
   difficultySpriteGoons:
   - {fileID: 1733974253}
