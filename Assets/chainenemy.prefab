@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 5633297326711953616}
   - component: {fileID: 9199616837741737683}
   m_Layer: 0
-  m_Name: easyEnemyRenderer
+  m_Name: easyEnemyGameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 4959280164240608828}
   - component: {fileID: 445017075400672827}
   m_Layer: 0
-  m_Name: mediumEnemyRenderer
+  m_Name: mediumEnemyGameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 2480125152927778083}
   - component: {fileID: 4027973129491208162}
   m_Layer: 0
-  m_Name: hardEnemyRenderer
+  m_Name: hardEnemyGameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 8048758223666031176}
   - component: {fileID: 7987028813689032700}
   m_Layer: 0
-  m_Name: normalEnemyRenderer
+  m_Name: normalEnemyGameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -573,12 +573,12 @@ GameObject:
   - component: {fileID: 2833064839892679666}
   - component: {fileID: 5546204665242997988}
   m_Layer: 0
-  m_Name: originalEnemyRenderer
+  m_Name: originalEnemyGameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2833064839892679666
 Transform:
   m_ObjectHideFlags: 0

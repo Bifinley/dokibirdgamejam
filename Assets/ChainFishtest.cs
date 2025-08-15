@@ -59,12 +59,55 @@ public class ChainFishTEST : MonoBehaviour
 
     private void Awake()
     {
-        //originalFishRenderer = GetComponent<SpriteRenderer>();
-        fishVarients[(int)EnemyVariants.EasyFish].SetActive(false);
-        fishVarients[(int)EnemyVariants.NormalFish].SetActive(false);
-        fishVarients[(int)EnemyVariants.MediumFish].SetActive(false);
-        fishVarients[(int)EnemyVariants.HardSpicyPepper].SetActive(false);
+        if (fishVarients == null || fishVarients.Length < 4)
+        {
+            Debug.LogError("Fish variants not assigned in Inspector!");
+            return;
+        }
+
+        foreach (var fish in fishVarients)
+        {
+            if (fish != null)
+                fish.SetActive(false);
+        }
     }
+
+    private void EnableDifficultyFish(MainMenu.GameDifficulty difficulty)
+    {
+        // Disable all first
+        foreach (var fish in fishVarients)
+            fish.SetActive(false);
+
+        int index = 0;
+        switch (difficulty)
+        {
+            case MainMenu.GameDifficulty.Easy:
+                enemyMinSpeed = 1.2f;
+                enemyMaxSpeed = 2.9f;
+                index = (int)EnemyVariants.EasyFish;
+                break;
+            case MainMenu.GameDifficulty.Normal:
+                enemyMinSpeed = 1.3f;
+                enemyMaxSpeed = 2.5f;
+                index = (int)EnemyVariants.NormalFish;
+                break;
+            case MainMenu.GameDifficulty.Medium:
+                enemyMinSpeed = 3.3f;
+                enemyMaxSpeed = 5f;
+                index = (int)EnemyVariants.MediumFish;
+                break;
+            case MainMenu.GameDifficulty.Hard:
+                enemyMinSpeed = 6.5f;
+                enemyMaxSpeed = 10f;
+                index = (int)EnemyVariants.HardSpicyPepper;
+                break;
+        }
+
+        if (fishVarients[index] != null)
+            fishVarients[index].SetActive(true);
+    }
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -92,30 +135,8 @@ public class ChainFishTEST : MonoBehaviour
 
 
         gameDifficulty = MainMenu.SelectedDifficulty;
+        EnableDifficultyFish(gameDifficulty);
 
-        switch (gameDifficulty)
-        {
-            case MainMenu.GameDifficulty.Easy:
-                enemyMinSpeed = 1.2f;
-                enemyMaxSpeed = 2.9f;
-                fishVarients[(int)EnemyVariants.EasyFish].SetActive(true);
-                break;
-            case MainMenu.GameDifficulty.Normal:
-                enemyMinSpeed = 1.3f;
-                enemyMaxSpeed = 2.5f;
-                fishVarients[(int)EnemyVariants.NormalFish].SetActive(true);
-                break;
-            case MainMenu.GameDifficulty.Medium:
-                enemyMinSpeed = 3.3f;
-                enemyMaxSpeed = 5f;
-                fishVarients[(int)EnemyVariants.MediumFish].SetActive(true);
-                break;
-            case MainMenu.GameDifficulty.Hard:
-                enemyMinSpeed = 6.5f;
-                enemyMaxSpeed = 10f;
-                fishVarients[(int)EnemyVariants.HardSpicyPepper].SetActive(true);
-                break;
-        }
         SetEnemyPositionAndSpeed();
 
 
