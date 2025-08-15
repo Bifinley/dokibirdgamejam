@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform spawnEnemyPosition;
 
     [Header("Enemy Spawn List Info")]
-    [SerializeField] private List<GameObject> activeEnemyList = new List<GameObject>();
+    [SerializeField] public List<GameObject> activeEnemyList = new List<GameObject>();
     [SerializeField] private Dictionary<GameObject, float> enemyDistances = new Dictionary<GameObject, float>();
 
     [Header("Enemy Info")]
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     [Header("Scores Info")]
     [SerializeField] private int enemyHits;
     [SerializeField] private int enemyMisses;
-    [SerializeField] private int castleHealthAmount = 100;
+    //[SerializeField] private int castleHealthAmount;
     private int setDamageAmount;
 
     [Header("Countdown Timer: Spawning Enemies Info")]
@@ -44,44 +44,146 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text gameTimerText;
     private bool isGameOver = false;
 
-    [SerializeField] string WinNextScene = "Level 2 - Dialogue";
-    [SerializeField] string LoseNextScene = ""; // I dont have a scene for this yet
+    [SerializeField] private string DialogueScene = "Dialogue";
+    [SerializeField] private string EndScene = "EndScene";
+
+    [SerializeField] private bool isTest = true;
 
     MainMenu.GameDifficulty gameDifficulty;
 
+    [SerializeField] private GameObject[] difficultySpriteGoons;
+
+    public static bool isLevel1 = true; // change enemies via here - setting true just to keep it working
+    public static bool isLevel2 = false;
+    public static bool isLevel3 = false;
+    public static bool isLevelEnd = false;
+    private enum Dragoons
+    {
+        EggGoon,
+        Dragoon,
+        LongGoon,
+        ChonkyGoon
+    }
+
     private void Start()
     {
-        switch (gameDifficulty)
+        if (isLevel1)
         {
-            case MainMenu.GameDifficulty.Easy:
-                defaultResetTime = 5f;
-                startGameCountDownTime = 120f;
-                setDamageAmount = 1;
-                break;
-            case MainMenu.GameDifficulty.Normal:
-                defaultResetTime = 3f;
-                startGameCountDownTime = 60f;
-                setDamageAmount = 2;
-                break;
-            case MainMenu.GameDifficulty.Medium:
-                defaultResetTime = 1f;
-                startGameCountDownTime = 20f;
-                setDamageAmount = 3;
-                break;
-            case MainMenu.GameDifficulty.Hard:
-                defaultResetTime = 0.8f;
-                startGameCountDownTime = 30f;
-                setDamageAmount = 4;
-                break;
-            default:
-                gameDifficulty = MainMenu.GameDifficulty.Normal;
-                break;
+            switch (gameDifficulty)
+            {
+                case MainMenu.GameDifficulty.Easy:
+                    defaultResetTime = 5f;
+                    if (!isTest) { startGameCountDownTime = 120f; }
+                    if (isTest) { startGameCountDownTime = 3f; }
+                    setDamageAmount = 1;
+                    difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Normal:
+                    defaultResetTime = 3f;
+                    if (!isTest) { startGameCountDownTime = 60f; }
+                    if (isTest) { startGameCountDownTime = 3f; }
+                    setDamageAmount = 2;
+                    difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Medium:
+                    defaultResetTime = 1f;
+                    if (!isTest) { startGameCountDownTime = 20f; }
+                    if (isTest) { startGameCountDownTime = 3f; }
+                    setDamageAmount = 3;
+                    difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Hard:
+                    defaultResetTime = 0.8f;
+                    if (!isTest) { startGameCountDownTime = 30f; }
+                    if (isTest) { startGameCountDownTime = 3f; }
+                    setDamageAmount = 4;
+                    difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
+                    break;
+                default:
+                    gameDifficulty = MainMenu.GameDifficulty.Normal;
+                    break;
+            }
         }
-        castleHealthAmountText.text = $"DokiCastle Health: {castleHealthAmount}";
+        if (isLevel2) // change enemies via here
+        {
+            switch (gameDifficulty)
+            {
+                case MainMenu.GameDifficulty.Easy:
+                    defaultResetTime = 5f;
+                    if (!isTest) { startGameCountDownTime = 120f; }
+                    setDamageAmount = 1;
+                    difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Normal:
+                    defaultResetTime = 3f;
+                    if (!isTest) { startGameCountDownTime = 60f; }
+                    setDamageAmount = 2;
+                    difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Medium:
+                    defaultResetTime = 1f;
+                    if (!isTest) { startGameCountDownTime = 20f; }
+                    setDamageAmount = 3;
+                    difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Hard:
+                    defaultResetTime = 0.8f;
+                    if (!isTest) { startGameCountDownTime = 30f; }
+                    setDamageAmount = 4;
+                    difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
+                    break;
+                default:
+                    gameDifficulty = MainMenu.GameDifficulty.Normal;
+                    break;
+            }
+        }
+
+        if (isLevel3) // change enemies via here
+        {
+            switch (gameDifficulty)
+            {
+                case MainMenu.GameDifficulty.Easy:
+                    defaultResetTime = 5f;
+                    startGameCountDownTime = 120f;
+                    setDamageAmount = 1;
+                    difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Normal:
+                    defaultResetTime = 3f;
+                    startGameCountDownTime = 60f;
+                    setDamageAmount = 2;
+                    difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Medium:
+                    defaultResetTime = 1f;
+                    startGameCountDownTime = 20f;
+                    setDamageAmount = 3;
+                    difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
+                    break;
+                case MainMenu.GameDifficulty.Hard:
+                    defaultResetTime = 0.8f;
+                    startGameCountDownTime = 30f;
+                    setDamageAmount = 4;
+                    difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
+                    break;
+                default:
+                    gameDifficulty = MainMenu.GameDifficulty.Normal;
+                    break;
+            }
+        }
+
+        castleHealthAmountText.text = $"DokiCastle Health: {CastleData.Instance.castleHealthAmount}";
+
+
     }
 
     private void Awake()
     {
+        difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(false);
+        difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(false);
+        difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(false);
+        difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(false);
+
         if (Instance == null)
         {
             Instance = this;
@@ -93,16 +195,28 @@ public class GameManager : MonoBehaviour
         }
 
         gameDifficulty = MainMenu.SelectedDifficulty;
+
     }
 
     private void Update()
     {
         GameTimer();
-        if(!isGameOver)
+        if (!isGameOver)
         {
             SpawnEnemyCountDown();
             NewAttackPlayerLogic();
         }
+    }
+
+    private void SaveLevelCompletion(string levelKey, bool completed)
+    {
+        PlayerPrefs.SetInt(levelKey, completed ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    private bool LoadLevelCompletion(string levelKey)
+    {
+        return PlayerPrefs.GetInt(levelKey, 0) == 1;
     }
 
     private void GameTimer() // Ends game when timer is done
@@ -120,26 +234,70 @@ public class GameManager : MonoBehaviour
 
         if (isGameOver && startGameCountDownTime <= 0)
         {
-            StartCoroutine(GoToCutScene()); 
+            StartCoroutine(GoToCutScene());
         }
     }
-    IEnumerator GoToCutScene()
+    public IEnumerator GoToCutScene()
     {
         yield return new WaitForSeconds(4f);
 
-        if (isGameOver && castleHealthAmount >= 70)
+        if (!CastleData.Instance.isLevel1Completed)
         {
-            SceneManager.LoadScene(WinNextScene);
-        }else if(castleHealthAmount < 70)
+            CastleData.Instance.isLevel1Completed = true;
+            SaveLevelCompletion("Level1Completed", true);
+            isLevel1 = true;   // Keep true for dialogue
+            isLevel2 = false;
+            isLevel3 = false;
+            isLevelEnd = false;
+        }
+        else if (CastleData.Instance.isLevel1Completed && !CastleData.Instance.isLevel2Completed)
         {
-            SceneManager.LoadScene(LoseNextScene);
+            CastleData.Instance.isLevel2Completed = true;
+            SaveLevelCompletion("Level2Completed", true);
+            isLevel1 = false;
+            isLevel2 = true;   
+            isLevel3 = false;
+            isLevelEnd = false;
+        }
+        else if (CastleData.Instance.isLevel2Completed && !CastleData.Instance.isLevel3Completed)
+        {
+            CastleData.Instance.isLevel3Completed = true;
+            SaveLevelCompletion("Level3Completed", true);
+            isLevel1 = false;
+            isLevel2 = false;
+            isLevel3 = true;   
+            isLevelEnd = false;
+        }
+        else if (CastleData.Instance.isLevel3Completed)
+        {
+            isLevel1 = false;
+            isLevel2 = false;
+            isLevel3 = false;
+            isLevelEnd = true; // Final ending dialogue
+        }
+
+        if (CastleData.Instance.isLevel3Completed)
+        {
+            Debug.Log("Ending Scene");
+            SceneManager.LoadScene(EndScene);
+        }
+        else
+        {
+            SceneManager.LoadScene(DialogueScene);
         }
     }
+
+
     private void NewAttackPlayerLogic() // this removes the error InvalidOperationException: Collection was modified; Using a forloop instead.
     {
         for (int i = activeEnemyList.Count - 1; i >= 0; i--)
         {
             GameObject enemy = activeEnemyList[i];
+            if (enemy == null)
+            {
+                activeEnemyList.RemoveAt(i);
+                continue; // skip to the next iteration if the enemy is null
+            }
             float distanceFromPlayer = Vector3.Distance(playerTransform.position, enemy.transform.position); // checks distance between player and enemy
             enemyDistances[enemy] = distanceFromPlayer;
 
@@ -149,7 +307,12 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log(enemy.name + " Hit player!");
                     activeEnemyList.RemoveAt(i);
-                    Destroy(enemy);
+                    //Destroy(enemy);
+                    if (enemy.GetComponent<ChainFishTEST>() != null)
+                        enemy.GetComponent<ChainFishTEST>().alive = false; // this is a workaround to not destroy the enemy, but to stop it from moving and rendering.
+                    else
+                        enemy.GetComponent<Enemy>().alive = false; // this is a workaround to not destroy the enemy, but to stop it from moving and rendering.
+
                     enemyHits += 1;
                     hitsText.text = $"Hits: {enemyHits}";
                     continue;
@@ -158,33 +321,25 @@ public class GameManager : MonoBehaviour
 
             if (enemy.transform.position.x <= enemyMaxDistanceOutSideOfBorder)
             {
-                Debug.Log(enemy.name + " Went outside the border.");
+                Debug.Log(enemy.name + " Attacked the castle!");
                 activeEnemyList.RemoveAt(i);
                 Destroy(enemy);
                 enemyMisses += 1;
-                castleHealthAmount -= setDamageAmount;
-                UpdateCastleStatus();
+
+                if (CastleData.Instance != null)
+                {
+                    CastleData.Instance.castleHealthAmount -= setDamageAmount;
+                }
+
+                UpdateCastleStatusUI();
                 missText.text = $"Misses: {enemyMisses}";
             }
         }
     }
 
-    private void UpdateCastleStatus()
+    private void UpdateCastleStatusUI()
     {
-        if (castleHealthAmount >= 70)
-        {
-            Debug.Log("Castle Status: OK!");
-        }
-        else if (castleHealthAmount >= 50)
-        {
-            Debug.Log("Castle Status: Low!");
-        }
-        else if (castleHealthAmount >= 20)
-        {
-            Debug.Log("Castle Status: Damaged!");
-        }
-
-        castleHealthAmountText.text = $"DokiCastle Health: {castleHealthAmount}";
+        castleHealthAmountText.text = $"DokiCastle Health: {CastleData.Instance.castleHealthAmount}";
     }
     private void SpawnEnemyCountDown()
     {
@@ -192,6 +347,8 @@ public class GameManager : MonoBehaviour
         if (startCountDownTime <= 0) // when it hits zero, spawn enemy. Enemy Spawns every startCountDownTime seconds.
         {
             startCountDownTime = defaultResetTime;
+
+            // TODO: instantiate random enemy from a list of availible prefabs. spawning chain fish for now.
 
             GameObject newEnemy = Instantiate(enemyPrefab, spawnEnemyPosition.position, Quaternion.identity);
             activeEnemyList.Add(newEnemy);

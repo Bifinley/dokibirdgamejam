@@ -13,6 +13,29 @@ public class Player : MonoBehaviour
 
     [SerializeField] private bool isAllowedToMove = true;
 
+    MainMenu.GameDifficulty gameDifficulty;
+
+    private void Start()
+    {
+        gameDifficulty = MainMenu.SelectedDifficulty;
+
+        switch (gameDifficulty)
+        {
+            case MainMenu.GameDifficulty.Easy:
+                playerMoveSpeed = 9.5f;
+                break;
+            case MainMenu.GameDifficulty.Normal:
+                playerMoveSpeed = 8.5f;
+                break;
+            case MainMenu.GameDifficulty.Medium:
+                playerMoveSpeed = 6.5f;
+                break;
+            case MainMenu.GameDifficulty.Hard:
+                playerMoveSpeed = 5.5f;
+                break;
+        }
+    }
+
     void Update()
     {
         PlayerMovement();
@@ -22,23 +45,23 @@ public class Player : MonoBehaviour
     {
         if (playerTransform.position.y >= 3) // This stops the player from going above the Y axis 3
         {
-            playerTransform.position = new Vector3(-7.5f, 3, 0);
+            playerTransform.position = new Vector3(-3.94f, 3, 0);
             isAllowedToMove = false;
             if (Input.GetKeyDown(KeyCode.S))
             {
                 isAllowedToMove = true;
             }
-            Debug.Log("You are less than 3 or at 3.");
+            // Debug.Log("You are less than 3 or at 3.");
         }
         if (playerTransform.position.y <= -3) // This stops the player from going above the Y axis -3
         {
-            playerTransform.position = new Vector3(-7.5f, -3, 0);
+            playerTransform.position = new Vector3(-3.94f, -3, 0);
             isAllowedToMove = false;
             if (Input.GetKeyDown(KeyCode.W))
             {
                 isAllowedToMove = true;
             }
-            Debug.Log("You are less than -3 or at -3.");
+            // Debug.Log("You are less than -3 or at -3.");
         }
 
         if (Input.GetKeyDown(KeyCode.W))
