@@ -41,25 +41,25 @@ public class DialogueSystem : MonoBehaviour
                     SceneManager.LoadScene(DefeatedScene);
                 }else if (CastleData.Instance.castleHealthAmount <= 20)
                 {
-                    dialogueMessage.Add("Wow.. I have no words. Goodluck I guess?");
-                    dialogueMessage.Add("The castle is on its knees right now, there is no way you can do this.");
+                    dialogueMessage.Add("Wow.. I have no words. Just how?");
+                    dialogueMessage.Add("The castle is on its knees right now, there is no way you can do this Dragoon.");
                     dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
                     dialogueMessage.Add("");
                 }else if (CastleData.Instance.castleHealthAmount <= 50)
                 {
                     dialogueMessage.Add("The castle is in shambles..");
-                    dialogueMessage.Add("How did you even fail this badly?");
+                    dialogueMessage.Add("How did you even fail this badly Dragoon?");
                     dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
                     dialogueMessage.Add("");
                 }else if (CastleData.Instance.castleHealthAmount <= 70)
                 {
                     dialogueMessage.Add("The castle did get beat up a bit.");
-                    dialogueMessage.Add("But that will not stop us from taking them down, I believen you.");
+                    dialogueMessage.Add("But that will not stop us from taking them down, I believe you Dragoon.");
                     dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
                     dialogueMessage.Add("");
                 }else if (CastleData.Instance.castleHealthAmount > 70)
                 {
-                    dialogueMessage.Add("You did a great job!");
+                    dialogueMessage.Add("You did a great job Dragoon!");
                     dialogueMessage.Add("If you keep up this pace, we will win against the fish in no time!");
                     dialogueMessage.Add("Good Luck to you!");
                     dialogueMessage.Add("");
@@ -95,31 +95,31 @@ public class DialogueSystem : MonoBehaviour
                 }
                 else if (CastleData.Instance.castleHealthAmount <= 20)
                 {
-                    dialogueMessage.Add("Wow.. I have no words. Goodluck I guess?");
-                    dialogueMessage.Add("The castle is on its knees right now, there is no way you can do this.");
-                    dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
-                    dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
+                    dialogueMessage.Add("Wow there is nothing left how did you do this horrible Dragoon.");
+                    dialogueMessage.Add("The castle is barely there, there is no way this happened, everyone is almost dead.");
+                    dialogueMessage.Add("You really suck.");
+                    dialogueMessage.Add("You really suck.");
                 }
                 else if (CastleData.Instance.castleHealthAmount <= 50)
                 {
                     dialogueMessage.Add("The castle is in shambles..");
-                    dialogueMessage.Add("How did you even fail this badly?");
+                    dialogueMessage.Add("How did you even fail this badly Dragoon?");
                     dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
                     dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
                 }
                 else if (CastleData.Instance.castleHealthAmount <= 70)
                 {
-                    dialogueMessage.Add("The castle did get beat up a bit.");
-                    dialogueMessage.Add("But that will not stop us from taking them down, I believen you.");
-                    dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
-                    dialogueMessage.Add("Everything should be fine, we have a chance to fight back!");
+                    dialogueMessage.Add("The castle did get beat up a bit but evryone is safe.");
+                    dialogueMessage.Add("But thank you for your effort Dragoon everyone is and the kingdom is well.");
+                    dialogueMessage.Add("In time we can rebuild the kingdom, you still did a good job.");
+                    dialogueMessage.Add("In time we can rebuild the kingdom, you still did a good job.");
                 }
                 else if (CastleData.Instance.castleHealthAmount > 70)
                 {
-                    dialogueMessage.Add("You did a great job!");
-                    dialogueMessage.Add("If you keep up this pace, we will win against the fish in no time!");
-                    dialogueMessage.Add("Good Luck to you!");
-                    dialogueMessage.Add("Good Luck to you!");
+                    dialogueMessage.Add("You did a amazing job on protecting the DokiKingdom not a single scratch.");
+                    dialogueMessage.Add("The Kingdom is safe thanks to you, now we all can rest peacefully now.");
+                    dialogueMessage.Add("Thank you Dragoon!");
+                    dialogueMessage.Add("Thank you Dragoon!");
                 }
 
                 currentDialogueIndexMax = dialogueMessage.Count - 1;
@@ -152,14 +152,14 @@ public class DialogueSystem : MonoBehaviour
                 }
                 else if (CastleData.Instance.castleHealthAmount <= 20)
                 {
-                    dialogueMessage.Add("Wow.. I have no words. Goodluck I guess?");
+                    dialogueMessage.Add("Wow.. I have no words. How did you do this badly so fast Dragoon?");
                     dialogueMessage.Add("The castle is on its knees right now, there is no way you can do this.");
                     dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
                     dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
                 }
                 else if (CastleData.Instance.castleHealthAmount <= 50)
                 {
-                    dialogueMessage.Add("The castle is in shambles..");
+                    dialogueMessage.Add("The castle is in shambles Dragoon..");
                     dialogueMessage.Add("How did you even fail this badly?");
                     dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
                     dialogueMessage.Add("Okay, everything will be alright as long as we push through!");
@@ -173,8 +173,8 @@ public class DialogueSystem : MonoBehaviour
                 }
                 else if (CastleData.Instance.castleHealthAmount > 70)
                 {
-                    dialogueMessage.Add("You did a great job!");
-                    dialogueMessage.Add("If you keep up this pace, we will win against the fish in no time!");
+                    dialogueMessage.Add("You are doing a great job Dragoon!");
+                    dialogueMessage.Add("If you continue to keep up this pace, we will win against the fish in no time!");
                     dialogueMessage.Add("Good Luck to you!");
                     dialogueMessage.Add("Good Luck to you!");
                 }
@@ -210,7 +210,7 @@ public class DialogueSystem : MonoBehaviour
                 else if (CastleData.Instance.castleHealthAmount <= 20)
                 {
                     dialogueMessage.Add("Wow.. I have no words. Goodluck I guess?");
-                    dialogueMessage.Add("The castle is on its knees right now, there is no way you can do this.");
+                    dialogueMessage.Add("The castle is on its knees right now Dragoon, you were doing so well, there is no way you can do this.");
                     dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
                     dialogueMessage.Add("I have lost faith really. Good luck, you're gonna need it.");
                 }
