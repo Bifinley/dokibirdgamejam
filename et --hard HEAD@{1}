@@ -1,0 +1,79 @@
+[33m0c3336b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: pull: Fast-forward
+[33ma860679[m HEAD@{1}: commit: Replaced Jerry with Doki
+[33mff4ab30[m HEAD@{2}: commit: Re-enabled FadeToClearImage
+[33md38a1da[m HEAD@{3}: commit: Modified Cutscene + Modified fish code
+[33mdb39f1d[m HEAD@{4}: commit: Renamed Folder from Music to Music&Sounds + Added sound effect to the folder
+[33m398fa6e[m HEAD@{5}: commit (merge): Modified Fish, dies on Explosion
+[33maebd256[m HEAD@{6}: commit: Added Exposion Effect when Fish dies
+[33mdb629d7[m HEAD@{7}: commit: Modified Player Speeds
+[33mce46e48[m HEAD@{8}: commit: Added different Player Speeds based off Difficulty
+[33m259499b[m HEAD@{9}: commit: Adjusted Enemy move speed Hard Difficulty
+[33m0dd0412[m HEAD@{10}: commit: Added LineRenderer fish into Level 1 Scene - Thank you Shawn
+[33m15cae1c[m HEAD@{11}: commit (merge): Merged Shawnstests with Main
+[33m60ad78f[m HEAD@{12}: reset: moving to HEAD
+[33m60ad78f[m HEAD@{13}: checkout: moving from main to main
+[33m60ad78f[m HEAD@{14}: commit: Added more Dialogue (test)
+[33m27b63a0[m HEAD@{15}: commit: Modified DefeatedScene + DefeatedSceneManager.cs + Animated MainMenuTitleText
+[33mbffc695[m HEAD@{16}: commit: Added background in Defeated Scene
+[33m8feb48e[m HEAD@{17}: commit: Added Defeated Scene with new Sprites
+[33md9b8957[m HEAD@{18}: commit: Modified the PlayerPrefs in MainMenu
+[33mfa18af0[m HEAD@{19}: commit: Improved Dialogue + Defeated Scene
+[33m3792df0[m HEAD@{20}: commit: Deleted Extra CutScene Scene
+[33mf55d745[m HEAD@{21}: checkout: moving from shawnstests to main
+[33mc4d531c[m[33m ([m[1;31morigin/shawnstests[m[33m, [m[1;32mshawnstests[m[33m)[m HEAD@{22}: pull: Fast-forward
+[33m251bab1[m HEAD@{23}: checkout: moving from main to shawnstests
+[33mf55d745[m HEAD@{24}: commit: Turned off Test mode in code
+[33m53c825c[m HEAD@{25}: commit: Added dynamic dialogue based off Levels + has bugs!
+[33mceda809[m HEAD@{26}: checkout: moving from shawnstests to main
+[33m251bab1[m HEAD@{27}: checkout: moving from main to shawnstests
+[33mceda809[m HEAD@{28}: checkout: moving from main to main
+[33mceda809[m HEAD@{29}: commit: WebGL test
+[33m965996d[m HEAD@{30}: commit: Resized text fonts
+[33md9969b7[m HEAD@{31}: commit: Added isLevel in GameManager
+[33mc2ca45a[m HEAD@{32}: commit: Added castle background behind cutscene
+[33ma97dab6[m HEAD@{33}: commit: Added Explosion.png
+[33mad0f1c2[m HEAD@{34}: commit: Added background for MainMenu
+[33m2bec2f0[m HEAD@{35}: commit: Update sprite based of Castle health
+[33m69a9e3b[m HEAD@{36}: commit: Added CastleData + updated GameManager to communicate with CastleData
+[33m938f5f1[m HEAD@{37}: pull: Fast-forward
+[33m90f6d86[m HEAD@{38}: commit: WebGL Test
+[33m532234d[m HEAD@{39}: commit: Updated Push
+[33m3b3c500[m HEAD@{40}: pull: Fast-forward
+[33m00d0292[m HEAD@{41}: commit: Setting Textures to Point No Filter
+[33m7e8b4cc[m HEAD@{42}: commit (merge): Loading next scene after game timer ends
+[33m9447f6b[m HEAD@{43}: commit: Loading next scene after game timer ends
+[33m1173978[m HEAD@{44}: commit (merge): Changed Dragoon Texture in cutscene1 + reordering them
+[33m891e866[m HEAD@{45}: commit: Changed Dragoon Texture in cutscene1 + reordering them
+[33m074852a[m HEAD@{46}: commit: Filter mode to Point (No Filter) on Art/Images
+[33m07c23e4[m HEAD@{47}: commit: Added Jerry the stickman + Basic Dialogue System
+[33mae4f12f[m HEAD@{48}: commit (merge): Tinkering with some comments in code
+[33m4b8ac3a[m HEAD@{49}: commit: Tinkering with some comments in code
+[33m88e4282[m HEAD@{50}: commit: Enemy speed change based off Difficulty + Game Timer
+[33ma41117b[m HEAD@{51}: commit: Lowered music volume
+[33maa2feaa[m HEAD@{52}: commit: Difficulty Selctor in MainMenu + CutScene in works
+[33md665ec6[m HEAD@{53}: pull: Fast-forward
+[33mc971466[m HEAD@{54}: commit: added comments to code
+[33m38b12a2[m HEAD@{55}: commit: updated game difficulty logic and castle health logic
+[33m5d5238d[m HEAD@{56}: commit: Added a simple game difficulty
+[33m262f6f7[m HEAD@{57}: commit: renaming and refactoring code.
+[33m118bc76[m HEAD@{58}: commit: Messed with headers in code.
+[33mb3421b1[m HEAD@{59}: commit: Added headers in code
+[33m62c113e[m HEAD@{60}: commit: Spawning enemies on a countdown timer
+[33m764f5b2[m HEAD@{61}: commit: Set enemy on very specific Yaxis
+[33m2194a2d[m HEAD@{62}: commit: Added a kill border for enemies
+[33m4bf1454[m HEAD@{63}: commit: Fixed enemys weird blue lighting bug
+[33ma41552f[m HEAD@{64}: commit: Player can delete enemy when in range
+[33m24ab619[m HEAD@{65}: commit: Improved the movement of the player
+[33m88a68ee[m HEAD@{66}: commit: basic movement
+[33m049f5a4[m HEAD@{67}: commit: Messed with some more code, still buggy
+[33m4f39ca4[m HEAD@{68}: commit: Cleaned up some code
+[33mfe65dd8[m HEAD@{69}: commit: Messed with the code, added blocks deleting themselves and text
+[33m1531768[m HEAD@{70}: pull: Fast-forward
+[33mc2f2e47[m HEAD@{71}: commit: Made blocks bigger
+[33m225a82e[m HEAD@{72}: pull: Fast-forward
+[33m7dc67f3[m HEAD@{73}: commit: Spawning blocks based on bpm
+[33m17de381[m HEAD@{74}: commit (merge): Moving Block on HitPoint
+[33m23f8b37[m HEAD@{75}: commit: Moving Block on HitPoint
+[33m8aeddf5[m HEAD@{76}: commit: Main Scene
+[33md1b0422[m HEAD@{77}: commit: pushing from other pc
+[33m51b1258[m HEAD@{78}: clone: from https://github.com/Bifinley/dokibirdgamejam.git
