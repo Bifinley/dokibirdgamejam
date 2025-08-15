@@ -22,16 +22,16 @@ public class Player : MonoBehaviour
         switch (gameDifficulty)
         {
             case MainMenu.GameDifficulty.Easy:
-                playerMoveSpeed = 7f;
+                playerMoveSpeed = 9.5f;
                 break;
             case MainMenu.GameDifficulty.Normal:
-                playerMoveSpeed = 6.5f;
+                playerMoveSpeed = 8.5f;
                 break;
             case MainMenu.GameDifficulty.Medium:
-                playerMoveSpeed = 6f;
+                playerMoveSpeed = 6.5f;
                 break;
             case MainMenu.GameDifficulty.Hard:
-                playerMoveSpeed = 5f;
+                playerMoveSpeed = 5.5f;
                 break;
         }
     }
