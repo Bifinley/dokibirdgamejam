@@ -13,6 +13,29 @@ public class Player : MonoBehaviour
 
     [SerializeField] private bool isAllowedToMove = true;
 
+    MainMenu.GameDifficulty gameDifficulty;
+
+    private void Start()
+    {
+        gameDifficulty = MainMenu.SelectedDifficulty;
+
+        switch (gameDifficulty)
+        {
+            case MainMenu.GameDifficulty.Easy:
+                playerMoveSpeed = 7f;
+                break;
+            case MainMenu.GameDifficulty.Normal:
+                playerMoveSpeed = 6.5f;
+                break;
+            case MainMenu.GameDifficulty.Medium:
+                playerMoveSpeed = 6f;
+                break;
+            case MainMenu.GameDifficulty.Hard:
+                playerMoveSpeed = 5f;
+                break;
+        }
+    }
+
     void Update()
     {
         PlayerMovement();
