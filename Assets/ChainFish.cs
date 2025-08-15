@@ -78,8 +78,8 @@ public class ChainFish : MonoBehaviour
                 enemyMaxSpeed = 6f;
                 break;
             case MainMenu.GameDifficulty.Hard:
-                enemyMinSpeed = 7.5f;
-                enemyMaxSpeed = 14f;
+                enemyMinSpeed = 7f;
+                enemyMaxSpeed = 7.8f;
                 break;
         }
         SetEnemyPositionAndSpeed();
