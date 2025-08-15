@@ -10,22 +10,32 @@ public class CheckDifficultyText : MonoBehaviour
         LongGoon,
         ChonkyGoon
     }
+    private enum EnemyVariants
+    {
+        EasyFish,
+        NormalFish,
+        MediumFish,
+        HardSpicyPepper
+    }
 
     MainMenu.GameDifficulty gameDifficulty;
     [SerializeField] TMP_Text setDifficultyText;
     [SerializeField] TMP_Text actTitleText;
 
     [SerializeField] GameObject[] dokiDragoons;
+    [SerializeField] GameObject[] enemyVariants;
 
     private void Awake()
     {
+        HideAllDragoons();
+        HideAllEnemies();
+
         gameDifficulty = MainMenu.SelectedDifficulty;
     }
 
     private void Start()
     {
         UpdateActTitle();
-        HideAllDragoons();
     }
 
     private void Update()
@@ -57,6 +67,13 @@ public class CheckDifficultyText : MonoBehaviour
             dokiDragoons[i].SetActive(false);
         }
     }
+    private void HideAllEnemies()
+    {
+        for (int i = 0; i < enemyVariants.Length; i++)
+        {
+            enemyVariants[i].SetActive(false);
+        }
+    }
 
     private void ShowDragoonForDifficulty()
     {
@@ -64,15 +81,19 @@ public class CheckDifficultyText : MonoBehaviour
         {
             case MainMenu.GameDifficulty.Easy:
                 dokiDragoons[(int)Dragoons.EggGoon].SetActive(true);
+                enemyVariants[(int)EnemyVariants.EasyFish].SetActive(true);
                 break;
             case MainMenu.GameDifficulty.Normal:
                 dokiDragoons[(int)Dragoons.Dragoon].SetActive(true);
+                enemyVariants[(int)EnemyVariants.NormalFish].SetActive(true);
                 break;
             case MainMenu.GameDifficulty.Medium:
                 dokiDragoons[(int)Dragoons.LongGoon].SetActive(true);
+                enemyVariants[(int)EnemyVariants.MediumFish].SetActive(true);
                 break;
             case MainMenu.GameDifficulty.Hard:
                 dokiDragoons[(int)Dragoons.ChonkyGoon].SetActive(true);
+                enemyVariants[(int)EnemyVariants.HardSpicyPepper].SetActive(true);
                 break;
         }
     }

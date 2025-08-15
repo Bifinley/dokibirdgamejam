@@ -3,6 +3,13 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class ChainFishTEST : MonoBehaviour
 {
+    private enum EnemyVariants
+    {
+        EasyFish,
+        NormalFish,
+        MediumFish,
+        HardSpicyPepper
+    }
 
     [SerializeField] private float enemyMoveSpeed = 2f;
 
@@ -25,6 +32,8 @@ public class ChainFishTEST : MonoBehaviour
 
     private bool explosionSpawned = false;
 
+    [SerializeField] GameObject[] fishVarients;
+    [SerializeField] private SpriteRenderer originalFishRenderer;
 
     GameObject Fish1;
     GameObject Fish2;
@@ -34,15 +43,11 @@ public class ChainFishTEST : MonoBehaviour
     private bool fish1Retracting = false;
     private bool fish2Retracting = false;
 
-
-
     private LineRenderer lineToFish1;
     private LineRenderer lineToFish2;
 
     Vector3 AttachPoint1;
     Vector3 AttachPoint2;
-
-
 
     private float enemyMinSpeed = 2.5f;
     private float enemyMaxSpeed = 5f;
@@ -52,11 +57,14 @@ public class ChainFishTEST : MonoBehaviour
 
     MainMenu.GameDifficulty gameDifficulty;
 
-
-
-
-
-
+    private void Awake()
+    {
+        //originalFishRenderer = GetComponent<SpriteRenderer>();
+        fishVarients[(int)EnemyVariants.EasyFish].SetActive(false);
+        fishVarients[(int)EnemyVariants.NormalFish].SetActive(false);
+        fishVarients[(int)EnemyVariants.MediumFish].SetActive(false);
+        fishVarients[(int)EnemyVariants.HardSpicyPepper].SetActive(false);
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -89,19 +97,23 @@ public class ChainFishTEST : MonoBehaviour
         {
             case MainMenu.GameDifficulty.Easy:
                 enemyMinSpeed = 1.2f;
-                enemyMaxSpeed = 3f;
+                enemyMaxSpeed = 2.9f;
+                fishVarients[(int)EnemyVariants.EasyFish].SetActive(true);
                 break;
             case MainMenu.GameDifficulty.Normal:
-                enemyMinSpeed = 1.5f;
-                enemyMaxSpeed = 3.5f;
+                enemyMinSpeed = 1.3f;
+                enemyMaxSpeed = 2.5f;
+                fishVarients[(int)EnemyVariants.NormalFish].SetActive(true);
                 break;
             case MainMenu.GameDifficulty.Medium:
-                enemyMinSpeed = 3.7f;
-                enemyMaxSpeed = 6f;
+                enemyMinSpeed = 3.3f;
+                enemyMaxSpeed = 5f;
+                fishVarients[(int)EnemyVariants.MediumFish].SetActive(true);
                 break;
             case MainMenu.GameDifficulty.Hard:
-                enemyMinSpeed = 7.5f;
-                enemyMaxSpeed = 14f;
+                enemyMinSpeed = 6.5f;
+                enemyMaxSpeed = 10f;
+                fishVarients[(int)EnemyVariants.HardSpicyPepper].SetActive(true);
                 break;
         }
         SetEnemyPositionAndSpeed();
@@ -622,10 +634,17 @@ public class ChainFishTEST : MonoBehaviour
         if (!alive)
         {
             var renderer = GetComponentInChildren<SpriteRenderer>();
+            
             if (renderer != null && !explosionSpawned) // Only spawn once
             {
-                Instantiate(explosionGameObjectPrefab, this.transform);
+                Instantiate(explosionGameObjectPrefab, this.transform); 
                 renderer.enabled = false;
+
+                fishVarients[(int)EnemyVariants.EasyFish].SetActive(false);
+                fishVarients[(int)EnemyVariants.NormalFish].SetActive(false);
+                fishVarients[(int)EnemyVariants.MediumFish].SetActive(false);
+                fishVarients[(int)EnemyVariants.HardSpicyPepper].SetActive(false);
+
                 controllerAlive = false;
                 explosionSpawned = true;
             }

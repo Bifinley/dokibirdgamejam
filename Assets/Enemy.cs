@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private enum EnemyVariants
+    {
+        EasyFish,
+        NormalFish,
+        MediumFish,
+        HardSpicyPepper
+    }
+
     [SerializeField] private float enemyMoveSpeed = 2f;
 
     [SerializeField] public float distanceFromPlayer;
@@ -16,27 +24,41 @@ public class Enemy : MonoBehaviour
 
     MainMenu.GameDifficulty gameDifficulty;
 
+    [SerializeField] GameObject[] fishVarients;
+//[SerializeField] private SpriteRenderer originalFishRenderer;
+
+    private void Awake()
+    {
+        //originalFishRenderer = GetComponent<SpriteRenderer>();
+        fishVarients[(int)EnemyVariants.EasyFish].SetActive(false);
+        fishVarients[(int)EnemyVariants.NormalFish].SetActive(false);
+        fishVarients[(int)EnemyVariants.MediumFish].SetActive(false);
+        fishVarients[(int)EnemyVariants.HardSpicyPepper].SetActive(false);
+    }
+
     private void Start()
     {
-        gameDifficulty = MainMenu.SelectedDifficulty;
-
         switch (gameDifficulty)
         {
             case MainMenu.GameDifficulty.Easy:
                 enemyMinSpeed = 1.2f;
                 enemyMaxSpeed = 3f;
+                fishVarients[(int)EnemyVariants.EasyFish].SetActive(true);
                 break;
             case MainMenu.GameDifficulty.Normal:
                 enemyMinSpeed = 1.5f;
                 enemyMaxSpeed = 3.5f;
+                fishVarients[(int)EnemyVariants.NormalFish].SetActive(true);
                 break;
             case MainMenu.GameDifficulty.Medium:
                 enemyMinSpeed = 3.7f;
                 enemyMaxSpeed = 6f;
+                fishVarients[(int)EnemyVariants.MediumFish].SetActive(true);
                 break;
             case MainMenu.GameDifficulty.Hard:
                 enemyMinSpeed = 7.5f;
                 enemyMaxSpeed = 14f;
+                fishVarients[(int)EnemyVariants.HardSpicyPepper].SetActive(true);
                 break;
         }
         SetEnemyPositionAndSpeed();
@@ -54,7 +76,14 @@ public class Enemy : MonoBehaviour
         {
             var renderer = GetComponentInChildren<SpriteRenderer>();
             if (renderer != null)
+            {
                 renderer.enabled = false;
+
+                fishVarients[(int)EnemyVariants.EasyFish].SetActive(false);
+                fishVarients[(int)EnemyVariants.NormalFish].SetActive(false);
+                fishVarients[(int)EnemyVariants.MediumFish].SetActive(false);
+                fishVarients[(int)EnemyVariants.HardSpicyPepper].SetActive(false);
+            }
         }
         else 
             EnemyMovement();
