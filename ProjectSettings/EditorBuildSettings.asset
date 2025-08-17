@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Level 2 - Dialogue (Win).unity
     guid: b1c359ce85ad7f64cbecce0358ec7274
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level 2 - Dialogue (Lose).unity
     guid: c9ba447a0a1ac494baed9f11a5ff25f1
   - enabled: 0

@@ -174,7 +174,7 @@ public class DialogueSystem : MonoBehaviour
                 else if (CastleData.Instance.castleHealthAmount > 70)
                 {
                     dialogueMessage.Add("You are doing a great job Dragoon!");
-                    dialogueMessage.Add("If you continue to keep up this pace, we will win against the fish in no time!");
+                    dialogueMessage.Add("You are doing really well, the other dragoons have never been this good.");
                     dialogueMessage.Add("Good Luck to you!");
                     dialogueMessage.Add("Good Luck to you!");
                 }
