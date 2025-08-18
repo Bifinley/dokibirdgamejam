@@ -3,22 +3,15 @@ using UnityEngine;
 
 public class ExplodeOnEnemy : MonoBehaviour
 {
-    [SerializeField] private float explosionTimer = 0.7f;
+    [SerializeField] private SpriteRenderer explosionRenderer;
+
+    private float explosionTimer = 0.5f;
+    private float explosionRemover = 3f;
+
     [SerializeField] private AudioSource explosionSound;
-    bool soundPlayed = false;
 
     private void Start()
     {
-        if (soundPlayed)
-        {
-            explosionSound.Stop();
-        }
-        else if (!soundPlayed)
-        {
-            explosionSound.Play();
-            soundPlayed = true;
-        }
-
         StartCoroutine(RemoveThySelf());
     }
 
@@ -26,6 +19,9 @@ public class ExplodeOnEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(explosionTimer);
 
+        explosionRenderer.enabled = false;
+
+        yield return new WaitForSeconds(explosionRemover);
         Destroy(gameObject);
 
     }

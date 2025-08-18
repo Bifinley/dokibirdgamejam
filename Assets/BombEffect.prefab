@@ -204,7 +204,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e113967c6f4746640a14cb617ab70cae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -262,5 +262,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0b04ae8d8457b4f81138f1ae43c3b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionTimer: 0.2
+  explosionRenderer: {fileID: 7992840759838394275}
   explosionSound: {fileID: 1686517100990154506}

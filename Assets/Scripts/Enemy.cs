@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     private float enemyMaxSpeed = 5f;
     private float enemyStartingPosition = 12f;
 
-    float[] specificYaxisSpawningRange = { 3.32f, 0.21f, -2.94f };
+    private float[] specificYaxisSpawningRange = { 3.32f, 0.21f, -2.94f };
 
     MainMenu.GameDifficulty gameDifficulty;
 
