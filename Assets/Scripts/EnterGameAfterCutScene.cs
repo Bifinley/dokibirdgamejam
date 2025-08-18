@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class EnterGameAfterCutScene : MonoBehaviour
 {
-    [SerializeField] private string SceneName;
+    private const string GamePlayScene = "Gameplay";
 
     [SerializeField] private float inputDelayTimer = 4f;
 
@@ -22,6 +22,6 @@ public class EnterGameAfterCutScene : MonoBehaviour
 
     private void EnterNextScene()
     {
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene(GamePlayScene);
     }
 }

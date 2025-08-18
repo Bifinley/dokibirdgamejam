@@ -17,7 +17,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
     public bool didPlayerWin;
 
-    [SerializeField] private string DefeatedScene = "DefeatedScene";
+    private const string DefeatedScene = "DefeatedScene";
 
     private void Start()
     {

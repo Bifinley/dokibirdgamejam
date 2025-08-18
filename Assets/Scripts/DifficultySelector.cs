@@ -16,13 +16,15 @@ public class DifficultySelector : MonoBehaviour
 
     public AudioSource buttonDifficultySelectorSoundEffect;
 
+    private const string GamePlayScene = "Gameplay";
+
     [SerializeField] private GameObject[] goonImages;
 
     private void SetDifficulty(MainMenu.GameDifficulty difficulty)
     {
         MainMenu.SelectedDifficulty = difficulty;
 
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene(GamePlayScene);
     }
 
     public void StartGame()

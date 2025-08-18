@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     [Header("Scores Info")]
     [SerializeField] private int enemyHits;
     [SerializeField] private int enemyMisses;
-    //[SerializeField] private int castleHealthAmount;
     private int setDamageAmount;
 
     [Header("Countdown Timer: Spawning Enemies Info")]
@@ -44,8 +43,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text gameTimerText;
     private bool isGameOver = false;
 
-    [SerializeField] private string DialogueScene = "Dialogue";
-    [SerializeField] private string EndScene = "EndScene";
+    private const string DialogueScene = "Dialogue";
+    private const string EndScene = "EndScene";
 
     [SerializeField] private bool isTest = true;
 
