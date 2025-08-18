@@ -18,6 +18,8 @@ public class PlayerChecker : MonoBehaviour
     private void Awake()
     {
         HideAllDragoons();
+
+        gameDifficulty = MainMenu.SelectedDifficulty;
     }
 
     private void Start()
