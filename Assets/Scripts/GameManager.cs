@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private bool isTest = true;
 
-    MainMenu.GameDifficulty gameDifficulty;
+    GameEnums.GameDifficulty gameDifficulty;
 
     [SerializeField] private GameObject[] difficultySpriteGoons;
 
@@ -70,28 +70,28 @@ public class GameManager : MonoBehaviour
         {
             switch (gameDifficulty)
             {
-                case MainMenu.GameDifficulty.Easy:
+                case GameEnums.GameDifficulty.Easy:
                     defaultResetTime = 5f;
                     if (!isTest) { startGameCountDownTime = 120f; }
                     if (isTest) { startGameCountDownTime = 3f; }
                     setDamageAmount = 1;
                     difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
                     break;
-                case MainMenu.GameDifficulty.Normal:
+                case GameEnums.GameDifficulty.Normal:
                     defaultResetTime = 3f;
                     if (!isTest) { startGameCountDownTime = 60f; }
                     if (isTest) { startGameCountDownTime = 3f; }
                     setDamageAmount = 2;
                     difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
                     break;
-                case MainMenu.GameDifficulty.Medium:
+                case GameEnums.GameDifficulty.Hard:
                     defaultResetTime = 1f;
                     if (!isTest) { startGameCountDownTime = 20f; }
                     if (isTest) { startGameCountDownTime = 3f; }
                     setDamageAmount = 3;
                     difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
                     break;
-                case MainMenu.GameDifficulty.Hard:
+                case GameEnums.GameDifficulty.Expert:
                     defaultResetTime = 0.8f;
                     if (!isTest) { startGameCountDownTime = 30f; }
                     if (isTest) { startGameCountDownTime = 3f; }
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
                     difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
                     break;
                 default:
-                    gameDifficulty = MainMenu.GameDifficulty.Normal;
+                    gameDifficulty = GameEnums.GameDifficulty.Normal;
                     break;
             }
         }
@@ -107,32 +107,32 @@ public class GameManager : MonoBehaviour
         {
             switch (gameDifficulty)
             {
-                case MainMenu.GameDifficulty.Easy:
+                case GameEnums.GameDifficulty.Easy:
                     defaultResetTime = 5f;
                     if (!isTest) { startGameCountDownTime = 120f; }
                     setDamageAmount = 1;
                     difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
                     break;
-                case MainMenu.GameDifficulty.Normal:
+                case GameEnums.GameDifficulty.Normal:
                     defaultResetTime = 3f;
                     if (!isTest) { startGameCountDownTime = 60f; }
                     setDamageAmount = 2;
                     difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
                     break;
-                case MainMenu.GameDifficulty.Medium:
+                case GameEnums.GameDifficulty.Hard:
                     defaultResetTime = 1f;
                     if (!isTest) { startGameCountDownTime = 20f; }
                     setDamageAmount = 3;
                     difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
                     break;
-                case MainMenu.GameDifficulty.Hard:
+                case GameEnums.GameDifficulty.Expert:
                     defaultResetTime = 0.8f;
                     if (!isTest) { startGameCountDownTime = 30f; }
                     setDamageAmount = 4;
                     difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
                     break;
                 default:
-                    gameDifficulty = MainMenu.GameDifficulty.Normal;
+                    gameDifficulty = GameEnums.GameDifficulty.Normal;
                     break;
             }
         }
@@ -141,32 +141,32 @@ public class GameManager : MonoBehaviour
         {
             switch (gameDifficulty)
             {
-                case MainMenu.GameDifficulty.Easy:
+                case GameEnums.GameDifficulty.Easy:
                     defaultResetTime = 5f;
                     startGameCountDownTime = 120f;
                     setDamageAmount = 1;
                     difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
                     break;
-                case MainMenu.GameDifficulty.Normal:
+                case GameEnums.GameDifficulty.Normal:
                     defaultResetTime = 3f;
                     startGameCountDownTime = 60f;
                     setDamageAmount = 2;
                     difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
                     break;
-                case MainMenu.GameDifficulty.Medium:
+                case GameEnums.GameDifficulty.Hard:
                     defaultResetTime = 1f;
                     startGameCountDownTime = 20f;
                     setDamageAmount = 3;
                     difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
                     break;
-                case MainMenu.GameDifficulty.Hard:
+                case GameEnums.GameDifficulty.Expert:
                     defaultResetTime = 0.8f;
                     startGameCountDownTime = 30f;
                     setDamageAmount = 4;
                     difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
                     break;
                 default:
-                    gameDifficulty = MainMenu.GameDifficulty.Normal;
+                    gameDifficulty = GameEnums.GameDifficulty.Normal;
                     break;
             }
         }
@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        gameDifficulty = MainMenu.SelectedDifficulty;
+        gameDifficulty = GameEnums.SelectedDifficulty;
 
     }
 

@@ -30,7 +30,7 @@ public class ChainFish : MonoBehaviour
 
     float[] specificYaxisSpawningRange = { 3.32f, 0.21f, -2.94f }; // this is very specific so enemies stay on a very specific 3 layer path
 
-    MainMenu.GameDifficulty gameDifficulty;
+    GameEnums.GameDifficulty gameDifficulty;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,23 +57,23 @@ public class ChainFish : MonoBehaviour
 
 
 
-        gameDifficulty = MainMenu.SelectedDifficulty;
+        gameDifficulty = GameEnums.SelectedDifficulty;
 
         switch (gameDifficulty)
         {
-            case MainMenu.GameDifficulty.Easy:
+            case GameEnums.GameDifficulty.Easy:
                 enemyMinSpeed = 1.2f;
                 enemyMaxSpeed = 3f;
                 break;
-            case MainMenu.GameDifficulty.Normal:
+            case GameEnums.GameDifficulty.Normal:
                 enemyMinSpeed = 1.5f;
                 enemyMaxSpeed = 3.5f;
                 break;
-            case MainMenu.GameDifficulty.Medium:
+            case GameEnums.GameDifficulty.Hard:
                 enemyMinSpeed = 3.7f;
                 enemyMaxSpeed = 6f;
                 break;
-            case MainMenu.GameDifficulty.Hard:
+            case GameEnums.GameDifficulty.Expert:
                 enemyMinSpeed = 7f;
                 enemyMaxSpeed = 7.8f;
                 break;

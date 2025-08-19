@@ -55,7 +55,7 @@ public class ChainFishTEST : MonoBehaviour
 
     float[] specificYaxisSpawningRange = { 3.32f, 0.21f, -2.94f }; // this is very specific so enemies stay on a very specific 3 layer path
 
-    MainMenu.GameDifficulty gameDifficulty;
+    GameEnums.GameDifficulty gameDifficulty;
 
     private void Awake()
     {
@@ -72,7 +72,7 @@ public class ChainFishTEST : MonoBehaviour
         }
     }
 
-    private void EnableDifficultyFish(MainMenu.GameDifficulty difficulty)
+    private void EnableDifficultyFish(GameEnums.GameDifficulty difficulty)
     {
         // Disable all first
         foreach (var fish in fishVarients)
@@ -81,22 +81,22 @@ public class ChainFishTEST : MonoBehaviour
         int index = 0;
         switch (difficulty)
         {
-            case MainMenu.GameDifficulty.Easy:
+            case GameEnums.GameDifficulty.Easy:
                 enemyMinSpeed = 1.2f;
                 enemyMaxSpeed = 2.9f;
                 index = (int)EnemyVariants.EasyFish;
                 break;
-            case MainMenu.GameDifficulty.Normal:
+            case GameEnums.GameDifficulty.Normal:
                 enemyMinSpeed = 1.3f;
                 enemyMaxSpeed = 2.5f;
                 index = (int)EnemyVariants.NormalFish;
                 break;
-            case MainMenu.GameDifficulty.Medium:
+            case GameEnums.GameDifficulty.Hard:
                 enemyMinSpeed = 3.3f;
                 enemyMaxSpeed = 5f;
                 index = (int)EnemyVariants.MediumFish;
                 break;
-            case MainMenu.GameDifficulty.Hard:
+            case GameEnums.GameDifficulty.Expert:
                 enemyMinSpeed = 6.5f;
                 enemyMaxSpeed = 10f;
                 index = (int)EnemyVariants.HardSpicyPepper;
@@ -134,7 +134,7 @@ public class ChainFishTEST : MonoBehaviour
 
 
 
-        gameDifficulty = MainMenu.SelectedDifficulty;
+        gameDifficulty = GameEnums.SelectedDifficulty;
         EnableDifficultyFish(gameDifficulty);
 
         SetEnemyPositionAndSpeed();

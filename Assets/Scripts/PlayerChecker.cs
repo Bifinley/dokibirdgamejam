@@ -13,13 +13,13 @@ public class PlayerChecker : MonoBehaviour
 
     [SerializeField] GameObject[] dokiDragoons;
 
-    MainMenu.GameDifficulty gameDifficulty;
+    GameEnums.GameDifficulty gameDifficulty;
 
     private void Awake()
     {
         HideAllDragoons();
 
-        gameDifficulty = MainMenu.SelectedDifficulty;
+        gameDifficulty = GameEnums.SelectedDifficulty;
     }
 
     private void Start()
@@ -44,16 +44,16 @@ public class PlayerChecker : MonoBehaviour
     {
         switch (gameDifficulty)
         {
-            case MainMenu.GameDifficulty.Easy:
+            case GameEnums.GameDifficulty.Easy:
                 dokiDragoons[(int)Dragoons.EggGoon].SetActive(true);
                 break;
-            case MainMenu.GameDifficulty.Normal:
+            case GameEnums.GameDifficulty.Normal:
                 dokiDragoons[(int)Dragoons.Dragoon].SetActive(true);
                 break;
-            case MainMenu.GameDifficulty.Medium:
+            case GameEnums.GameDifficulty.Hard:
                 dokiDragoons[(int)Dragoons.LongGoon].SetActive(true);
                 break;
-            case MainMenu.GameDifficulty.Hard:
+            case GameEnums.GameDifficulty.Expert:
                 dokiDragoons[(int)Dragoons.ChonkyGoon].SetActive(true);
                 break;
         }

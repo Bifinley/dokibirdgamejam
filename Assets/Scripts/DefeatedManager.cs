@@ -12,13 +12,13 @@ public class DefeatedManager : MonoBehaviour
         ChonkyGoon
     }
 
-    MainMenu.GameDifficulty gameDifficulty;
+    GameEnums.GameDifficulty gameDifficulty;
 
     [SerializeField] GameObject[] dokiDragoons;
 
     private void Awake()
     {
-        gameDifficulty = MainMenu.SelectedDifficulty;
+        gameDifficulty = GameEnums.SelectedDifficulty;
     }
 
     private void Start()
@@ -48,16 +48,16 @@ public class DefeatedManager : MonoBehaviour
     {
         switch (gameDifficulty)
         {
-            case MainMenu.GameDifficulty.Easy:
+            case GameEnums.GameDifficulty.Easy:
                 dokiDragoons[(int)Defeated_Dragoons.EggGoon].SetActive(true);
                 break;
-            case MainMenu.GameDifficulty.Normal:
+            case GameEnums.GameDifficulty.Normal:
                 dokiDragoons[(int)Defeated_Dragoons.Dragoon].SetActive(true);
                 break;
-            case MainMenu.GameDifficulty.Medium:
+            case GameEnums.GameDifficulty.Hard:
                 dokiDragoons[(int)Defeated_Dragoons.LongGoon].SetActive(true);
                 break;
-            case MainMenu.GameDifficulty.Hard:
+            case GameEnums.GameDifficulty.Expert:
                 dokiDragoons[(int)Defeated_Dragoons.ChonkyGoon].SetActive(true);
                 break;
         }

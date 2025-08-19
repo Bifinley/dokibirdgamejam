@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     private float[] specificYaxisSpawningRange = { 3.32f, 0.21f, -2.94f };
 
-    MainMenu.GameDifficulty gameDifficulty;
+    GameEnums.GameDifficulty gameDifficulty;
 
     [SerializeField] GameObject[] fishVarients; 
 
@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        gameDifficulty = MainMenu.SelectedDifficulty;
+        gameDifficulty = GameEnums.SelectedDifficulty;
         EnableDifficultyFish(gameDifficulty);
         SetEnemyPositionAndSpeed();
     }
@@ -87,29 +87,29 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void EnableDifficultyFish(MainMenu.GameDifficulty difficulty)
+    private void EnableDifficultyFish(GameEnums.GameDifficulty difficulty)
     {
         DisableAllFish();
 
         int index = 0;
         switch (difficulty)
         {
-            case MainMenu.GameDifficulty.Easy:
+            case GameEnums.GameDifficulty.Easy:
                 enemyMinSpeed = 1.2f;
                 enemyMaxSpeed = 3f;
                 index = (int)EnemyVariants.EasyFish;
                 break;
-            case MainMenu.GameDifficulty.Normal:
+            case GameEnums.GameDifficulty.Normal:
                 enemyMinSpeed = 1.5f;
                 enemyMaxSpeed = 3.5f;
                 index = (int)EnemyVariants.NormalFish;
                 break;
-            case MainMenu.GameDifficulty.Medium:
+            case GameEnums.GameDifficulty.Hard:
                 enemyMinSpeed = 3.7f;
                 enemyMaxSpeed = 6f;
                 index = (int)EnemyVariants.MediumFish;
                 break;
-            case MainMenu.GameDifficulty.Hard:
+            case GameEnums.GameDifficulty.Expert:
                 enemyMinSpeed = 7.5f;
                 enemyMaxSpeed = 14f;
                 index = (int)EnemyVariants.HardSpicyPepper;

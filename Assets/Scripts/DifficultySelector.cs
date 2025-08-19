@@ -1,47 +1,42 @@
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class DifficultySelector : MonoBehaviour
 {
-    public void SetDifficultyEasy() => SetDifficulty(MainMenu.GameDifficulty.Easy);
-    public void SetDifficultyMedium() => SetDifficulty(MainMenu.GameDifficulty.Medium);
-    public void SetDifficultyNormal() => SetDifficulty(MainMenu.GameDifficulty.Normal);
-    public void SetDifficultyHard() => SetDifficulty(MainMenu.GameDifficulty.Hard);
-
     public TMP_Text currentDifficultyText;
 
-    public int currentDifficultyIndex;
+    private int currentDifficultyIndex;
 
-    public AudioSource buttonDifficultySelectorSoundEffect;
+    public AudioSource buttonSelectorSoundEffect;
 
     private const string GamePlayScene = "Gameplay";
 
     [SerializeField] private GameObject[] goonImages;
 
-    private void SetDifficulty(MainMenu.GameDifficulty difficulty)
+    /*private void SetDifficulty(GameEnums.GameDifficulty difficulty)
     {
-        MainMenu.SelectedDifficulty = difficulty;
+        GameEnums.SelectedDifficulty = difficulty;
 
         SceneManager.LoadScene(GamePlayScene);
-    }
+    }*/
 
     public void StartGame()
     {
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteAll(); // here just in case
         SceneManager.LoadScene("CutScene");
     }
 
     private void Awake()
     {
         PlayerPrefs.DeleteAll();
-        MainMenu.SelectedDifficulty = MainMenu.GameDifficulty.Easy;
     }
 
     private void Update()
     {
-        if (currentDifficultyIndex == 0) // easy goon
+        //UpdateCurrentDifficultyUI();
+        /*if (currentDifficultyIndex == 0) // easy goon
         {
             goonImages[0].SetActive(true);
         }
@@ -75,51 +70,44 @@ public class DifficultySelector : MonoBehaviour
         else if (currentDifficultyIndex != 3)
         {
             goonImages[3].SetActive(false);
-        }
-
-        currentDifficultyText.text = $"Current Difficulty: {MainMenu.SelectedDifficulty}";
+        }*/
     }
 
     public void SelectDifficulty()
     {
         switch (currentDifficultyIndex)
         {
-            case 0: MainMenu.SelectedDifficulty = MainMenu.GameDifficulty.Easy; break;
+            case 0: GameEnums.SelectedDifficulty = GameEnums.GameDifficulty.Easy; break;
 
-            case 1: MainMenu.SelectedDifficulty = MainMenu.GameDifficulty.Normal; break;
+            case 1: GameEnums.SelectedDifficulty = GameEnums.GameDifficulty.Normal; break;
 
-            case 2: MainMenu.SelectedDifficulty = MainMenu.GameDifficulty.Medium; break;
+            case 2: GameEnums.SelectedDifficulty = GameEnums.GameDifficulty.Hard; break;
 
-            case 3: MainMenu.SelectedDifficulty = MainMenu.GameDifficulty.Hard; break;
+            case 3: GameEnums.SelectedDifficulty = GameEnums.GameDifficulty.Expert; break;
         }
-
-        currentDifficultyText.text = $"Current Difficulty: {MainMenu.SelectedDifficulty}";
+        UpdateCurrentDifficultyUI();
     }
-    public void LeftDifficultyButton()  // I know Im using magic numbers here, please bear with me :(
+    public void LeftDifficultyButton()  
     {
-        if (currentDifficultyIndex < 0)
-        {
-            currentDifficultyIndex = 0;
-        }
-        if(currentDifficultyIndex > 0)
-        {
-            currentDifficultyIndex--;
-        }
+        currentDifficultyIndex = Mathf.Max(0, currentDifficultyIndex - 1);
         SelectDifficulty();
-        buttonDifficultySelectorSoundEffect.Play();                // 0 - Easy
-    }                                                              // 1 - Normal
-    public void RightDifficultyButton()                            // 2 - Medium
-    {                                                              // 3 - Hard
-        if (currentDifficultyIndex > 3)
-        {
-            currentDifficultyIndex = 3;
-        }
-        if (currentDifficultyIndex < 3)
-        {
-            currentDifficultyIndex++;
-        }
-
+        buttonSelectorSoundEffect.Play();
+    }                                                         
+    public void RightDifficultyButton()                      
+    {
+        int maxIndex = System.Enum.GetValues(typeof(GameEnums.GameDifficulty)).Length - 1;
+        currentDifficultyIndex = Mathf.Min(maxIndex, currentDifficultyIndex + 1);
         SelectDifficulty();
-        buttonDifficultySelectorSoundEffect.Play();
+        buttonSelectorSoundEffect.Play();
+    }
+    private void UpdateCurrentDifficultyUI()
+    {
+        currentDifficultyText.text = $"Current Difficulty: {GameEnums.SelectedDifficulty}";
     }
 }
+
+
+// 0 - Easy
+// 1 - Normal
+// 2 - Hard
+// 3 - Expert

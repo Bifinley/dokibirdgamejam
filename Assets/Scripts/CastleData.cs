@@ -3,7 +3,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class CastleData : MonoBehaviour
+public class CastleData : MonoBehaviour // This code will be overhauled later
 {
     public static CastleData Instance;
 
@@ -15,8 +15,8 @@ public class CastleData : MonoBehaviour
     }
     private enum FloorState
     {
+        Clean,
         Normal,
-        Lots,
         Extreme
     }
 
