@@ -12,7 +12,6 @@ public class ChainFishTEST : MonoBehaviour
     }
 
     [SerializeField] private float enemyMoveSpeed = 2f;
-
     [SerializeField] public float distanceFromPlayer;
 
     [SerializeField] public GameObject FISH1;
@@ -25,7 +24,7 @@ public class ChainFishTEST : MonoBehaviour
 
     [SerializeField] public GameObject lineRendererObject;
 
-    [SerializeField] private float retractSpeed = 2f; // speed at which line end moves
+    [SerializeField] private float retractSpeed = 2f;
 
     [SerializeField] public bool alive = true;
     [SerializeField] public bool Uninstall = false;
@@ -37,7 +36,7 @@ public class ChainFishTEST : MonoBehaviour
 
     GameObject Fish1;
     GameObject Fish2;
-    private GameObject fish1Target; // survivor fish target
+    private GameObject fish1Target;
     private GameObject fish2Target;
 
     private bool fish1Retracting = false;
@@ -53,7 +52,7 @@ public class ChainFishTEST : MonoBehaviour
     private float enemyMaxSpeed = 5f;
     private float enemyStartingPosition = 12f;
 
-    float[] specificYaxisSpawningRange = { 3.32f, 0.21f, -2.94f }; // this is very specific so enemies stay on a very specific 3 layer path
+    float[] specificYaxisSpawningRange = { 3.32f, 0.21f, -2.94f };
 
     GameEnums.GameDifficulty gameDifficulty;
 
@@ -74,7 +73,6 @@ public class ChainFishTEST : MonoBehaviour
 
     private void EnableDifficultyFish(GameEnums.GameDifficulty difficulty)
     {
-        // Disable all first
         foreach (var fish in fishVarients)
             fish.SetActive(false);
 
@@ -107,40 +105,19 @@ public class ChainFishTEST : MonoBehaviour
             fishVarients[index].SetActive(true);
     }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //lineRendererObject = FindAnyObjectByType<LineRenderer>().gameObject;
-        //lineController = GetComponent<LineController>();
-
-        //lineRenderer = GetComponent<LineRenderer>();
-        ////lineController = GetComponent<LineController>();
-        //// Create our own LineRenderer
-        ////lineRenderer = gameObject.AddComponent<LineRenderer>();
-        //lineRenderer.positionCount = 2;
-        //lineRenderer.widthMultiplier = 0.05f; // thickness of line
-        //lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        //lineRenderer.startColor = Color.white;
-        //lineRenderer.endColor = Color.white;
-
         AttachPoint1 = transform.position;
         AttachPoint2 = transform.position;
 
-        // Create line to Fish1
         lineToFish1 = CreateLineRenderer("LineToFish1");
-        // Create line to Fish2
         lineToFish2 = CreateLineRenderer("LineToFish2");
-
-
 
         gameDifficulty = GameEnums.SelectedDifficulty;
         EnableDifficultyFish(gameDifficulty);
 
         SetEnemyPositionAndSpeed();
 
-
-        // instantiate two fish enemies to be "connected" to. 
         enemyMoveSpeed = Random.Range(enemyMinSpeed, enemyMaxSpeed);
         float enemyY = specificYaxisSpawningRange[Random.Range(0, specificYaxisSpawningRange.Length)];
         Vector3 fish1pos = new Vector3(enemyStartingPosition, enemyY, 0);
@@ -155,41 +132,251 @@ public class ChainFishTEST : MonoBehaviour
         GameManager gameManager = FindFirstObjectByType<GameManager>();
         gameManager.activeEnemyList.Add(Fish1);
         gameManager.activeEnemyList.Add(Fish2);
-
-
-
-
-        //lineRenderer = FindAnyObjectByType<LineRenderer>();
-        //lineRenderer = GetComponent<LineRenderer>();
-        //lineController.points = new Transform[] { FISH1.transform, FISH2.transform };
-        //lineController.SetUpLine(new Transform[] { this.transform, Fish1.transform });
-        //lineController.SetUpLine(new Transform[] { this.transform, Fish2.transform });
-        // Update line positions
-        //lineRenderer.SetPosition(0, Fish1.transform.position);
-        //lineRenderer.SetPosition(1, Fish2.transform.position);
-
-        //lineRenderer.SetPosition(0, Fish2.transform.position);
-        //lineRenderer.SetPosition(1, this.transform.position);
-        //lineRenderer.SetPosition(2, Fish1.transform.position);
-
-
-        //lineToFish1.SetPosition(0, transform.position);
-        //lineToFish1.SetPosition(1, Fish1.transform.position);
-
-        //lineToFish2.SetPosition(0, transform.position);
-        //lineToFish2.SetPosition(1, Fish2.transform.position);
-
-
-
-        //lineRenderer.SetPosition(0, Fish2.transform.position);
-        //lineRenderer.SetPosition(1, Fish1.transform.position);
-
-        //lineToFish1 = Fish1.AddComponent<LineRenderer>();
-        //// Create line to Fish2
-        //lineToFish2 = Fish2.AddComponent<LineRenderer>();
-
-
     }
+
+    private void Update()
+    {
+        bool controllerAlive = alive;
+        bool fish1Alive = Fish1 != null && Fish1.GetComponent<Enemy>().alive;
+        bool fish2Alive = Fish2 != null && Fish2.GetComponent<Enemy>().alive;
+
+        if (Uninstall)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        if (!alive && !explosionSpawned)
+        {
+            SpawnExplosion(gameObject);
+
+            if (fishVarients != null)
+            {
+                foreach (var fish in fishVarients)
+                    if (fish != null) fish.SetActive(false);
+            }
+
+            controllerAlive = false;
+            explosionSpawned = true;
+        }
+        else if (alive)
+        {
+            EnemyMovement();
+        }
+
+        bool controllerJustDied = !controllerAlive && !fish1Retracting && !fish2Retracting;
+
+        // --- Fish1 Line ---
+        if (fish1Alive && controllerAlive)
+        {
+            AttachPoint1 = Fish1.transform.position;
+            lineToFish1.enabled = true;
+            lineToFish1.SetPosition(0, transform.position);
+            lineToFish1.SetPosition(1, Fish1.transform.position);
+        }
+        else if (!fish1Alive && !fish1Retracting)
+        {
+            fish1Retracting = true;
+            fish1Target = controllerAlive ? gameObject : (fish2Alive ? Fish2 : null);
+        }
+        else if (controllerJustDied && fish1Alive)
+        {
+            fish1Retracting = true;
+            fish1Target = fish2Alive ? Fish2 : null;
+            AttachPoint1 = transform.position;
+        }
+
+        if (fish1Retracting && fish1Target != null)
+        {
+            AttachPoint1 = Vector3.MoveTowards(AttachPoint1, fish1Target.transform.position, retractSpeed * Time.deltaTime);
+            lineToFish1.enabled = true;
+            lineToFish1.SetPosition(0, fish1Target.transform.position);
+            lineToFish1.SetPosition(1, AttachPoint1);
+
+            if (Vector3.Distance(AttachPoint1, fish1Target.transform.position) < 0.01f)
+            {
+                if (fish1Target == gameObject)
+                {
+                    alive = false;
+                    SpawnExplosion(gameObject);
+                }
+                else
+                {
+                    fish1Target.GetComponent<Enemy>().alive = false;
+                    SpawnExplosion(fish1Target);
+                }
+
+                lineToFish1.enabled = false;
+                fish1Retracting = false;
+            }
+        }
+        else if (!fish1Alive || (!controllerAlive && !fish1Retracting))
+        {
+            lineToFish1.enabled = false;
+        }
+
+        // --- Fish2 Line ---
+        if (fish2Alive && controllerAlive)
+        {
+            AttachPoint2 = Fish2.transform.position;
+            lineToFish2.enabled = true;
+            lineToFish2.SetPosition(0, transform.position);
+            lineToFish2.SetPosition(1, Fish2.transform.position);
+        }
+        else if (!fish2Alive && !fish2Retracting)
+        {
+            fish2Retracting = true;
+            fish2Target = controllerAlive ? gameObject : (fish1Alive ? Fish1 : null);
+        }
+        else if (controllerJustDied && fish2Alive)
+        {
+            fish2Retracting = true;
+            fish2Target = fish1Alive ? Fish1 : null;
+            AttachPoint2 = transform.position;
+        }
+
+        if (fish2Retracting && fish2Target != null)
+        {
+            AttachPoint2 = Vector3.MoveTowards(AttachPoint2, fish2Target.transform.position, retractSpeed * Time.deltaTime);
+            lineToFish2.enabled = true;
+            lineToFish2.SetPosition(0, fish2Target.transform.position);
+            lineToFish2.SetPosition(1, AttachPoint2);
+
+            if (Vector3.Distance(AttachPoint2, fish2Target.transform.position) < 0.01f)
+            {
+                if (fish2Target == gameObject)
+                {
+                    alive = false;
+                    SpawnExplosion(gameObject);
+                }
+                else
+                {
+                    fish2Target.GetComponent<Enemy>().alive = false;
+                    SpawnExplosion(fish2Target);
+                }
+
+                lineToFish2.enabled = false;
+                fish2Retracting = false;
+                fish2Target = null;
+            }
+        }
+        else if (!fish2Alive || (!controllerAlive && !fish2Retracting))
+        {
+            lineToFish2.enabled = false;
+        }
+
+        bool fish1Dead = Fish1 == null || !Fish1.GetComponent<Enemy>().alive;
+        bool fish2Dead = Fish2 == null || !Fish2.GetComponent<Enemy>().alive;
+
+        if (fish1Dead && fish2Dead)
+        {
+            Uninstall = true;
+        }
+    }
+
+    private void EnemyMovement()
+    {
+        transform.position += Vector3.left * enemyMoveSpeed * Time.deltaTime;
+    }
+
+    private void SetEnemyPositionAndSpeed()
+    {
+        enemyMoveSpeed = Random.Range(enemyMinSpeed, enemyMaxSpeed);
+        float enemyY = specificYaxisSpawningRange[Random.Range(0, specificYaxisSpawningRange.Length)];
+        transform.position = new Vector3(enemyStartingPosition, enemyY, 0);
+    }
+
+    private LineRenderer CreateLineRenderer(string name)
+    {
+        GameObject lineObj = new GameObject(name);
+        lineObj.transform.parent = transform;
+        LineRenderer lr = lineObj.AddComponent<LineRenderer>();
+        lr.positionCount = 2;
+        lr.widthMultiplier = 0.05f;
+        lr.material = new Material(Shader.Find("Sprites/Default"));
+        lr.startColor = Color.white;
+        lr.endColor = Color.white;
+        return lr;
+    }
+
+    private void SpawnExplosion(GameObject target)
+    {
+        if (target == null || explosionGameObjectPrefab == null) return;
+
+        Instantiate(explosionGameObjectPrefab, target.transform.position, Quaternion.identity);
+
+        var renderer = target.GetComponentInChildren<SpriteRenderer>();
+        if (renderer != null) renderer.enabled = false;
+    }
+}
+
+
+    //// Handle Fish2 retraction
+    //if (fish2Retracting && fish2Target != null)
+    //{
+    //    AttachPoint2 = Vector3.MoveTowards(AttachPoint2, fish2Target.transform.position, retractSpeed * Time.deltaTime);
+    //    lineToFish2.enabled = true;
+    //    lineToFish2.SetPosition(0, fish2Target.transform.position);
+    //    lineToFish2.SetPosition(1, AttachPoint2);
+
+    //    if (Vector3.Distance(AttachPoint2, fish2Target.transform.position) < 0.01f)
+    //    {
+    //        // Line reached target - kill it
+    //        if (fish2Target == gameObject)
+    //            alive = false;
+    //        else if (fish2Target != null)
+    //            fish2Target.GetComponent<Enemy>().alive = false;
+
+    //        lineToFish2.enabled = false;
+    //        fish2Retracting = false;
+    //    }
+    //}
+    //else if (!fish2Alive || (!controllerAlive && !fish2Retracting))
+    //{
+    //    // Hide Fish2's line when it should not be visible
+    //    lineToFish2.enabled = false;
+    //}
+
+    //// Clean up when all fish are dead
+    //bool fish1Dead = Fish1 == null || !Fish1.GetComponent<Enemy>().alive;
+    //bool fish2Dead = Fish2 == null || !Fish2.GetComponent<Enemy>().alive;
+
+    //if (fish1Dead && fish2Dead)
+    //{
+    //    Uninstall = true;
+    //}
+
+    //lineRenderer = FindAnyObjectByType<LineRenderer>();
+    //lineRenderer = GetComponent<LineRenderer>();
+    //lineController.points = new Transform[] { FISH1.transform, FISH2.transform };
+    //lineController.SetUpLine(new Transform[] { this.transform, Fish1.transform });
+    //lineController.SetUpLine(new Transform[] { this.transform, Fish2.transform });
+    // Update line positions
+    //lineRenderer.SetPosition(0, Fish1.transform.position);
+    //lineRenderer.SetPosition(1, Fish2.transform.position);
+
+    //lineRenderer.SetPosition(0, Fish2.transform.position);
+    //lineRenderer.SetPosition(1, this.transform.position);
+    //lineRenderer.SetPosition(2, Fish1.transform.position);
+
+
+    //lineToFish1.SetPosition(0, transform.position);
+    //lineToFish1.SetPosition(1, Fish1.transform.position);
+
+    //lineToFish2.SetPosition(0, transform.position);
+    //lineToFish2.SetPosition(1, Fish2.transform.position);
+
+
+
+    //lineRenderer.SetPosition(0, Fish2.transform.position);
+    //lineRenderer.SetPosition(1, Fish1.transform.position);
+
+    //lineToFish1 = Fish1.AddComponent<LineRenderer>();
+    //// Create line to Fish2
+    //lineToFish2 = Fish2.AddComponent<LineRenderer>();
+
+
+
 
 
     //private void Update()
@@ -634,235 +821,3 @@ public class ChainFishTEST : MonoBehaviour
 
     //}
 
-
-
-
-
-
-    private void Update()
-    {
-        // Get alive states
-        bool controllerAlive = alive;
-        bool fish1Alive = Fish1 != null && Fish1.GetComponent<Enemy>().alive;
-        bool fish2Alive = Fish2 != null && Fish2.GetComponent<Enemy>().alive;
-
-        if (Uninstall)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        if (!alive)
-        {
-            var renderer = GetComponentInChildren<SpriteRenderer>();
-            
-            if (renderer != null && !explosionSpawned) // Only spawn once
-            {
-                Instantiate(explosionGameObjectPrefab, this.transform); 
-                renderer.enabled = false;
-
-                fishVarients[(int)EnemyVariants.EasyFish].SetActive(false);
-                fishVarients[(int)EnemyVariants.NormalFish].SetActive(false);
-                fishVarients[(int)EnemyVariants.MediumFish].SetActive(false);
-                fishVarients[(int)EnemyVariants.HardSpicyPepper].SetActive(false);
-
-                controllerAlive = false;
-                explosionSpawned = true;
-            }
-        }
-        else
-        {
-            EnemyMovement();
-        }
-
-
-        // Store previous controller state to detect when it just died
-        bool controllerJustDied = !controllerAlive && !fish1Retracting && !fish2Retracting;
-
-        // Handle Fish1 line logic
-        if (fish1Alive && controllerAlive)
-        {
-            // Normal state - draw line from controller to Fish1
-            AttachPoint1 = Fish1.transform.position;
-            lineToFish1.enabled = true;
-            lineToFish1.SetPosition(0, transform.position);
-            lineToFish1.SetPosition(1, Fish1.transform.position);
-        }
-        else if (!fish1Alive && !fish1Retracting)
-        {
-            // Fish1 just died - start retracting line
-            fish1Retracting = true;
-            if (controllerAlive)
-                fish1Target = gameObject;
-            else if (fish2Alive)
-                fish1Target = Fish2;
-            else
-                fish1Target = null;
-        }
-        else if (controllerJustDied && fish1Alive)
-        {
-            // Controller just died and Fish1 is alive - start retraction from controller position to Fish2
-            fish1Retracting = true;
-            fish1Target = fish2Alive ? Fish2 : null;
-            AttachPoint1 = transform.position; // Start retraction from controller's current position
-        }
-
-        // Handle Fish1 retraction
-        if (fish1Retracting && fish1Target != null)
-        {
-            AttachPoint1 = Vector3.MoveTowards(AttachPoint1, fish1Target.transform.position, retractSpeed * Time.deltaTime);
-            lineToFish1.enabled = true;
-            lineToFish1.SetPosition(0, fish1Target.transform.position);
-            lineToFish1.SetPosition(1, AttachPoint1);
-
-            if (Vector3.Distance(AttachPoint1, fish1Target.transform.position) < 0.01f)
-            {
-                // Line reached target - kill it
-                if (fish1Target == gameObject)
-                    alive = false;
-                else if (fish1Target != null)
-                    fish1Target.GetComponent<Enemy>().alive = false;
-
-                lineToFish1.enabled = false;
-                fish1Retracting = false;
-            }
-        }
-        else if (!fish1Alive || (!controllerAlive && !fish1Retracting))
-        {
-            // Hide Fish1's line when it should not be visible
-            lineToFish1.enabled = false;
-        }
-
-        // Handle Fish2 line logic
-        if (fish2Alive && controllerAlive)
-        {
-            // Normal state - draw line from controller to Fish2
-            AttachPoint2 = Fish2.transform.position;
-            lineToFish2.enabled = true;
-            lineToFish2.SetPosition(0, transform.position);
-            lineToFish2.SetPosition(1, Fish2.transform.position);
-        }
-        else if (!fish2Alive && !fish2Retracting)
-        {
-            // Fish2 just died - start retracting line
-            fish2Retracting = true;
-            if (controllerAlive)
-                fish2Target = gameObject;
-            else if (fish1Alive)
-                fish2Target = Fish1;
-            else
-                fish2Target = null;
-        }
-        else if (controllerJustDied && fish2Alive)
-        {
-            // Controller just died and Fish2 is alive - start retraction from controller position to Fish1
-            fish2Retracting = true;
-            fish2Target = fish1Alive ? Fish1 : null;
-            AttachPoint2 = transform.position; // Start retraction from controller's current position
-        }
-
-        //// Handle Fish2 retraction
-        //if (fish2Retracting && fish2Target != null)
-        //{
-        //    AttachPoint2 = Vector3.MoveTowards(AttachPoint2, fish2Target.transform.position, retractSpeed * Time.deltaTime);
-        //    lineToFish2.enabled = true;
-        //    lineToFish2.SetPosition(0, fish2Target.transform.position);
-        //    lineToFish2.SetPosition(1, AttachPoint2);
-
-        //    if (Vector3.Distance(AttachPoint2, fish2Target.transform.position) < 0.01f)
-        //    {
-        //        // Line reached target - kill it
-        //        if (fish2Target == gameObject)
-        //            alive = false;
-        //        else if (fish2Target != null)
-        //            fish2Target.GetComponent<Enemy>().alive = false;
-
-        //        lineToFish2.enabled = false;
-        //        fish2Retracting = false;
-        //    }
-        //}
-        //else if (!fish2Alive || (!controllerAlive && !fish2Retracting))
-        //{
-        //    // Hide Fish2's line when it should not be visible
-        //    lineToFish2.enabled = false;
-        //}
-
-        //// Clean up when all fish are dead
-        //bool fish1Dead = Fish1 == null || !Fish1.GetComponent<Enemy>().alive;
-        //bool fish2Dead = Fish2 == null || !Fish2.GetComponent<Enemy>().alive;
-
-        //if (fish1Dead && fish2Dead)
-        //{
-        //    Uninstall = true;
-        //}
-
-        // Handle Fish2 retraction
-        if (fish2Retracting && fish2Target != null)
-        {
-            AttachPoint2 = Vector3.MoveTowards(AttachPoint2, fish2Target.transform.position, retractSpeed * Time.deltaTime);
-            lineToFish2.enabled = true;
-            lineToFish2.SetPosition(0, fish2Target.transform.position);
-            lineToFish2.SetPosition(1, AttachPoint2);
-
-            if (Vector3.Distance(AttachPoint2, fish2Target.transform.position) < 0.01f)
-            {
-                if (fish2Target == gameObject)
-                    alive = false;
-                else if (fish2Target != null)
-                    fish2Target.GetComponent<Enemy>().alive = false;
-
-                lineToFish2.enabled = false;
-                fish2Retracting = false;
-                fish2Target = null; // <- make sure target is cleared
-            }
-        }
-        else if (!fish2Alive || (!controllerAlive && !fish2Retracting))
-        {
-            // Disable the line in any other case
-            lineToFish2.enabled = false;
-        }
-        // Clean up when all fish are dead
-        bool fish1Dead = Fish1 == null || !Fish1.GetComponent<Enemy>().alive;
-        bool fish2Dead = Fish2 == null || !Fish2.GetComponent<Enemy>().alive;
-
-        if (fish1Dead && fish2Dead)
-        {
-            Uninstall = true;
-        }
-
-
-    }
-
-
-
-
-
-    private void EnemyMovement()
-    {
-        transform.position += Vector3.left * enemyMoveSpeed * Time.deltaTime; // moving towards the player which is left
-    }
-
-    private void SetEnemyPositionAndSpeed()
-    {
-        enemyMoveSpeed = Random.Range(enemyMinSpeed, enemyMaxSpeed);
-
-        float enemyY = specificYaxisSpawningRange[Random.Range(0, specificYaxisSpawningRange.Length)];
-
-        transform.position = new Vector3(enemyStartingPosition, enemyY, 0);
-    }
-
-
-
-    private LineRenderer CreateLineRenderer(string name)
-    {
-        GameObject lineObj = new GameObject(name);
-        lineObj.transform.parent = transform;
-        LineRenderer lr = lineObj.AddComponent<LineRenderer>();
-        lr.positionCount = 2; // this needs to be 2, one line per fish
-        lr.widthMultiplier = 0.05f;
-        lr.material = new Material(Shader.Find("Sprites/Default"));
-        lr.startColor = Color.white;
-        lr.endColor = Color.white;
-        return lr;
-    }
-}
