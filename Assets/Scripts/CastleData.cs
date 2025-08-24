@@ -22,7 +22,7 @@ public class CastleData : MonoBehaviour // This code will be overhauled later
 
     [Header("Castle Info")]
     public int castleHealthAmount = 100;
-
+    
     [SerializeField] private GameObject[] castleObjects;
 
     public bool isLevel1Completed = false;

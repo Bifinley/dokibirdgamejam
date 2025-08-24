@@ -12,9 +12,9 @@ public class GameEnums : MonoBehaviour
 
     public enum DragoonType
     {
-        Egg_Dragoon,            
-        Long_Dragoon,           
-        Regular_Dragoon,        
+        Egg_Dragoon,
+        Regular_Dragoon,           
+        Long_Dragoon,        
         Chonky_Dragoon          
     }
 

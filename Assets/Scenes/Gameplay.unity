@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 22190522}
   - component: {fileID: 22190523}
   m_Layer: 0
-  m_Name: Normal_Dragoon
+  m_Name: Regular_Dragoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1232,7 +1232,7 @@ GameObject:
   - component: {fileID: 955008476}
   - component: {fileID: 955008477}
   m_Layer: 0
-  m_Name: Medium_LongGoon
+  m_Name: Long_Dragoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1856,7 +1856,7 @@ GameObject:
   - component: {fileID: 1733974254}
   - component: {fileID: 1733974255}
   m_Layer: 0
-  m_Name: Easy_EggGoon
+  m_Name: Egg_Dragoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2078,6 +2078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1829578885}
   - component: {fileID: 1829578886}
+  - component: {fileID: 1829578887}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2129,14 +2130,25 @@ MonoBehaviour:
   defaultGameResetTime: 60
   startGameCountDownTime: 0
   gameTimerText: {fileID: 674929168}
-  DialogueScene: Dialogue
-  EndScene: EndScene
   isTest: 0
-  difficultySpriteGoons:
+--- !u!114 &1829578887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829578884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a52583fb01d8d7499ac3704ccc76e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DragoonSkins:
   - {fileID: 1733974253}
   - {fileID: 22190521}
   - {fileID: 955008475}
   - {fileID: 2075514842}
+  EnemySkins: []
 --- !u!1 &1833277351
 GameObject:
   m_ObjectHideFlags: 0
@@ -2402,7 +2414,7 @@ GameObject:
   - component: {fileID: 2075514843}
   - component: {fileID: 2075514844}
   m_Layer: 0
-  m_Name: Hard_ChonkyGoon
+  m_Name: Chonky_Dragoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

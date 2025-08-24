@@ -15,13 +15,6 @@ public class DifficultySelector : MonoBehaviour
 
     [SerializeField] private GameObject[] goonImages;
 
-    /*private void SetDifficulty(GameEnums.GameDifficulty difficulty)
-    {
-        GameEnums.SelectedDifficulty = difficulty;
-
-        SceneManager.LoadScene(GamePlayScene);
-    }*/
-
     public void StartGame()
     {
         PlayerPrefs.DeleteAll(); // here just in case
@@ -32,46 +25,7 @@ public class DifficultySelector : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
     }
-
-    private void Update()
-    {
-        //UpdateCurrentDifficultyUI();
-        /*if (currentDifficultyIndex == 0) // easy goon
-        {
-            goonImages[0].SetActive(true);
-        }
-        else if (currentDifficultyIndex != 0)
-        {
-            goonImages[0].SetActive(false);
-        }
-
-        if (currentDifficultyIndex == 1) // normal goon
-        {
-            goonImages[1].SetActive(true);
-        }
-        else if (currentDifficultyIndex != 1)
-        {
-            goonImages[1].SetActive(false);
-        }
-
-        if (currentDifficultyIndex == 2) // long goon
-        {
-            goonImages[2].SetActive(true);
-        }
-        else if (currentDifficultyIndex != 2)
-        {
-            goonImages[2].SetActive(false);
-        }
-
-        if (currentDifficultyIndex == 3) // chonky goon
-        {
-            goonImages[3].SetActive(true);
-        }
-        else if (currentDifficultyIndex != 3)
-        {
-            goonImages[3].SetActive(false);
-        }*/
-    }
+   
 
     public void SelectDifficulty()
     {

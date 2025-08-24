@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     GameEnums.GameDifficulty gameDifficulty;
 
-    [SerializeField] private GameObject[] difficultySpriteGoons;
+    //[SerializeField] private GameObject[] difficultySpriteGoons;
 
     public static bool isLevel1 = true; // change enemies via here - setting true just to keep it working
     public static bool isLevel2 = false;
@@ -75,28 +75,28 @@ public class GameManager : MonoBehaviour
                     if (!isTest) { startGameCountDownTime = 120f; }
                     if (isTest) { startGameCountDownTime = 3f; }
                     setDamageAmount = 1;
-                    difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
+                    //difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
                     break;
                 case GameEnums.GameDifficulty.Normal:
                     defaultResetTime = 3f;
                     if (!isTest) { startGameCountDownTime = 60f; }
                     if (isTest) { startGameCountDownTime = 3f; }
                     setDamageAmount = 2;
-                    difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
+                    //difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
                     break;
                 case GameEnums.GameDifficulty.Hard:
                     defaultResetTime = 1f;
                     if (!isTest) { startGameCountDownTime = 20f; }
                     if (isTest) { startGameCountDownTime = 3f; }
                     setDamageAmount = 3;
-                    difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
+                    //difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
                     break;
                 case GameEnums.GameDifficulty.Expert:
                     defaultResetTime = 0.8f;
                     if (!isTest) { startGameCountDownTime = 30f; }
                     if (isTest) { startGameCountDownTime = 3f; }
                     setDamageAmount = 4;
-                    difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
+                    //difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
                     break;
                 default:
                     gameDifficulty = GameEnums.GameDifficulty.Normal;
@@ -111,25 +111,25 @@ public class GameManager : MonoBehaviour
                     defaultResetTime = 5f;
                     if (!isTest) { startGameCountDownTime = 120f; }
                     setDamageAmount = 1;
-                    difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
+                    //difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
                     break;
                 case GameEnums.GameDifficulty.Normal:
                     defaultResetTime = 3f;
                     if (!isTest) { startGameCountDownTime = 60f; }
                     setDamageAmount = 2;
-                    difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
+                    //difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
                     break;
                 case GameEnums.GameDifficulty.Hard:
                     defaultResetTime = 1f;
                     if (!isTest) { startGameCountDownTime = 20f; }
                     setDamageAmount = 3;
-                    difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
+                    //difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
                     break;
                 case GameEnums.GameDifficulty.Expert:
                     defaultResetTime = 0.8f;
                     if (!isTest) { startGameCountDownTime = 30f; }
                     setDamageAmount = 4;
-                    difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
+                    //difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
                     break;
                 default:
                     gameDifficulty = GameEnums.GameDifficulty.Normal;
@@ -145,25 +145,25 @@ public class GameManager : MonoBehaviour
                     defaultResetTime = 5f;
                     startGameCountDownTime = 120f;
                     setDamageAmount = 1;
-                    difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
+                    //difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(true);
                     break;
                 case GameEnums.GameDifficulty.Normal:
                     defaultResetTime = 3f;
                     startGameCountDownTime = 60f;
                     setDamageAmount = 2;
-                    difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
+                    //difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(true);
                     break;
                 case GameEnums.GameDifficulty.Hard:
                     defaultResetTime = 1f;
                     startGameCountDownTime = 20f;
                     setDamageAmount = 3;
-                    difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
+                    //difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(true);
                     break;
                 case GameEnums.GameDifficulty.Expert:
                     defaultResetTime = 0.8f;
                     startGameCountDownTime = 30f;
                     setDamageAmount = 4;
-                    difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
+                    //difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(true);
                     break;
                 default:
                     gameDifficulty = GameEnums.GameDifficulty.Normal;
@@ -178,11 +178,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        difficultySpriteGoons[(int)Dragoons.EggGoon].SetActive(false);
-        difficultySpriteGoons[(int)Dragoons.Dragoon].SetActive(false);
-        difficultySpriteGoons[(int)Dragoons.LongGoon].SetActive(false);
-        difficultySpriteGoons[(int)Dragoons.ChonkyGoon].SetActive(false);
-
         if (Instance == null)
         {
             Instance = this;

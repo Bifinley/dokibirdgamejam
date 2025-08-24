@@ -20,7 +20,7 @@ public class DragoonAndEnemyManager : MonoBehaviour
     private void Start()
     {
         ShowChosenDragoon();
-        ShowChosenEnemy();
+        //ShowChosenEnemy();
     }
 
     private void ShowChosenDragoon()

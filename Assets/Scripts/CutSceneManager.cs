@@ -11,7 +11,7 @@ public class CutSceneManager : MonoBehaviour
 
     // Game Enums
     GameEnums.GameDifficulty GameDifficultyEnum;
-    GameEnums.DragoonType DragoonTypeEnum;
+    [SerializeField] GameEnums.DragoonType DragoonTypeEnum;
     GameEnums.EnemyType EnemyTypeEnum;
 
     // GameObject Arrays

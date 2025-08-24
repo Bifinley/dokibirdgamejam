@@ -1457,6 +1457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actTitleText: {fileID: 1822260940}
   currentDifficultyText: {fileID: 344846332}
+  DragoonTypeEnum: 2
   DragoonCutSceneSkins:
   - {fileID: 1140104971}
   - {fileID: 1707388375}
