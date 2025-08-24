@@ -11,11 +11,6 @@ public class SkinSelector : MonoBehaviour
 
     [SerializeField] private GameObject[] dragoonImagePreview;
 
-    private void Awake()
-    {
-        
-    }
-
     private void Update()
     {
         //UpdateCurrentDifficultyUI();

@@ -1337,6 +1337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1538867123}
   - component: {fileID: 1538867124}
+  - component: {fileID: 1538867125}
   m_Layer: 0
   m_Name: DefeatedManager
   m_TagString: Untagged
@@ -1366,7 +1367,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538867122}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74136df03a1232d40a603e44f16115af, type: 3}
   m_Name: 
@@ -1376,6 +1377,24 @@ MonoBehaviour:
   - {fileID: 749216096}
   - {fileID: 1397376518}
   - {fileID: 1432776899}
+--- !u!114 &1538867125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538867122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a52583fb01d8d7499ac3704ccc76e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DragoonSkins:
+  - {fileID: 289162442}
+  - {fileID: 749216096}
+  - {fileID: 1397376518}
+  - {fileID: 1432776899}
+  EnemySkins: []
 --- !u!1 &1617453423
 GameObject:
   m_ObjectHideFlags: 0

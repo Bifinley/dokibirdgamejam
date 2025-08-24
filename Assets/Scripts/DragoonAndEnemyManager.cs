@@ -11,6 +11,7 @@ public class DragoonAndEnemyManager : MonoBehaviour
     [SerializeField] private GameObject[] DragoonSkins;
     [SerializeField] private GameObject[] EnemySkins;
 
+    
     private void Awake()
     {
         SetUpGameEnums();
