@@ -1,5 +1,7 @@
 https://itch.io/jam/doki-jam
 
+WE RANKED: #146
+
 GameJam Ended: Saturday August 16th, 2025 at 1:00 PM
 
 We Completed: Saturday August 16th, 2025 at 9:09 AM
